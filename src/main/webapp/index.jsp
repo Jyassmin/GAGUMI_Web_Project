@@ -3,10 +3,13 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1><%= "HelloWorld!" %>
-<h1><%= "차가람이 테스트!" %></h1>
+<h1 ><%= "HelloWorld!" %>
+<h1 style="font-family: 'Noto Sans KR', sans-serif;"> <%= "차가람이 테스트!" %></h1>
 <h1><%= "Hello 1111111111eWorld!" %>
 <h1><%= "하재민이 테스트" %>
 </h1>
