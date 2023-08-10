@@ -1,0 +1,24 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #A43E1D ; /* 글자 색 */
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #A43E1D;
+}
+
+li {
+    list-style: none;
+}
+
+footer {
+    background-color: #698269 ; /*푸터 배경색*/
+    color: white; /* 푸터 글씨 색*/
+}
