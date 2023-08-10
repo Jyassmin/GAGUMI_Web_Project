@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <!--자바스트립트-->
+    <script src="../script/jquery.min.js"></script>
+    <script src="./review-writer.js"></script>
 
     <meta charset="UTF-8">
     <title>리뷰 작성 페이지</title>
@@ -15,6 +18,7 @@
         .review-write-box {
             background-color: #F5EFE2;
             border: 1px solid #A43E1D;
+            margin: 10px 200px 20px 200px;
         }
     </style>
 </head>
@@ -26,17 +30,20 @@
     <!--리뷰 작성 전체 상자-->
     <div class="review-write-box">
         <!--제목 입력-->
-        <input type="text" value="제목을 입력하세오.">
+        <input type="text" id="title"value="제목을 입력하세오." onclick="clearInputValue(this)"  onblur="restoreOriginalValue(this)">
         <br>
         <!--제품 이름-->
         <h3>댕편한 소파</h3>
         <!--리뷰 내용 작성-->
         <div class="review-desc">
-            <input type="text" value="최소 10글자 이상 작성해 주세요.">
+            <input type="text" minlength="10" value="최소 10글자 이상 작성해 주세요.">
         </div>
         <!--이미지 첨부-->
         <div class="review-image">
-<!--            <img src="../images/sofa/sofa1.jpg" alt="product-image">-->
+            <form action="" method="post">
+                <input type="file" accept="image/*"> <!--이미지만 가져올 수 있게-->
+            </form>
+
         </div>
         <!--리뷰 작성 완료 버튼-->
         <div class="review-submit">
