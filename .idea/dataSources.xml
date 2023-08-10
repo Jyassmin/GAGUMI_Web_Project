@@ -2,7 +2,9 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
 
+
     <data-source source="LOCAL" name="gagumi_db@localhost" uuid="5613d63f-1d8b-4cb8-aa10-3be0cbe126c9">
+<!--     <data-source source="LOCAL" name="gagumi_db@localhost" uuid="7c7e724c-27cc-4a3f-a493-9fe53db3a643"> -->
 
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
