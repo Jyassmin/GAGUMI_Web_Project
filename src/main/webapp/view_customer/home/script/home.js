@@ -1,7 +1,20 @@
-$(document).ready(function() {
-    // 탭 클릭 시 배경색 레드 , 글자 화이트 처리
-    $('.navmenu > li > a').click(function() {
-        $('.navmenu > li').removeClass('active');
-        $(this).parent().addClass('active');
+document.addEventListener("DOMContentLoaded", function() {
+    var myPageLink = document.querySelector(".my-page");
+    var submenu = myPageLink.querySelector(".submenu");
+
+    myPageLink.addEventListener("mouseenter", function() {
+        submenu.style.display = "block";
+    });
+
+    myPageLink.addEventListener("mouseleave", function() {
+        submenu.style.display = "none";
+    });
+
+    submenu.addEventListener("mouseenter", function() {
+        submenu.style.display = "block";
+    });
+
+    submenu.addEventListener("mouseleave", function() {
+        submenu.style.display = "none";
     });
 });
