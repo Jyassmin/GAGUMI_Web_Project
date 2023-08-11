@@ -10,6 +10,7 @@
 }
 /*제목, 제품명 구분선*/
 .review-info > hr {
+    margin-bottom: 5px;
     outline: none;
     border-color: rgb(164, 62, 29);
     border-width: 1px;
