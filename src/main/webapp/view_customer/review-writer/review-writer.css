@@ -1,0 +1,57 @@
+/*리뷰 작성 전체 상자*/
+.review-write-box {
+    background-color: #F5EFE2;
+    border: 1px solid #A43E1D;
+    margin: 10px 100px 20px 100px;
+}
+/*리뷰 정보*/
+.review-info {
+    margin: 10px 10% 10px 10%;
+}
+/*제목, 제품명 구분선*/
+.review-info > hr {
+    outline: none;
+    border-color: rgb(164, 62, 29);
+    border-width: 1px;
+}
+/*제목*/
+#title{
+    font-size: 18px;
+    margin-bottom: 5px;
+    width: 100%;
+    background-color: #F5EFE2;
+    outline: none;
+    border: none;
+    cursor: text;
+    color: #A43E1D;
+}
+/*리뷰작성 textarea*/
+.review-desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 10% 10px 10%;
+    text-align: center;
+}
+
+#review {
+    padding: 10px;
+    height: 200px;
+    width: 93%;
+    display: block;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    resize: none;
+    font-size: 10px;
+    color: #A43E1D;
+}
+/*리뷰 첨부 사진*/
+.review-image {
+    margin: 0 10% 10px 10%;
+}
+/*리뷰 작성 제출 버튼*/
+.review-submit {
+    margin: 0 10% 10px 10%;
+    text-align: center;
+}

@@ -18,42 +18,48 @@
 
 </header>
 <main>
-    <div class="product-detail">
-        <!--상품 이미지-->
-        <div class="product-detail-image" >
-            <img src="../../images/sofa/sofa1.jpg" alt="product-image">
+    <section class="product-section">
+        <div class="product-detail">
+            <!--상품 이미지-->
+            <div class="product-detail-image" >
+                <img src="../../images/sofa/sofa1.jpg" alt="product-image">
+            </div>
+            <!--제픔정보-->
+            <div class="product-detail-info" >
+                <!--제품명, 제품 설명-->
+                <div class="product-desc-top">
+                    <h1>댕편한 소파</h1>
+                    <p style="height: 100px">위 코드에서 font-size 값을 조절하여 원하는 글씨 크기로
+                        변경할 수 있습니다. 값을 픽셀(px) 단위로 설정하거나, em, rem, % 등의
+                        다른 단위를 사용하여 글씨 크기를 조절할 수 있습니다. 예를 들어, 글씨 크기를
+                        상대적인 em 단위로 설정하려면 아래와 같이 할 수 있습니다:</p>
+                </div>
+                <!--제품 크기, 제품 가격, 수량-->
+                <div class="product-desc-bottom">
+                    <p>제품 크기 : 150X100X200</p>
+                    <h3>10,000원</h3>
+                    <p>수량 <input id="quantity" type="number" min="1" max="100" value="1"></p>
+                </div>
+                <!--장바구니 담기 버튼-->
+                <div class="product-basket-button">
+                    <input id="basket-button" type="button" value=" 장 바 구 니 담 기 ">
+                </div>
+            </div>
         </div>
-        <!--제픔정보-->
-        <div class="product-detail-info" >
-            <!--제품명, 제품 설명-->
-            <div class="product-desc-top">
-                <h1>댕편한 소파</h1>
-                <p style="height: 100px">위 코드에서 font-size 값을 조절하여 원하는 글씨 크기로
-                    변경할 수 있습니다. 값을 픽셀(px) 단위로 설정하거나, em, rem, % 등의
-                    다른 단위를 사용하여 글씨 크기를 조절할 수 있습니다. 예를 들어, 글씨 크기를
-                    상대적인 em 단위로 설정하려면 아래와 같이 할 수 있습니다:</p>
-            </div>
-            <!--제품 크기, 제품 가격, 수량-->
-            <div class="product-desc-bottom">
-                <p>제품 크기 : 150X100X200</p>
-                <h3>10,000원</h3>
-                <p>수량 <input id="quantity" type="number" min="1" max="100" value="1"></p>
-            </div>
-            <!--장바구니 담기 버튼-->
-            <div class="product-basket-button">
-                <input id="basket-button" type="button" value=" 장 바 구 니 담 기 ">
-            </div>
-        </div>
-    </div>
+    </section>
     <hr>
     <!--리뷰 작성 및 리뷰 내용 보기-->
-    <div class="review-info">
-        <!--리뷰 작성 버튼-->
-        <div class="review-button">
-            <input id="review-button" type="button" value=" 리 뷰 작 성 하 기  ">
+    <section class="review-section">
+        <div class="review-info">
+            <!--리뷰 작성 버튼-->
+            <div class="review-button">
+                <input id="review-button" type="button" value=" 리 뷰 작 성 하 기  ">
+            </div>
+
         </div>
 
-    </div>
+    </section>
+
 
 </main>
 <footer>
