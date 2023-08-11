@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,10 +80,6 @@
                         </div>
                         <div class="info">
                             <p class="info-name">성별</p>
-                            <input class="info-value" type="text"><br>
-                        </div>
-                        <div class="info">
-                            <p class="info-name">주소</p>
                             <input class="info-value" type="text"><br>
                         </div>
                     </div>
