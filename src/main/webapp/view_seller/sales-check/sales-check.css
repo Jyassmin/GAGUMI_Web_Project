@@ -59,60 +59,39 @@ h1{
     margin-top: 20px;
     text-align: center;
     letter-spacing: 8px;
-}
-/*footer*/
-footer{
-    font-size: 14px;
-}
-.footer1{
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-}
-.project-intro,
-.product,
-.mypage{
-    flex: 1;
-    margin: 0 40px;
-    max-width: 300px;
-}
-.product{
-    margin-left: 180px;
-}
-.product a{
-    display: block;
-    color: white;
-    margin: 30px 0;
-
-}
-.product a:hover{
-    text-decoration: underline;
-}
-.mypage{
-    margin-right: -170px;
-}
-.mypage a:hover{
-    text-decoration: underline;
-}
-.mypage a{
-    color: white;
-    display: block;
-    color: white;
-    margin: 30px 0;
-}
-.project-intro h4,
-.product h4,
-.mypage h4{
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
-.project-intro p,
-.product ul,
-.mypage ul{
-    margin: 0;
+/*sales-total-list-table*/
+.sales-total-list-table{
+    width: 100%;
+    border-collapse: collapse;
 }
-.copyright{
+.sales-total-list-table th, .sales-total-list-table td{
+    border: 1px solid #ccc;
+    padding: 8px;
     text-align: center;
+    background-color: white;
+    width: 50%;
+}
+.sales-total-list-table th{
+    background-color: #A43E1D;
+    color: white;
+
+}
+
+/*sales-product-list-table */
+.sales-product-list-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.sales-product-list-table th, .sales-product-list-table td{
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    background-color: white;
+    width: 50%;
+}
+.sales-product-list-table th{
+    background-color: #ddd;
 }

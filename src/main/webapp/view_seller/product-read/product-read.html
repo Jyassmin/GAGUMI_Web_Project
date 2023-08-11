@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>product-read</title>
+    <!--공통 스타일-->
+    <link rel="stylesheet" href="../../base-style.css">
+    <!--product-read 스타일-->
+    <link rel="stylesheet" href="product-read.css">
+    <!--product-read 삭제 alert javascript-->
+    <script src="product-read.js"></script>
+
+</head>
+<body>
+    <header>
+        <!-- top-menu -->
+        <ul class="top-menu">
+            <li><a href="#">로그아웃</a></li>
+            <li><a href="#">정보수정</a></li>
+        </ul>
+        <!-- //top-menu -->
+        <div class="logo">
+            <img src="../../images/logo.png">
+        </div>
+        <h1>등록상품조회</h1>
+        <!--   product-table     -->
+    </header>
+    <table class="product-table">
+        <tr>
+            <th>주문번호</th>
+            <th>이미지</th>
+            <th>상품명</th>
+            <th>상품카테고리</th>
+            <th>상품가격</th>
+            <th>상품수량</th>
+            <th>수정/삭제</th>
+        </tr>
+        <!-- 여기에 동적으로 추가될 행들이 들어갈 자리  모양 예시-->
+        <tr>
+            <td>1</td>
+            <td><img src="../../images/empty-image.png" alt="Product 1" width="50"></td>
+            <td>편한의자</td>
+            <td>의자</td>
+            <td>100,000원</td>
+            <td>2개</td>
+            <td><a class="modify" href="#">수정</a><a class="delete" href="#">삭제</a></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><img src="../../images/empty-image.png" alt="Product 2" width="50"></td>
+            <td>편한쇼파</td>
+            <td>쇼파</td>
+            <td>200,000원</td>
+            <td>1개</td>
+            <td><a class="modify" href="#">수정</a><a class="delete" href="#">삭제</a></td>
+        </tr>
+        <!-- 나머지 행들도 위와 같이 추가 -->
+    </table>
+</body>
+</html>

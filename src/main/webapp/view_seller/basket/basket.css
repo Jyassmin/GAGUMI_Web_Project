@@ -1,0 +1,19 @@
+/*wrap*/
+.wrap{
+    display: flex;
+}
+/* product-table */
+.product-table{
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.product-table th, .product-table td{
+    padding: 8px;
+    text-align: center;
+    background-color: #F5EFE2;
+    border: 1px solid #A43E1D;
+}
+.product-table th{
+    color: #A43E1D;
+}
