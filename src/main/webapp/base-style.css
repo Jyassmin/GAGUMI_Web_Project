@@ -3,6 +3,40 @@
     margin: 0;
     padding: 0;
 }
+/*font 스타일*/
+@font-face {
+    font-family: gothic-light;
+    src: url("./fonts/NEXON Lv2 Gothic Light.woff");
+}
+@font-face {
+    font-family: gothic-regular;
+    src: url("./fonts/NEXON Lv2 Gothic.woff");
+}
+@font-face {
+    font-family: gothic-bold;
+    src: url("./fonts/NEXON Lv2 Gothic Bold.woff");
+}
+@font-face {
+    font-family: dream-light;
+    src: url("./fonts/SCDream3.otf");
+}
+@font-face {
+    font-family: dream-medium;
+    src: url("./fonts/SCDream4.otf");
+}
+
+
+@font-face {
+    font-family: dream-bold;
+    src: url("./fonts/SCDream5.otf");
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: gothic-bold;
+}
+
+p {
+    font-family: dream-light;
+}
 /*body 스타일*/
 body {
     color: #A43E1D ; /* 글자 색 */
@@ -11,16 +45,19 @@ body {
 
 /*a태그 스타일*/
 a {
+    font-family: dream-medium;
     text-decoration: none;
     color: #A43E1D;
 }
 /*list 스타일*/
 li {
+    font-family: dream-light;
     list-style: none;
 }
 
 /*버튼 스타일*/
 input[type="button"] {
+    font-family: dream-bold;
     font-size: 16px;
     border: none;
     background-color: #A43E1D;

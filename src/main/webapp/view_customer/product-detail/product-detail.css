@@ -27,11 +27,13 @@ img {
     text-align: right;
 }
 .product-desc-bottom > h3{
+    font-size: 23px;
     margin-top: 5px;
     margin-bottom: 10px;
 }
 .product-desc-bottom > p{
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 12px;
 }
 /*수량 입력 칸*/
 #quantity {
