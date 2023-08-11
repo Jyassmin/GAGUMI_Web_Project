@@ -1,0 +1,40 @@
+/*제품 정보 입력 전체 창*/
+.product-add {
+    border: 1px solid #a43e1d;
+    background-color: #F5EFE2;
+    margin: 30px 15%;
+    padding: 2%;
+}
+/*제품 정보 개별 요소*/
+.product-element {
+    margin-left: 2%;
+}
+p {
+    font-family: dream-medium, sans-serif;
+    display: block;
+    margin: 20px;
+}
+/*제품 정보 수정 버튼*/
+.add-button {
+    text-align: center;
+    width: 100%;
+}
+#add-button {
+    background-color: #a43e1d;
+    width: 50%;
+    color: white;
+    font-size: 18px;
+    padding: 10px 50px;
+    border-radius: 13px;
+    display: inline-block;
+}
+/*상품 설명*/
+#desc {
+    display: flex;
+    justify-content: flex-start;
+}
+textarea {
+    height: 100px;
+    outline: none;
+    resize: none;
+}

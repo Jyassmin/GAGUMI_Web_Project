@@ -25,17 +25,16 @@
     src: url("./fonts/SCDream4.otf");
 }
 
-
 @font-face {
     font-family: dream-bold;
     src: url("./fonts/SCDream5.otf");
 }
-h1, h2, h3, h4, h5, h6 {
-    font-family: gothic-bold;
+h1, h2, h3, h4, h5, h6, th{
+    font-family: gothic-bold, sans-serif;
 }
 
-p {
-    font-family: dream-light;
+p, td, span{
+    font-family: dream-light, sans-serif;
 }
 /*body 스타일*/
 body {
@@ -45,19 +44,19 @@ body {
 
 /*a태그 스타일*/
 a {
-    font-family: dream-medium;
+    font-family: dream-medium, sans-serif;
     text-decoration: none;
     color: #A43E1D;
 }
 /*list 스타일*/
 li {
-    font-family: dream-light;
+    font-family: dream-light, sans-serif;
     list-style: none;
 }
 
 /*버튼 스타일*/
 input[type="button"] {
-    font-family: dream-bold;
+    font-family: dream-bold, sans-serif;
     font-size: 16px;
     border: none;
     background-color: #A43E1D;

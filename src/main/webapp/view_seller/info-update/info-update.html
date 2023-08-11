@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--공통 css style-->
+    <link rel="stylesheet" href="../../base-style.css">
+    <!--product-create 스타일-->
+    <link rel="stylesheet" href="info-update.css">
+    <meta charset="UTF-8">
+    <title>개인 정보 수정</title>
+    <style>
+        #updateInfo{
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<header>
+
+</header>
+<main>
+    <section id="passwordCheck">
+        <h4>비밀번호 확인</h4>
+        <input type="password" id="passwordInput" placeholder="비밀번호">
+        <button id="checkPasswordButton">확인</button>
+    </section>
+
+    <section id="updateInfo">
+        <h4>정보 수정</h4>
+        <form id="updateForm">
+            <p>비밀번호 <input type="password"></p>
+            <p>비밀번호 확인 <input type="password"></p>
+            <p>주소 <input type="password"></p>
+            <p>전화번호 <input type="password"></p>
+            <p>회사명 <input type="password"></p>
+            <p>이름 <input type="password"></p>
+        </form>
+    </section>
+
+<!--    <script>-->
+<!--        const passwordCheckSection = document.getElementById('passwordCheck');-->
+<!--        const updateInfoSection = document.getElementById('updateInfo');-->
+<!--        const passwordInput = document.getElementById('passwordInput');-->
+<!--        const checkPasswordButton = document.getElementById('checkPasswordButton');-->
+<!--        const updateForm = document.getElementById('updateForm');-->
+
+<!--        checkPasswordButton.addEventListener('click', () => {-->
+<!--            const password = 'mysecretpassword'; // 실제 비밀번호로 변경하세요-->
+
+<!--            if (passwordInput.value === password) {-->
+<!--                passwordCheckSection.style.display = 'none';-->
+<!--                updateInfoSection.style.display = 'block';-->
+<!--            } else {-->
+<!--                alert('비밀번호가 일치하지 않습니다.');-->
+<!--            }-->
+<!--        });-->
+
+<!--        updateForm.addEventListener('submit', (event) => {-->
+<!--            event.preventDefault();-->
+<!--            // 정보 수정 로직을 여기에 추가하세요-->
+<!--            alert('정보가 수정되었습니다.');-->
+<!--        });-->
+<!--    </script>-->
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

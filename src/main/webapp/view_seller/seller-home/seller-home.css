@@ -1,0 +1,26 @@
+/*판매자 메뉴 전체*/
+.seller-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+/*판매자 메뉴 요소*/
+.menu-item {
+    display: flex;
+    justify-content: space-around;
+}
+/*메뉴 버튼*/
+a {
+    background-color: #a43e1d;
+    color: white;
+    font-size: 25px;
+    padding: 30px 44px;
+    border-radius: 13px;
+    display: inline-block;
+    margin: 50px;
+}
+
+a:active{
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
+}

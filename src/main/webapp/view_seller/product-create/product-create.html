@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--공통 css style-->
+    <link rel="stylesheet" href="../../base-style.css">
+    <!--product-create 스타일-->
+    <link rel="stylesheet" href="product-create.css">
+    <meta charset="UTF-8">
+    <title>상품 등록하기</title>
+</head>
+<body>
+<header>
+
+</header>
+<main>
+    <!--상품 등록 정보 입력 창-->
+    <section class="product-add">
+        <!--상품 등록 정보 입력하기-->
+        <div class="product-data">
+            <p>상품이름 : <input class="product-element" type="text"></p>
+            <p>상품가격 : <input class="product-element" type="text"></p>
+            <p>상품수량 : <input class="product-element" type="number"></p>
+            <p id="desc">상품설명 :
+                <textarea class="product-element" minlength="10" placeholder="최소 10글자 이상 작성해주세요."></textarea>
+            </p>
+            <p>상품이미지 : <input class="product-element" type="file" accept="image/*"></p>
+        </div>
+        <!--상품등록하기 버튼-->
+        <div class="add-button">
+            <a id="add-button" href="#">상품등록</a>
+        </div>
+    </section>
+    <!--상품 등록 버튼 클릭 시 alert 메세지 띄우기-->
+    <script src="../../jquery.min.js"></script>
+    <script src="product-create.js"></script>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
