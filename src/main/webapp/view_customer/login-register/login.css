@@ -80,18 +80,19 @@ header{
     height: 50%;
     text-align: center;
     padding: 18px 0px;
-
     font-size: 24px;
+    font-weight: bold;
 }
 
 .register-top-seller {
-    background-color: #a43e1d;
     width: 50%;
     height: 50%;
     text-align: center;
     padding: 18px 0px;
-
     font-size: 24px;
+    font-weight: bold;
+
+    background-color: #a43e1d;
     color: #ffffff;
 }
 
