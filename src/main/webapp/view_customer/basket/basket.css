@@ -1,0 +1,115 @@
+/*wrap*/
+.wrap{
+    display: flex;
+    margin-top: 20px;
+}
+
+/*left-menu*/
+.left-menu{
+    margin-top: inherit;
+    background-color: #F5EFE2;
+    text-align: center;
+    height: 100px;
+}
+.left-menu>li{
+    width: 120px;
+    background-color: #F5EFE2;
+
+}
+.left-menu > li > a{
+    display: block;
+    padding: 14px;
+}
+.left-menu > li > a:hover{
+    background-color: #a43e1d;
+    color: white;
+}
+/*left 메뉴 에서 장바구니 페이지인것을 표시함*/
+#basket{
+    background-color: #a43e1d;
+    color: white;
+}
+
+/* table-container */
+.table-container {
+    width: 100%;
+    height: 300px; /* 원하는 고정 높이 설정 */
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+/* product-table */
+.product-table{
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.product-table th, .product-table td{
+    padding: 8px;
+    text-align: center;
+    background-color: #F5EFE2;
+    border: 1px solid #A43E1D;
+}
+.product-table th{
+    color: white;
+    background-color: #a43e1d;
+}
+
+.product-table thead {
+    position: sticky; /* 테이블 헤더를 고정 */
+    top: 0;
+    z-index: 1;
+    background-color: #F5EFE2;
+}
+
+
+/*delete 버튼*/
+
+.delete{
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 6%;
+}
+
+input[type="button"] {
+    font-family: dream-bold, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: #A43E1D;
+    color: white;
+    width: 8%;
+    border-radius: 13px;
+    padding: 10px;
+    letter-spacing: 2px;
+    margin-right: 1%;
+    text-align: center;
+}
+.delete input[type="button"] span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.total-price-wrap{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.total-price{
+    margin-right: 100px;
+}
+#order{
+    font-family: dream-bold, sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: #A43E1D;
+    color: white;
+    border-radius: 13px;
+    padding: 10px;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+
+#order:active{
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
+}
