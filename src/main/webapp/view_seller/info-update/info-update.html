@@ -9,7 +9,48 @@
     <title>개인 정보 수정</title>
     <style>
         #updateInfo{
-            /*display: none;*/
+            display: none;
+        }
+        #updateForm{
+            display: flex;
+            justify-content: space-around;
+        }
+        #updateForm > div {
+            width: 100%
+        }
+
+        section {
+            background-color: #F5EFE2;
+            border: 1px solid #a43e1d;
+            margin: 10px 20%;
+            padding: 3%;
+        }
+
+        h4 {
+            margin-bottom: 8px;
+        }
+
+        p {
+            display: flex;
+            justify-content: space-between;
+            margin: 6%;
+        }
+        span {
+
+        }
+
+        #button {
+            margin: 5px 15%;
+            text-align: center;
+        }
+        a {
+            background-color: #a43e1d;
+            color: white;
+            font-size: 18px;
+            width: 85%;
+            padding: 10px 25px;
+            border-radius: 13px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -27,39 +68,47 @@
     <section id="updateInfo">
         <h4>정보 수정</h4>
         <form id="updateForm">
-            <p>비밀번호 <input type="password"></p>
-            <p>비밀번호 확인 <input type="password"></p>
-            <p>주소 <input type="password"></p>
-            <p>전화번호 <input type="password"></p>
-            <p>회사명 <input type="password"></p>
-            <p>이름 <input type="password"></p>
+            <div>
+                <p><span>이름</span> <input type="text"></p>
+                <p><span>비밀번호</span> <input type="password"></p>
+                <p><span>비밀번호 확인</span> <input type="password"></p>
+            </div>
+           <div>
+               <p><span>전화번호</span> <input type="text"></p>
+               <p><span>회사명</span> <input type="text"></p>
+               <p><span>주소</span> <input type="text"></p>
+           </div>
         </form>
+
+        <div id="button">
+            <a href="#">상품등록</a>
+        </div>
     </section>
 
-<!--    <script>-->
-<!--        const passwordCheckSection = document.getElementById('passwordCheck');-->
-<!--        const updateInfoSection = document.getElementById('updateInfo');-->
-<!--        const passwordInput = document.getElementById('passwordInput');-->
-<!--        const checkPasswordButton = document.getElementById('checkPasswordButton');-->
-<!--        const updateForm = document.getElementById('updateForm');-->
+    <script>
+        const passwordCheckSection = document.getElementById('passwordCheck');
+        const updateInfoSection = document.getElementById('updateInfo');
+        const passwordInput = document.getElementById('passwordInput');
+        const checkPasswordButton = document.getElementById('checkPasswordButton');
+        const updateForm = document.getElementById('updateForm');
 
-<!--        checkPasswordButton.addEventListener('click', () => {-->
-<!--            const password = 'mysecretpassword'; // 실제 비밀번호로 변경하세요-->
+        checkPasswordButton.addEventListener('click', () => {
+            const password = 'mysecretpassword'; // 실제 비밀번호로 변경하세요
 
-<!--            if (passwordInput.value === password) {-->
-<!--                passwordCheckSection.style.display = 'none';-->
-<!--                updateInfoSection.style.display = 'block';-->
-<!--            } else {-->
-<!--                alert('비밀번호가 일치하지 않습니다.');-->
-<!--            }-->
-<!--        });-->
+            if (passwordInput.value === password) {
+                passwordCheckSection.style.display = 'none';
+                updateInfoSection.style.display = 'block';
+            } else {
+                alert('비밀번호가 일치하지 않습니다.');
+            }
+        });
 
-<!--        updateForm.addEventListener('submit', (event) => {-->
-<!--            event.preventDefault();-->
-<!--            // 정보 수정 로직을 여기에 추가하세요-->
-<!--            alert('정보가 수정되었습니다.');-->
-<!--        });-->
-<!--    </script>-->
+        updateForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // 정보 수정 로직을 여기에 추가하세요
+            alert('정보가 수정되었습니다.');
+        });
+    </script>
 </main>
 <footer>
 
