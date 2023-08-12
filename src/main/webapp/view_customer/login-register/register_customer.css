@@ -1,0 +1,176 @@
+/*header*/
+header{
+    width:100%;
+}
+/*top-menu*/
+.top-menu{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.top-menu>li{
+    font-size: 12px;
+    margin: 0 12px;
+}
+
+#mypage{
+    position: relative;
+
+}
+.submenu{
+    background-color: #F5EFE2;
+    text-align: center;
+    position: absolute;
+    top:17px;
+    right: 155px;
+    display: none;
+}
+
+.submenu>li >a {
+    display: block;
+    padding: 8px;
+
+}
+.submenu>li:hover{
+    background-color: #f3ddad;
+
+}
+
+/*logo*/
+.logo{
+    display: flex;
+    justify-content: center;
+}
+
+.logo > img{
+    width: 30%;
+    margin-bottom: 5.3%;
+}
+
+/*----------공통/-------------*/
+
+/*menu-name*/
+.menu-name {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #a43e1d;
+    margin-bottom: 40px;
+}
+
+/*register*/
+.register {
+    background-color: #F5EFE2;
+    border: 4px solid #a43e1d;
+    margin: 10px 300px;
+}
+
+.register-top, .register-box-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.register-top-customer {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    padding: 18px 0px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.register-top-seller {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    padding: 18px 0px;
+    font-size: 24px;
+    font-weight: bold;
+
+    background-color: #a43e1d;
+    color: #ffffff;
+}
+
+/*register-box-input*/
+.input1, .input2 {
+    width: 50%;
+    margin: 20px 0px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: baseline;
+
+    margin: 30px 10%;
+    padding-left: 8%;
+}
+
+.info-name {
+    width: 35%;
+    height: 30px;
+}
+
+.info-value {
+    width: 60%;
+    height: 30px;
+}
+
+.register-box-submit {
+    text-align: right;
+}
+
+.register-box-submit > input {
+    margin: 0px 5% 30px 5%;
+    width: 28%;
+    height: 50px;
+    font-size: 20px;
+}
+
+/*gap*/
+.gap{
+    width: 100%;
+    height: 300px;
+}
+
+
+/*----------/공통-------------*/
+/*footer*/
+footer{
+    font-size: 14px;
+}
+.footer1{
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.project-intro,
+.product,
+.mypage{
+    flex: 1;
+    margin: 0 10px;
+    max-width: 300px;
+}
+
+.project-intro h4,
+.product h4,
+.mypage h4{
+    margin-bottom: 10px;
+}
+
+.project-intro p,
+.product ul,
+.mypage ul{
+    margin: 0;
+}
+
