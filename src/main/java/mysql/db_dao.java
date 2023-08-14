@@ -147,83 +147,39 @@ public class db_dao {
         return -1;
     }
   
-    // 모든 상품조회를 가져오는 매서드
-    public int print_product() {
-        String SQL = "SELECT * FROM product where uid = 1";
+    // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
+    public List<db_dto> print_product() {
+        String SQL = "SELECT * FROM product WHERE uid = 1";
+        List<db_dto> productList = new ArrayList<>();
 
         try {
-            // 실행 가능 상태의 sql문으로 만듦.
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-
-            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-//            pstmt.setString(1, userID);
-//            pstmt.setString(2, userPassword);
-
-            // 명령어를 수행한 결과
-            // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
-            // 2_executeUpdate -> 레코드 삽입, 수정, 삭제 등 데이터 조작 명령어 사용(CRUD)
-            // 3_executeQuery -> 레코드 조회, 테이블 조회 등 조회 명령어 사용(Select)
             ResultSet rs = pstmt.executeQuery();
-            int cnt = 0;
+
             while (rs.next()) {
-                out.println("count = " + rs.getInt(1) + rs.getInt(2)+rs.getInt(4)+rs.getInt(5)+rs.getInt(6));
-                cnt++;
+                db_dto product = new db_dto();
+                product.setOrderNumber(rs.getInt("uid"));
+                product.setImage(rs.getString("pimage"));
+                product.setProductName(rs.getString("name"));
+                product.setProductCategory(rs.getInt("ca2id"));
+                product.setProductPrice(rs.getInt("cost"));
+                product.setProductQuantity(rs.getInt("stock"));
+                product.setProductDescription(rs.getString("desc"));
+                product.setSize(rs.getString("size"));
+                productList.add(product);
             }
-            rs.close();
 
-            return cnt; // 1은 로그인 성공, 0은 로그인 실패
+            rs.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
-
         } finally {
-            try {
-                if(conn != null&& !conn.isClosed())
-                    conn.close();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            // ... (연결 해제 등의 처리)
         }
-        return -1;
+
+        return productList;
     }
 
-    public int product(String userID, String userPassword) {
-        String SQL = "SELECT * from product where uid=1";
-
-        try {
-            // 실행 가능 상태의 sql문으로 만듦.
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-
-            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setString(1, userID);
-            pstmt.setString(2, userPassword);
-
-            // 명령어를 수행한 결과
-            // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
-            // 2_executeUpdate -> 레코드 삽입, 수정, 삭제 등 데이터 조작 명령어 사용(CRUD)
-            // 3_executeQuery -> 레코드 조회, 테이블 조회 등 조회 명령어 사용(Select)
-            ResultSet rs = pstmt.executeQuery();
-            rs.next();
-            int totalCount = rs.getInt(1);
-            rs.close();
-
-            return totalCount; // 1은 로그인 성공, 0은 로그인 실패
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
-            try {
-                if(conn != null&& !conn.isClosed())
-                    conn.close();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return -1;
-    }
 
     public String getNameByUid(String userId) {
 

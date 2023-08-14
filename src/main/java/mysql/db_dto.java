@@ -25,7 +25,84 @@ public class db_dto {
         this.userPassword = userPassword;
     }
 
+    //유저uid
+    private int orderNumber;
+    //이미지
+    private String image;
+    //상품명
+    private String productName;
+    //상품카테고리
+    private int productCategory;
+    //상품가격
+    private int productPrice;
+    //상품
+    private int productQuantity;
+    private String productDescription;
+    private String size;
 
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(int productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    public int getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(int productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 }
 
 
