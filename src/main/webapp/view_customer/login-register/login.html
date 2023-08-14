@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="./login.css">
 </head>
@@ -24,6 +24,7 @@
         <p>로 그 인</p>
     </div>
 </header>
+
 <main>
     <!--  login  -->
     <section class="login">
@@ -34,9 +35,9 @@
         </div>
 
          <!--   정보입력 & 제출     -->
-        <form class="input" id="login_form" action="login_process.jsp" method="get">
+        <form class="input" id="login_form" action="login_process.jsp" method="post">
             <input required type="text" placeholder="아이디" class="info-value" name="input_id">
-            <input required type="text" placeholder="비밀번호" class="info-value" name="input_pw">
+            <input required type="password" placeholder="비밀번호" class="info-value" name="input_pw">
         </form>
         <div class="login-box-submit" id="button_login">
             <button type="submit" form="login_form" id="id_submit">로 그 인</button>
@@ -63,24 +64,9 @@
             selectSeller.style.color = '#a43e1d';
         });
     </script>
-<!--    <script>-->
-<!--        const inputId = document.getElementById('input_id');-->
-<!--        const inputPw = document.getElementById('input_pw');-->
-<!--        const buttonLogin = document.getElementById('button_login');-->
-
-<!--        buttonLogin.addEventListener('click', () => {-->
-<!--            const id = 'test'; // 실제 아이디로 변경하세요-->
-<!--            const pw = '12341234'; // 실제 비밀번호로 변경하세요-->
-
-<!--            if (inputPw.value === pw) {-->
-<!--                alert('로그인 되었습니다.');-->
-<!--            } else {-->
-<!--                alert('아이디 또는 비밀번호가 일치하지 않습니다.');-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
     <div class="gap"></div>
 </main>
+
 <!--  footer  -->
 <footer>
     <div class="footer1">
