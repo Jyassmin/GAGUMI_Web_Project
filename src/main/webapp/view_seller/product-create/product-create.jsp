@@ -1,5 +1,4 @@
 <%@ page import="java.sql.*" %>
-<%@ page import="java.sql.*" %>
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.io.PrintWriter" %>
 <%--
