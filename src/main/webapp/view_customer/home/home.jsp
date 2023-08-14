@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="mysql.db_dao"%>
+<%@ page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +15,18 @@
 
 </head>
 <body>
-
+    <%db_dao userDao = new db_dao();%> // dao 인스턴스 생성
     <header class="header-fixed">
         <!-- top-menu -->
         <ul class="top-menu">
-            <li><a href="#">OOO님 환영합니다.</a></li>
+            <%
+                String uid = (String) session.getAttribute("memberId");
+                String name = "";
+                if (uid != null) {
+                    name = userDao.getNameByUid(uid);
+                }
+            %>
+            <li><p><%= name %>님 환영합니다.</p></li>
             <li><a href="#">게시판</a></li>
             <li class=my-page><a href="#">마이페이지</a>
                 <ul class="submenu">
@@ -25,8 +35,8 @@
                     <li><a href="#">장바구니</a></li>
                 </ul>
             </li>
-            <li><a href="#">로그아웃</a></li>
-            <li><a href="#">회원가입</a></li>
+            <li><a href="#" onclick ="location.href='../login-register/login.html'">로그인</a></li>
+            <li><a href="#" onclick ="location.href='../login-register/register.html'">회원가입</a></li>
         </ul>
         <!-- //top-menu -->
 

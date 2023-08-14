@@ -225,6 +225,38 @@ public class db_dao {
         return -1;
     }
 
+    public String getNameByUid(String userId) {
+
+        String SQL = "SELECT name from user where email=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            String result_name = rs.getString(1);
+            rs.close();
+
+            return result_name; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
 
 }
 
