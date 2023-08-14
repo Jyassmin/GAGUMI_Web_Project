@@ -1,0 +1,56 @@
+/*footer*/
+footer{
+    font-size: 14px;
+}
+.footer1{
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.project-intro,
+.product,
+.mypage{
+    flex: 1;
+    margin: 0 40px;
+    max-width: 300px;
+}
+.product{
+    margin-left: 180px;
+}
+.product a{
+    display: block;
+    color: white;
+    margin: 30px 0;
+
+}
+.product a:hover{
+    text-decoration: underline;
+}
+.mypage{
+    margin-right: -170px;
+}
+.mypage a:hover{
+    text-decoration: underline;
+}
+.mypage a{
+    color: white;
+    display: block;
+    color: white;
+    margin: 30px 0;
+}
+.project-intro h4,
+.product h4,
+.mypage h4{
+    margin-bottom: 10px;
+}
+
+.project-intro p,
+.product ul,
+.mypage ul{
+    margin: 0;
+}
+.copyright{
+    text-align: center;
+}
