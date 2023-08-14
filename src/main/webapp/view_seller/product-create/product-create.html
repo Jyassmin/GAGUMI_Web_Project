@@ -13,34 +13,98 @@
 
 </header>
 <main>
+    <form name="product-add" action="./product-create.jsp" method="post">
     <!--상품 등록 정보 입력 창-->
-    <section class="product-add">
-        <!--상품 등록 정보 입력하기-->
-        <div class="product-data">
+        <section class="product-add">
+            <!--상품 등록 정보 입력하기-->
+            <div class="product-data">
 
-            <p>상품이름 : <input class="product-element" type="text"></p>
-            <p>상품품목 :
-                <select name="item">
-                <option value="chair">의자</option>
-                <option value="sofa">소파</option>
-                <option value="closet">장롱</option>
-                <option value="desk">책상</option>
-                <option value="bed">침대</option>
-                <option value="drawer">서랍/수납장</option>
-                </select>
-            </p>
-            <p>상품가격 : <input class="product-element" type="text"></p>
-            <p>상품수량 : <input class="product-element" type="number"></p>
-            <p id="desc">상품설명 :
-                <textarea class="product-element" minlength="10" placeholder="최소 10글자 이상 작성해주세요."></textarea>
-            </p>
-            <p>상품이미지 : <input class="product-element" type="file" accept="image/*"></p>
-        </div>
-        <!--상품등록하기 버튼-->
-        <div class="add-button">
-            <a id="add-button" href="#">상품등록</a>
-        </div>
-    </section>
+                <p>상품이름 : <input required class="product-element" name="product-name" type="text"></p>
+                <p>상품품목 :
+                    <select id="item" name="item">
+                        <option value="1">의자</option>
+                        <option value="2">소파</option>
+                        <option value="3">서랍/수납장</option>
+                        <option value="4">테이블</option>
+                        <option value="5">침대</option>
+                        <option value="6">장롱</option>
+                    </select>
+                    <div id="subSelectContainer"></div>
+                </p>
+                <p>상품가격 : <input required class="product-element" name="product-price"  type="text"></p>
+                <p>상품수량 : <input required class="product-element"name="product-quan"  type="number"></p>
+                <p>상품크기 : <input required class="product-element" name="product-size"  type="text" placeholder="가로X세로X높이"></p>
+                <p id="desc">상품설명 :
+                    <textarea required class="product-element" name="product-desc" minlength="10" placeholder="최소 10글자 이상 작성해주세요."></textarea>
+                </p>
+                <p>상품이미지 : <input class="product-element" name="product-img" type="file" accept="image/*"></p>
+            </div>
+            <!--상품등록하기 버튼-->
+            <div class="add-button">
+                <input id="add-button" type="submit" value="상품등록">
+            </div>
+        </section>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#item").on("change", function() {
+                var selectedValue = $(this).val();
+                var subSelect = $("<select>");
+
+                if (selectedValue === "1") {
+                    subSelect.append(
+                        $("<option>", { value: "스툴", text: "스툴" }),
+                        $("<option>", { value: "화장대 의자", text: "화장대 의자" })
+                    );
+                } else if (selectedValue === "2") {
+                    subSelect.append(
+                        $("<option>", {value: "소", text: "소"}),
+                        $("<option>", {value: "중", text: "중"}),
+                        $("<option>", {value: "대", text: "대"})
+                    );
+                } else if(selectedValue === "3") {
+                    subSelect.append(
+                        $("<option>", {value: "서랍", text: "서랍"}),
+                        $("<option>", {value: "수납장", text: "수납장"})
+                    );
+                } else if(selectedValue === "4") {
+                    subSelect.append(
+                        $("<option>", {value: "책상", text: "책상"}),
+                        $("<option>", {value: "식탁", text: "식탁"})
+                    );
+                } else if(selectedValue === "5") {
+                    subSelect.append(
+                        $("<option>", {value: "침대", text: "침대"})
+                    );
+                } else if(selectedValue === "6") {
+                    subSelect.append(
+                        $("<option>", {value: "장롱", text: "장롱"})
+                    );
+                }
+
+                $("#subSelectContainer").empty().append(subSelect);
+            });
+
+            $("#submitBtn").on("click", function() {
+                var selectedValue = $("#mainSelect").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "your-jsp-page.jsp",
+                    data: { selectedValue: selectedValue },
+                    success: function(response) {
+                        // 성공적으로 서버로 전송되었을 때의 동작
+                    },
+                    error: function() {
+                        // 오류 발생 시 처리
+                    }
+                });
+            });
+        });
+    </script>
     <!--상품 등록 버튼 클릭 시 alert 메세지 띄우기-->
     <script src="../../jquery.min.js"></script>
     <script src="product-create.js"></script>
