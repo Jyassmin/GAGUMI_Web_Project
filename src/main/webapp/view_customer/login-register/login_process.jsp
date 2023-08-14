@@ -35,7 +35,7 @@
         session.setAttribute("memberId", uid); // 세션생성
         session.setAttribute("memberPw", upw);
         script.println("alert('로그인에 성공했습니다.')");
-        script.println("location.href='../home/home.html';");
+        script.println("location.href='../home/home.jsp';");
 
     } else {
         script.println("alert('아이디 또는 비밀번호가 일치하지 않습니다.')");
