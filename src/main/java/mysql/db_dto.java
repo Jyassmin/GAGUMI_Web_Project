@@ -24,4 +24,8 @@ public class db_dto {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+
 }
+
+
