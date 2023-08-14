@@ -12,7 +12,7 @@ public class jdbc_connect {
         Statement statement = connection.createStatement();
 
         // 총 레코드 개수 가져오기
-        ResultSet resultCnt = statement.executeQuery("select count(*) as total from customer");
+        ResultSet resultCnt = statement.executeQuery("select count(*) as total from user");
         resultCnt.next();
         int totalCount = resultCnt.getInt("total");
         resultCnt.close();
