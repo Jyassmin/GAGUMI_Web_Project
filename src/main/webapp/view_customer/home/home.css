@@ -50,18 +50,22 @@ header{
     padding: 8px;
 
 }
+.submenu>li >a:hover{
+    color: white;
+}
 .submenu>li:hover{
-    background-color: #f3ddad;
+    background-color: #a43e1d;
 
 }
 
+
 /*logo*/
-.logo{
+.logo > a{
     display: flex;
     justify-content: center;
 }
 
-.logo > img{
+.logo >a> img{
     width: 30%;
 
 }
