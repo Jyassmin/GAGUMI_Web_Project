@@ -4,10 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="./login.css">
 </head>
@@ -41,14 +37,8 @@
          <!--   정보입력 & 제출     -->
         <form class="input" id="login_form" action="login_process.jsp" method="post">
             <div>
-                <div class="info">
-                    <p class="info-name">아이디</p>
-                    <input class="info-value" type="text" name="input_id"><br>
-                </div>
-                <div class="info">
-                    <p class="info-name">비밀번호</p>
-                    <input class="info-value" type="password" name="input_pw"><br>
-                </div>
+                <input required type="text" placeholder="아이디" class="info-value" name="input_id">
+                <input required type="text" placeholder="비밀번호" class="info-value" name="input_id">
             </div>
         </form>
         <div class="login-box-submit" id="button_login">
@@ -83,7 +73,7 @@
 
         buttonLogin.addEventListener('click', () => {
             const id = 'test'; // 실제 아이디로 변경하세요
-            const pw = '123'; // 실제 비밀번호로 변경하세요
+            const pw = '12341234'; // 실제 비밀번호로 변경하세요
 
             if (inputPw.value === pw) {
                 alert('로그인 되었습니다.');

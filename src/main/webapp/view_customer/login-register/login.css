@@ -108,22 +108,6 @@ header{
     margin: 50px auto; /*가로에 auto를 주면 자동 수평 중앙 정렬이 됌*/
 }
 
-.info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: space-around;
-    align-items: baseline;
-
-    margin: 20px auto;
-}
-
-.info-name {
-    width: 30%;
-    height: 30px;
-}
-
 .info-value {
     width: 70%;
     height: 30px;
