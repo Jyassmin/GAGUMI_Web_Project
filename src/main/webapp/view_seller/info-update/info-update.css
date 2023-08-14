@@ -39,13 +39,7 @@ h1{
     letter-spacing: 8px;
     margin-bottom: 30px;
 }
-/*상단타이틀*/
-h1{
-    margin-top: 20px;
-    text-align: center;
-    letter-spacing: 8px;
-    margin-bottom: 30px;
-}
+
 /*정보 수정 창 section*/
 #updateInfo{
     display: none;
@@ -58,6 +52,7 @@ h1{
 #updateForm > div {
     width: 100%
 }
+
 
 /*비밀번호 확인 및 정보수정 입력 창*/
 section {
