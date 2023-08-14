@@ -1,4 +1,8 @@
-<%@ page import="java.sql.*" %><%--
+<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="mysql.db_dao" %>
+<%@ page import="java.io.PrintWriter" %>
+<%--
   Created by IntelliJ IDEA.
   User: elane
   Date: 2023-08-14
@@ -17,43 +21,34 @@
     request.setCharacterEncoding("UTF-8");
 
     String p_name = request.getParameter("product-name");
-    String item = request.getParameter("item");
-    String p_price = request.getParameter("product-price");
-    String p_quan = request.getParameter("product-quan");
+    String _item = request.getParameter("item");
+    String _p_price = request.getParameter("product-price");
+    String _p_quan = request.getParameter("product-quan");
     String p_desc = request.getParameter("product-desc");
+    String p_size = request.getParameter("product-size");
     String p_img = request.getParameter("product-img");
 
-    // JDBC 참조 변수 준비
-    Connection con = null;
-    String url = "jdbc:mysql://localhost:3306/gagumi_db"; // db선택
-    String userName = "root"; // user
-    String password = "12341234"; // pw
+    int item = Integer.parseInt(_item);
+    int p_price = Integer.parseInt(_p_price);
+    int p_quan = Integer.parseInt(_p_quan);
 
+    db_dao userDao = new db_dao();
+    int insert_data = userDao.product_add(1, item, p_name, p_quan, p_price, p_desc, "", p_size);
 
-         // 1) JDBC 드라이버 로딩
-    try {
-        Class.forName("oracle.jdbc.OracleDriver");
-    } catch (ClassNotFoundException e) {
-        throw new RuntimeException(e);
+    if(insert_data > 0){
+        // 데이터 삽입 성공
+        PrintWriter script = response.getWriter();
+        script.println("<script>");
+        script.println("alert('제품 등록 성공')");
+        script.println("location.href='../seller-home/seller-home.html';");
+        script.println("</script>");
+        script.close();
+        return;
+    }else {
+        // 데이터 삽입 실패
+
     }
-    // 2) db 연결 매니저
-    try {
-        con = DriverManager.getConnection(url, userName, password);
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
-    }
-    // 3) SQL문 준비
 
-    //String sql = "INSERT INTO "
-
-//    현재 관리자로 로그인한 계정 가져오기
-
-    out.println("상품이름: "+p_name+"<br>");
-    out.println("상품품목 : "+item+"<br>");
-    out.println("상품가격 : "+p_price+"<br>");
-    out.println("상품수량 : "+p_quan+"<br>");
-    out.println("상품설명 : "+p_desc+" "+"<br>");
-    out.println("상품이미지 : "+p_img+"<br>");
 %>
 </body>
 </html>
