@@ -4,7 +4,7 @@ package mysql;
 // 멤버변수는 private
 // getter(), setter() 메소드 생성
 
-public class user_dto {
+public class db_dto {
 
     private String userID;
     private String userPassword;

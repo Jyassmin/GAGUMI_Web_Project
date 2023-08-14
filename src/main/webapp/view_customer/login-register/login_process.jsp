@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="mysql.user_dto"%>
-<%@ page import="mysql.user_dao"%>
+<%@ page import="mysql.db_dto"%>
+<%@ page import="mysql.db_dao"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
     // 사용자가 보낸 데이터를 한글을 사용할 수 있는 형식으로 변환
@@ -26,7 +26,7 @@
     }
 
     // 쿼리 실행
-    user_dao userDao = new user_dao();
+    db_dao userDao = new db_dao();
     int check_account = userDao.login(uid, upw); // 로그인 실패 0, 성공 1
 
 //    if (check_account == 1) {
@@ -38,7 +38,7 @@
     if (check_account == 1) {
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('회원가입에 성공했습니다.')");
+        script.println("alert('로그인에 성공했습니다.')");
         script.println("location.href='../home/home.html';");
         script.println("</script>");
         script.close();
