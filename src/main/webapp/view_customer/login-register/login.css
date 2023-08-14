@@ -105,13 +105,15 @@ header{
 /*input*/
 .input {
     width: 50%;
-    margin: 50px auto; /*가로에 auto를 주면 자동 수평 중앙 정렬이 됌*/
+    margin: 40px auto; /*가로에 auto를 주면 자동 수평 중앙 정렬이 됌*/
+    text-align: center;
 }
 
 .info-value {
     width: 70%;
     height: 30px;
     padding-left: 5%;
+    margin: 5px auto;
 }
 
 .login-box-submit {
