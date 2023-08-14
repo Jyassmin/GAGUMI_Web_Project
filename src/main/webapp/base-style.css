@@ -54,9 +54,12 @@ li {
     list-style: none;
 }
 
-/*버튼 스타일*/
-input[type="button"] {
+input {
     font-family: dream-bold, sans-serif;
+}
+
+/*input의 button type의 버튼 스타일*/
+input[type="button"] {
     font-size: 16px;
     border: none;
     background-color: #A43E1D;

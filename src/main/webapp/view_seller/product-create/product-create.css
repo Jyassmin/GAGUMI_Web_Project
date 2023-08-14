@@ -14,8 +14,13 @@ p {
     display: block;
     margin: 20px;
 }
+/*제품 품목 대분류*/
 select {
     margin-left: 2%;
+}
+/*제품 품목 소분류*/
+#subSelectContainer {
+    margin-left: 14%;
 }
 /*제품 정보 추가 버튼*/
 .add-button {
@@ -30,6 +35,8 @@ select {
     padding: 10px 50px;
     border-radius: 13px;
     display: inline-block;
+    outline: none;
+    border: none;
 }
 /*상품 설명*/
 #desc {
