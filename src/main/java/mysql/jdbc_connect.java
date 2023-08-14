@@ -10,11 +10,20 @@ public class jdbc_connect {
 
         Connection connection = DriverManager.getConnection(url, userName, password); // db 연결 매니저
         Statement statement = connection.createStatement();
+
+        // 총 레코드 개수 가져오기
+        ResultSet resultCnt = statement.executeQuery("select count(*) as total from customer");
+        resultCnt.next();
+        int totalCount = resultCnt.getInt("total");
+        resultCnt.close();
+
         ResultSet resultSet = statement.executeQuery("select * from customer"); // sql문 실행하여 결과 저장
 
-        resultSet.next();
-        String name = resultSet.getString("name"); // name 컬럼 가져오기
-        System.out.println(name);
+        for (int i = 0; i < totalCount; i++) {
+            resultSet.next();
+            String name = resultSet.getString("name"); // name 컬럼 가져오기
+            System.out.println(name);
+        }
 
         resultSet.close();
         statement.close();
