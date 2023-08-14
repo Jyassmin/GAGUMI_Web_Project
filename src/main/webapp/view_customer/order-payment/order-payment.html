@@ -3,46 +3,16 @@
 <head>
     <!--공통 스타일-->
     <link rel="stylesheet" href="../../base-style.css">
+    <!--order-payment 스타일-->
+    <link rel="stylesheet" href="order-payment.css">
     <meta charset="UTF-8">
     <title>주문/결제</title>
-    <style>
-        section {
-            margin: 5%;
-            background-color: #F5EFE2;
-            border: 1px solid #a43e1d;
-        }
-        div {
-            margin: 2%;
-        }
-        hr {
-            margin-bottom: 5px;
-            outline: none;
-            border-color: rgb(164, 62, 29);
-            border-width: 1px;
-        }
 
-        #order-product-info {
-            display: flex;
-        }
-        img {
-            width: 60%;
-        }
-        #order-info {
-            display: block;
-        }
-        .product-name {
-            margin-bottom: 35%;
-        }
-        #order-img {
-            width: 30%;
-        }
-        .pay-button {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
+<!--주문 정보 전체 창-->
 <section class="order">
+    <!--배송정보-->
     <div class="address">
         <div>
             <h3>배송지</h3>
@@ -59,6 +29,7 @@
             <option value="">부재 시 전화 남겨주시거나 문자 주세요.</option>
         </select>
     </div>
+    <!--주문자 정보-->
     <div class="order-person">
         <div>
             <h3>주문자</h3>
@@ -69,6 +40,7 @@
             <p>휴대전화</p>
         </div>
     </div>
+    <!--주문 상품 정보-->
     <div class="order-products">
         <div>
             <h3>주문상품</h3>
@@ -85,6 +57,7 @@
 
     </div>
 </section>
+<!--결제정보 전체 창-->
 <section class="pay">
     <div class="pay-info">
         <div>
@@ -98,6 +71,7 @@
             <h3>최종 결제 금액</h3>
         </div>
     </div>
+    <!--결제 버튼-->
     <div class="pay-button">
         <input type="button" value="결제하기">
     </div>

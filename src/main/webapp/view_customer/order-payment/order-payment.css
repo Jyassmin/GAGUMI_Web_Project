@@ -1,0 +1,42 @@
+
+section {
+    margin: 5%;
+    background-color: #F5EFE2;
+    border: 1px solid #a43e1d;
+}
+div {
+    margin: 2%;
+}
+hr {
+    margin-bottom: 5px;
+    outline: none;
+    border-color: rgb(164, 62, 29);
+    border-width: 1px;
+}
+/*주문한 제품 정보*/
+#order-product-info {
+    display: flex;
+}
+/*제품 이미지*/
+img {
+    width: 60%;
+}
+#order-img {
+    width: 30%;
+}
+/*주문정보*/
+#order-info {
+    display: block;
+}
+/*제품명*/
+.product-name {
+    margin-bottom: 35%;
+}
+/*결제하기버튼*/
+.pay-button {
+    text-align: center;
+}
+/*배송메세지 옵션*/
+select {
+    margin-left: 2%;
+}
