@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--공통 스타일-->
+    <link rel="stylesheet" href="../../base-style.css">
+    <meta charset="UTF-8">
+    <title>주문/결제</title>
+    <style>
+        section {
+            margin: 5%;
+            background-color: #F5EFE2;
+            border: 1px solid #a43e1d;
+        }
+        div {
+            margin: 2%;
+        }
+        hr {
+            margin-bottom: 5px;
+            outline: none;
+            border-color: rgb(164, 62, 29);
+            border-width: 1px;
+        }
+
+        #order-product-info {
+            display: flex;
+        }
+        img {
+            width: 60%;
+        }
+        #order-info {
+            display: block;
+        }
+        .product-name {
+            margin-bottom: 35%;
+        }
+        #order-img {
+            width: 30%;
+        }
+        .pay-button {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<section class="order">
+    <div class="address">
+        <div>
+            <h3>배송지</h3>
+        </div>
+        <hr>
+        <div>
+            <p>주소</p>
+        </div>
+        <select name="message">
+            <option value="">배송 메세지를 선택하세요.</option>
+            <option value="">부재시 문 앞에 놓아주세요.</option>
+            <option value="">배송 전에 미리 연락주세요.</option>
+            <option value="">부재 시 경비실에 맡겨 주세요.</option>
+            <option value="">부재 시 전화 남겨주시거나 문자 주세요.</option>
+        </select>
+    </div>
+    <div class="order-person">
+        <div>
+            <h3>주문자</h3>
+        </div>
+        <div>
+            <p>이름</p>
+            <p>아이디</p>
+            <p>휴대전화</p>
+        </div>
+    </div>
+    <div class="order-products">
+        <div>
+            <h3>주문상품</h3>
+            <p>판매자</p>
+        </div>
+        <div id="order-product-info">
+            <span id="order-img"><img src="../../images/sofa/sofa1.jpg"></span>
+            <span id="order-info">
+                <br>
+                <p class="product-name">댕편한 의자</p>
+                <p><span>30,000원</span> | <span>3개</span></p>
+            </span>
+        </div>
+
+    </div>
+</section>
+<section class="pay">
+    <div class="pay-info">
+        <div>
+            <h3>결제금액</h3>
+        </div>
+        <div>
+            <p>총 상품 금액</p>
+            <p>배송비</p>
+        </div>
+        <div>
+            <h3>최종 결제 금액</h3>
+        </div>
+    </div>
+    <div class="pay-button">
+        <input type="button" value="결제하기">
+    </div>
+</section>
+</body>
+</html>
