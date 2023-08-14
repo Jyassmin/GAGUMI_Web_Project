@@ -22,18 +22,24 @@
                 <p>상품이름 : <input required class="product-element" name="product-name" type="text"></p>
                 <p>상품품목 :
                     <select id="item" name="item">
-                        <option value="1">의자</option>
-                        <option value="2">소파</option>
-                        <option value="3">서랍/수납장</option>
-                        <option value="4">테이블</option>
-                        <option value="5">침대</option>
-                        <option value="6">장롱</option>
+                        <option value="1">스툴</option>
+                        <option value="2">화장대 의자</option>
+                        <option value="3">소파 - 소</option>
+                        <option value="4">소파 - 중</option>
+                        <option value="5">소파 - 대</option>
+                        <option value="6">서랍</option>
+                        <option value="7">수납장</option>
+                        <option value="8">책상</option>
+                        <option value="9">식탁</option>
+                        <option value="10">침대</option>
+                        <option value="11">장롱</option>
                     </select>
                     <div id="subSelectContainer"></div>
                 </p>
                 <p>상품가격 : <input required class="product-element" name="product-price"  type="text"></p>
                 <p>상품수량 : <input required class="product-element"name="product-quan"  type="number"></p>
-                <p>상품크기 : <input required class="product-element" name="product-size"  type="text" placeholder="가로X세로X높이"></p>
+                <p>상품크기 : <input required id="product-size"class="product-element" name="product-size"  type="text" placeholder="가로X세로X높이"></p>
+                <p id="alertMessage" style="color: red;"></p>
                 <p id="desc">상품설명 :
                     <textarea required class="product-element" name="product-desc" minlength="10" placeholder="최소 10글자 이상 작성해주세요."></textarea>
                 </p>
@@ -45,66 +51,41 @@
             </div>
         </section>
     </form>
-
-
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            }
+        }).open();
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#item").on("change", function() {
-                var selectedValue = $(this).val();
-                var subSelect = $("<select>");
+        // 숫자와 x만 입력하게 하는 스크립트
+        document.addEventListener("DOMContentLoaded", function() {
+            var textarea = document.getElementById("product-size");
+            var alertMessage = document.getElementById("alertMessage");
 
-                if (selectedValue === "1") {
-                    subSelect.append(
-                        $("<option>", { value: "스툴", text: "스툴" }),
-                        $("<option>", { value: "화장대 의자", text: "화장대 의자" })
-                    );
-                } else if (selectedValue === "2") {
-                    subSelect.append(
-                        $("<option>", {value: "소", text: "소"}),
-                        $("<option>", {value: "중", text: "중"}),
-                        $("<option>", {value: "대", text: "대"})
-                    );
-                } else if(selectedValue === "3") {
-                    subSelect.append(
-                        $("<option>", {value: "서랍", text: "서랍"}),
-                        $("<option>", {value: "수납장", text: "수납장"})
-                    );
-                } else if(selectedValue === "4") {
-                    subSelect.append(
-                        $("<option>", {value: "책상", text: "책상"}),
-                        $("<option>", {value: "식탁", text: "식탁"})
-                    );
-                } else if(selectedValue === "5") {
-                    subSelect.append(
-                        $("<option>", {value: "침대", text: "침대"})
-                    );
-                } else if(selectedValue === "6") {
-                    subSelect.append(
-                        $("<option>", {value: "장롱", text: "장롱"})
-                    );
+            textarea.addEventListener("input", function() {
+                var inputValue = textarea.value;
+                var filteredValue = filterInput(inputValue);
+
+                if (inputValue !== filteredValue) {
+                    alertMessage.textContent = "숫자와 'x'만 입력해주세요.";
+                } else {
+                    alertMessage.textContent = "";
                 }
 
-                $("#subSelectContainer").empty().append(subSelect);
+                textarea.value = filteredValue;
             });
 
-            $("#submitBtn").on("click", function() {
-                var selectedValue = $("#mainSelect").val();
-
-                $.ajax({
-                    type: "POST",
-                    url: "your-jsp-page.jsp",
-                    data: { selectedValue: selectedValue },
-                    success: function(response) {
-                        // 성공적으로 서버로 전송되었을 때의 동작
-                    },
-                    error: function() {
-                        // 오류 발생 시 처리
-                    }
-                });
-            });
+            function filterInput(input) {
+                return input.replace(/[^0-9x]/gi, "");
+            }
         });
     </script>
+
     <!--상품 등록 버튼 클릭 시 alert 메세지 띄우기-->
     <script src="../../jquery.min.js"></script>
     <script src="product-create.js"></script>

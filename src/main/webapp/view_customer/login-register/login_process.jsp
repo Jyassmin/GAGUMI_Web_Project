@@ -1,6 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="mysql.db_dto"%>
 <%@ page import="mysql.db_dao"%>
 <%@ page import="java.io.PrintWriter"%>
 <%
@@ -8,8 +6,8 @@
     request.setCharacterEncoding("UTF-8");
 
     // 이전 페이지에서 데이터 가져오기(null체크)
-    String uid = null;
-    String upw = null;
+    String uid = null; // test
+    String upw = null; // 12341234
     if (request.getParameter("input_id") != null) {
         uid = request.getParameter("input_id");
     }
@@ -29,28 +27,21 @@
     db_dao userDao = new db_dao();
     int check_account = userDao.login(uid, upw); // 로그인 실패 0, 성공 1
 
-//    if (check_account == 1) {
-//        out.println("로그인 되었습니다.");
-//    } else {
-//        out.println("아이디 또는 비밀번호가 일치하지 않습니다.");
-//    }
-
+    // 결과 처리
+    PrintWriter script;
+    script = response.getWriter();
+    script.println("<script>");
     if (check_account == 1) {
-        PrintWriter script = response.getWriter();
-        script.println("<script>");
+        session.setAttribute("memberId", uid); // 세션생성
+        session.setAttribute("memberPw", upw);
         script.println("alert('로그인에 성공했습니다.')");
         script.println("location.href='../home/home.html';");
-        script.println("</script>");
-        script.close();
-        return;
+
+    } else {
+        script.println("alert('아이디 또는 비밀번호가 일치하지 않습니다.')");
+        script.println("location.href='./login.html';");
     }
-//    } else {
-//        PrintWriter script = response.getWriter();
-//        script.println("<script>");
-//        script.println("아이디 또는 비밀번호가 일치하지 않습니다.");
-//        script.println("location.href='./login.html';");
-//        script.println("</script>");
-//        script.close();
-//        return;
-//    }
+    script.println("</script>");
+    script.close();
+    return;
 %>

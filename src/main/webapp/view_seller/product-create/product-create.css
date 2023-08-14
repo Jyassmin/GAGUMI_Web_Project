@@ -20,7 +20,7 @@ select {
 }
 /*제품 품목 소분류*/
 #subSelectContainer {
-    margin-left: 14%;
+    margin-left: 10%;
 }
 /*제품 정보 추가 버튼*/
 .add-button {
@@ -37,6 +37,11 @@ select {
     display: inline-block;
     outline: none;
     border: none;
+}
+/*제품 크기 조건에 맞지 않았을 때*/
+#alertMessage {
+    margin-left: 20%;
+    font-size: 12px;
 }
 /*상품 설명*/
 #desc {
