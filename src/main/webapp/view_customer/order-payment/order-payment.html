@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--공통 스타일-->
+    <!--    공통 스타일-->
     <link rel="stylesheet" href="../../base-style.css">
-    <!--order-payment 스타일-->
+    <!--    order-payment 스타일-->
     <link rel="stylesheet" href="order-payment.css">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
     <meta charset="UTF-8">
     <title>주문/결제</title>
 
 </head>
 <body>
+<header>
+    <!-- top-menu -->
+    <ul class="top-menu">
+        <li><a href="#">OOO님 환영합니다.</a></li>
+        <li><a href="#">게시판</a></li>
+        <li class=my-page><a href="#">마이페이지</a>
+            <ul class="submenu">
+                <li><a href="#">정보수정</a></li>
+                <li><a href="#">주문내역</a></li>
+                <li><a href="#">장바구니</a></li>
+            </ul>
+        </li>
+        <li><a href="#">로그아웃</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+    <!-- //top-menu -->
+    <div class="logo">
+        <a href="../home/home.html"><img src="../../images/logo.png"></a>
+    </div>
+    <h1>주문/결제</h1>
+</header>
 <!--주문 정보 전체 창-->
 <section class="order">
     <!--배송정보-->
@@ -76,5 +99,32 @@
         <input type="button" value="결제하기">
     </div>
 </section>
+<footer>
+    <div class="footer1">
+        <div class="project-intro">
+            <h4>PROJECT INTRO.</h4>
+            <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
+        </div>
+        <div class="product">
+            <h4>PRODUCT</h4>
+            <ul>
+                <li><a href="#">의자</a></li>
+                <li><a href="#">서랍/수납장</a></li>
+                <li><a href="#">책상</a></li>
+                <li><a href="#">침대</a></li>
+                <li><a href="#">장롱</a></li>
+            </ul>
+        </div>
+        <div class="mypage">
+            <h4>MYPAGE</h4>
+            <ul>
+                <li><a href="#">정보 수정</a></li>
+                <li><a href="#">주문 내역</a></li>
+                <li><a href="#">장바구니</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class = "copyright">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
+</footer>
 </body>
 </html>
