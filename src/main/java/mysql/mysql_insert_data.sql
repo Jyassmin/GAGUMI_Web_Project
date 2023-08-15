@@ -1,22 +1,22 @@
-﻿INSERT INTO user (name, email, pw, phone, gender, birthday, address)
+﻿INSERT INTO user (name, email, pw, phone, gender, birthday, address, zipcode)
 VALUES
-    ('김영희', 'test', '12341234', '01012311234', 0, '1992-06-25', '서울특별시 강남구 역삼동 123번지'),
-    ('이철수', 'chulsoo89@naver.com', 'david123', '01056755678', 1, '1989-09-15', '서울특별시 서초구 방배동 456번지'),
-    ('박지민', 'jimin98@daum.net', 'emilypass', '01098799876', 0, '1998-02-10', '인천광역시 부평구 부평동 789번지'),
-    ('김태영', 'taeyoung85@gmail.com', 'jamespass', '01055551234', 1, '1985-12-01', '대구광역시 중구 동인동 101번지'),
-    ('김지연', 'jiyeon94@naver.com', 'oliviapw', '01077772222', 0, '1994-08-18', '부산광역시 해운대구 우동 202번지'),
-    ('이동호', 'dongho91@daum.net', 'will123', '01088883333', 1, '1991-03-30', '광주광역시 동구 산동 303번지'),
-    ('김미라', 'mira96@gmail.com', 'sophiapass', '01099994444', 0, '1996-11-12', '대전광역시 유성구 봉명동 404번지'),
-    ('송재민', 'jaemin87@naver.com', 'alex123', '01044445555', 1, '1987-05-20', '울산광역시 남구 대현동 505번지'),
-    ('박민우', 'minwoo93@daum.net', 'isabellapw', '01066667777', 0, '1993-10-05', '세종특별자치시 조치원읍 606번지');
+    ('김영희', 'test', '12341234', '01012311234', 0, '1992-06-25', '서울특별시 강남구 역삼동 123번지', '00001'),
+    ('이철수', 'chulsoo89@naver.com', 'david123', '01056755678', 1, '1989-09-15', '서울특별시 서초구 방배동 456번지', '00002'),
+    ('박지민', 'jimin98@daum.net', 'emilypass', '01098799876', 0, '1998-02-10', '인천광역시 부평구 부평동 789번지', '00003'),
+    ('김태영', 'taeyoung85@gmail.com', 'jamespass', '01055551234', 1, '1985-12-01', '대구광역시 중구 동인동 101번지', '00004'),
+    ('김지연', 'jiyeon94@naver.com', 'oliviapw', '01077772222', 0, '1994-08-18', '부산광역시 해운대구 우동 202번지', '00005'),
+    ('이동호', 'dongho91@daum.net', 'will123', '01088883333', 1, '1991-03-30', '광주광역시 동구 산동 303번지', '00006'),
+    ('김미라', 'mira96@gmail.com', 'sophiapass', '01099994444', 0, '1996-11-12', '대전광역시 유성구 봉명동 404번지', '00007'),
+    ('송재민', 'jaemin87@naver.com', 'alex123', '01044445555', 1, '1987-05-20', '울산광역시 남구 대현동 505번지', '00008'),
+    ('박민우', 'minwoo93@daum.net', 'isabellapw', '01066667777', 0, '1993-10-05', '세종특별자치시 조치원읍 606번지', '00009');
 
-INSERT INTO user (name, role, email, pw, phone, company, address)
+INSERT INTO user (name, role, email, pw, phone, company, address, zipcode)
 VALUES
-    ('가구마트', 1, 'galoreinfo@gmail.com', 'furniture123', '01011112222', '가구마트 주식회사', '서울특별시 강남구 메인로 123'),
-    ('홈액센츠', 1, 'accentscontact@naver.com', 'homeaccentspw', '01033334444', '홈액센츠 주식회사', '서울특별시 서초구 박스아파트 456'),
-    ('우아한디자인', 1, 'elegantdesigns@daum.net', 'elegant123', '01055556666', '우아한디자인 주식회사', '서울특별시 강북구 은행길 789'),
-    ('편안한리빙', 1, 'comfortliving@gmail.com', 'comfortpass', '01077778888', '편안한리빙 주식회사', '서울특별시 종로구 오크아파트 101'),
-    ('모던인테리어', 1, 'interiorsmodern@naver.com', 'modern123', '01099990000', '모던인테리어 주식회사', '서울특별시 송파구 단풍로 234');
+    ('가구마트', 1, 'galoreinfo@gmail.com', 'furniture123', '01011112222', '가구마트 주식회사', '서울특별시 강남구 메인로 123', '00010'),
+    ('홈액센츠', 1, 'accentscontact@naver.com', 'homeaccentspw', '01033334444', '홈액센츠 주식회사', '서울특별시 서초구 박스아파트 456', '00011'),
+    ('우아한디자인', 1, 'elegantdesigns@daum.net', 'elegant123', '01055556666', '우아한디자인 주식회사', '서울특별시 강북구 은행길 789', '00012'),
+    ('편안한리빙', 1, 'comfortliving@gmail.com', 'comfortpass', '01077778888', '편안한리빙 주식회사', '서울특별시 종로구 오크아파트 101', '00013'),
+    ('모던인테리어', 1, 'interiorsmodern@naver.com', 'modern123', '01099990000', '모던인테리어 주식회사', '서울특별시 송파구 단풍로 234', '00014');
 
 INSERT INTO category1 (ca1_name)
 VALUES
