@@ -11,6 +11,7 @@
     <!-- 공통 스타일 -->
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="./product-read.css?after">
+    <script src="./product-read.js"></script>
 </head>
 <body>
 <%
@@ -45,19 +46,22 @@
     </tr>
 
     <%-- 상품 목록을 순회하며 테이블 행을 생성 --%>
-    <%
+    <%  int productNumber = 1; //주문번호 1부터 시작
         for (db_dto product : productList) {
     %>
     <tr>
-        <td><%= product.getOrderNumber() %></td>
+<%--        <td><%= product.getOrderNumber() %></td>--%> <!--uid번호 들어감-->
+        <td><%= productNumber %></td>
         <td><img src="../../images/empty-image.png" alt="<%= product.getProductName() %>" width="50"></td>
         <td><%= product.getProductName() %></td>
         <td><%= product.getProductCategory() %></td>
         <td><%= product.getProductPrice() %>원</td>
         <td><%= product.getProductQuantity() %>개</td>
-        <td><a class="modify" href="#">수정</a><a class="delete" href="#">삭제</a></td>
+        <td><a class="modify" href="../product-update/product-update.html">수정</a><a class="delete" href="">삭제</a></td>
     </tr>
     <%
+            // 주문번호 1씩증가
+            productNumber++;
         }
     %>
 </table>

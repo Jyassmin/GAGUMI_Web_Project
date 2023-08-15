@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (shouldDelete) {
                 // 삭제 페이지로 이동
                 // 여기에 삭제 페이지 URL을 입력해주세요.
-                window.location.href = '삭제 페이지 URL';
+                window.location.href = '../seller-home/seller-home.html';
             }
         });
     });
