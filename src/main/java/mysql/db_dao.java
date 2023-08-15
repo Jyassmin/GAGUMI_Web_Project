@@ -213,7 +213,48 @@ public class db_dao {
         return null;
     }
 
+    // 고객정보 수정 시 업데이트 하는 함수
+    public int sellerUpdateInfo(String name, String pw, String phone, String company, String post_code, String full_address){
+        // 권한에 맞춰서 다르게 작성 - role(0 고객, 1 판매자)
+        //(판매자) UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;
+        //(고객 ) UPDATE user SET name = ?, pw =?, phone =?, gender = ?, birthday =?, address =? WHERE role = 0 AND UID = ?;
+        //판매자
+        String SQL = "UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;";
 
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, name);
+            pstmt.setString(2, pw);
+            pstmt.setString(3, phone);
+            pstmt.setString(4, company);
+            pstmt.setString(5, full_address);
+            //pstmt.setString(6, full_address);
+            pstmt.setInt(6, 10);
+
+            // 명령어를 수행한 결과
+            // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
+            // 2_executeUpdate -> 레코드 삽입, 수정, 삭제 등 데이터 조작 명령어 사용(CRUD)
+            // 3_executeQuery -> 레코드 조회, 테이블 조회 등 조회 명령어 사용(Select)
+
+            return pstmt.executeUpdate(); // 1은 데이터 삽입 성공, 0은 데이터 삽입 실패
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
 }
 
 // 참고) 전체 출력 코드

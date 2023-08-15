@@ -32,7 +32,9 @@
     int p_quan = Integer.parseInt(_p_quan);
 
     db_dao userDao = new db_dao();
-    int insert_data = userDao.product_add(1, item, p_name, p_quan, p_price, p_desc, "", p_size);
+    // 1에 현재 로그인한 사용자 id가 들어가야함
+    // 이미지 넣고 가져오는 법도 생각해야됨
+    int insert_data = userDao.product_add(1, item, p_name, p_quan, p_price, p_desc, null, p_size);
 
     if(insert_data > 0){
         // 데이터 삽입 성공
@@ -45,7 +47,6 @@
         return;
     }else {
         // 데이터 삽입 실패
-
     }
 
 %>
