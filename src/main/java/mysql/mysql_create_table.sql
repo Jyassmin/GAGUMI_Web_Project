@@ -8,11 +8,12 @@ CREATE TABLE `user` (
                         `name` VARCHAR(40) NOT NULL,
                         `email` VARCHAR(40) NOT NULL UNIQUE,
                         `pw` VARCHAR(40) NOT NULL,
-                        `phone` CHAR(11) NOT NULL,
+                        `phone` CHAR(11) NOT NULL UNIQUE,
                         `gender` INT NULL,
                         `birthday` VARCHAR(10) NULL,
                         `company` VARCHAR(40) NULL,
-                        `address` VARCHAR(50) NOT NULL
+                        `address` VARCHAR(50) NOT NULL,
+                        `zipcode` CHAR(10) NOT NULL
 );
 
 CREATE TABLE `product` (
