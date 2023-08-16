@@ -348,7 +348,7 @@ public class db_dao {
     // 정보 수정 시 판매자의 개인정보 가져오는 함수
     public HashMap<String, String> getSellerInfo(String currentUser) {
         int currentUID = getUidByEmail(currentUser);
-        String SQL = "select email, name, pw, phone, company, address, zipcode from user where uid = ?;";
+        String SQL = "select email, name, pw, phone, company, address, zipcode from user where role = 1 AND uid = ?;";
 
         HashMap<String, String> sellerInfo = new HashMap<>();
         ResultSet rs = null;
@@ -444,6 +444,50 @@ public class db_dao {
     }
 
 
+    // 현재 로그인한 고객 정보 가져오는 함수
+    public HashMap<String, String> getCustomerInfo(String currentUser) {
+        int currentUID = getUidByEmail(currentUser);
+        String SQL = "select email, name, pw, phone, gender, birthday, address, zipcode from user where role = 0 AND uid = ?;";
+
+        HashMap<String, String> customerInfo = new HashMap<>();
+        ResultSet rs = null;
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            pstmt.setInt(1, 1); // 판매자 ID를 설정하세요
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                customerInfo.put("email", rs.getString("email")); // 이메일
+                customerInfo.put("name", rs.getString("name")); // 이름
+                customerInfo.put("pw", rs.getString("pw")); // 비밀번호
+                customerInfo.put("phone", rs.getString("phone")); // 전화번호
+                String gender = String.valueOf((rs.getInt("gender"))); // 성별
+                customerInfo.put("gender", gender);
+                customerInfo.put("birthday", rs.getString("birthday")); // 생년월일
+                String fullAddress = rs.getString("address"); // 주소
+                String[] addressParts = fullAddress.split(","); // 쉼표로 구분된 부분 분리
+                customerInfo.put("roadAddress", addressParts[0]); // 첫 번째 부분 저장
+                customerInfo.put("jibunAddress", addressParts[1]); // 두 번째 부분 저장
+                customerInfo.put("detailAddress", addressParts[2]); // 세 번째 부분 저장
+                customerInfo.put("extraAddress", addressParts[3]); // 네 번째 부분 저장
+                customerInfo.put("postCode", rs.getString("zipcode")); // 우편 번호
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return customerInfo;
+    }
 }
 
 
