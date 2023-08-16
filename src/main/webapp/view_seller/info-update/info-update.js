@@ -89,10 +89,11 @@ function changeFontSize(inputValue) {
     inputElement4.style.fontSize = fontSize + "px";
 }
 
+// 비밀번호 확인 스크립트
 const passwordField = document.getElementById('modify_pw');
 const confirmPasswordField = document.getElementById('pw_check');
 const passwordError = document.getElementById('passwordError');
-// 비밀번호 확인 스크립트
+
 function validatePassword() {
     if (passwordField.value !== confirmPasswordField.value) {
         passwordError.textContent = '비밀번호가 일치하지 않습니다.';
@@ -109,3 +110,32 @@ document.getElementById('updateForm').addEventListener('submit', function(event)
         event.preventDefault(); // 폼 제출 방지
     }
 });
+
+// <!-- 비밀번호 변경하기 버튼을 누를 때 비밀번호 입력란을 보여주는 JavaScript 함수 -->
+    function togglePasswordChangeFields() {
+        var changePasswordButton = document.getElementById("changePasswordButton");
+        var currentPW = document.getElementById("current_pw");
+        var modifyPassword = document.getElementById("modifyPassword");
+        var modifyPasswordCheck = document.getElementById("modifyPasswordCheck");
+        var modifyPwInput = document.getElementById("modify_pw");
+        var modifyPwCheckInput = document.getElementById("pw_check");
+        modifyPwInput.value = currentPW.value;
+        modifyPwCheckInput.value = currentPW.value;
+        if (modifyPassword.style.display === "none") {
+        // 비밀번호 변경하기 시작
+        modifyPassword.style.display = "block";
+        modifyPasswordCheck.style.display = "block";
+            modifyPwInput.value = '';
+            modifyPwCheckInput.value = '';
+        changePasswordButton.value = "변경 취소";
+        validatePassword();
+    } else {
+        // 비밀번호 변경 취소
+        modifyPassword.style.display = "none";
+        modifyPasswordCheck.style.display = "none";
+        modifyPwInput.value = currentPW.value;
+        modifyPwCheckInput.value = currentPW.value;
+        changePasswordButton.value = "비밀번호 변경하기";
+        validatePassword();
+    }
+}
