@@ -126,7 +126,7 @@ public class db_dto {
     //결제날짜
     private String dateTime;
     //주문한 고객전화번호
-    private int orderPhone;
+    private String orderPhone;
 
     public int getOrderCode() {
         return orderCode;
@@ -168,11 +168,11 @@ public class db_dto {
         this.dateTime = dateTime;
     }
 
-    public int getOrderPhone() {
+    public String getOrderPhone() {
         return orderPhone;
     }
 
-    public void setOrderPhone(int orderPhone) {
+    public void setOrderPhone(String orderPhone) {
         this.orderPhone = orderPhone;
     }
 

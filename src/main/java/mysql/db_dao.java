@@ -400,13 +400,12 @@ public class db_dao {
                 "h.datetime, " +
                 "u.phone, " +
                 "u.address, " +
-                "p.cost as product_cost" +
-                "FROM " +
-                "history h" +
+                "p.cost as product_cost " +
+                "FROM  history h "+
                 "INNER JOIN user u ON h.uid = u.uid " +
                 "INNER JOIN product p ON h.pid = p.pid " +
                 "WHERE " +
-                "p.uid = 10 " +
+                "p.uid = 1 " +
                 "ORDER BY " +
                 "h.datetime DESC";
 
@@ -426,7 +425,7 @@ public class db_dao {
                   order.setProductPrice(rs.getInt("product_cost"));
                   order.setTotalPrice(rs.getInt("total_cost"));
                   order.setOrderName(rs.getString("name"));
-                  order.setOrderPhone(rs.getInt("phone"));
+                  order.setOrderPhone(rs.getString("phone"));
                   order.setOrderAdress(rs.getString("address"));
                   order.setDateTime(rs.getString("datetime"));
                 orderList.add(order);
