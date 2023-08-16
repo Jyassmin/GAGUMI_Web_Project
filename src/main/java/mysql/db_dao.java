@@ -148,8 +148,9 @@ public class db_dao {
     }
   
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
-    public List<db_dto> print_product() {
-        String SQL = "SELECT * FROM product WHERE uid = 1";
+    public List<db_dto> print_product(String email ) {
+
+        String SQL = "SELECT * FROM product WHERE uid = ?";
         List<db_dto> productList = new ArrayList<>();
 
         try {
