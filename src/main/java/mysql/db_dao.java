@@ -150,7 +150,7 @@ public class db_dao {
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email ) {
 
-        String SQL = "SELECT * FROM product WHERE uid = ?";
+        String SQL = "SELECT * FROM product WHERE uid = 1";
         List<db_dto> productList = new ArrayList<>();
 
         try {
@@ -159,6 +159,7 @@ public class db_dao {
 
             while (rs.next()) {
                 db_dto product = new db_dto();
+                product.setProductNumber(rs.getInt("pid"));
                 product.setOrderNumber(rs.getInt("uid"));
                 product.setImage(rs.getString("pimage"));
                 product.setProductName(rs.getString("name"));
@@ -283,6 +284,56 @@ public class db_dao {
                     conn.close();
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    //카테고리 숫자를 문자로 바꾸어주는 함수
+    public String getCategoryText(int category) {
+        String[] categoryArray = {
+                "스툴",
+                "화장대 의자",
+                "소파 - 소",
+                "소파 - 중",
+                "소파 - 대",
+                "서랍",
+                "수납장",
+                "책상",
+                "식탁",
+                "침대",
+                "장롱"
+        };
+
+        if (category >= 1 && category <= categoryArray.length) {
+            return categoryArray[category - 1];
+        } else {
+            return "Unknown";
+        }
+    }
+    //pid기준으로 상품 삭제해주는 함수
+    public int deleteProduct(int pid) {
+        out.println("함수들어옴");
+        String SQL = "DELETE FROM product WHERE pid = ? ";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, pid);
+
+            int result = pstmt.executeUpdate(); // 1은 삭제 성공, 0은 삭제 실패
+
+            pstmt.close(); // Statement 닫기
+
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
