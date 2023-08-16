@@ -27,6 +27,8 @@ public class db_dto {
 
     //유저uid
     private int orderNumber;
+    //상품pid
+    private int productNumber;
     //이미지
     private String image;
     //상품명
@@ -46,6 +48,13 @@ public class db_dto {
 
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
+    }
+    public int getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(int productNumber) {
+        this.productNumber = productNumber;
     }
 
     public String getImage() {
