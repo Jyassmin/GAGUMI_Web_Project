@@ -387,6 +387,63 @@ public class db_dao {
         return sellerInfo;
 
     }
+    //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
+    public List<db_dto> print_orderList(String email) {
+
+        String SQL = "SELECT " +
+                "h.hid, " +
+                "u.email, " +
+                "u.name, " +
+                "h.pname, " +
+                "h.quantity, " +
+                "h.cost as total_cost, " +
+                "h.datetime, " +
+                "u.phone, " +
+                "u.address, " +
+                "p.cost as product_cost" +
+                "FROM " +
+                "history h" +
+                "INNER JOIN user u ON h.uid = u.uid " +
+                "INNER JOIN product p ON h.pid = p.pid " +
+                "WHERE " +
+                "p.uid = 10 " +
+                "ORDER BY " +
+                "h.datetime DESC";
+
+
+        List<db_dto> orderList = new ArrayList<>();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                db_dto order = new db_dto();
+                  order.setOrderCode(rs.getInt("hid"));
+                  order.setUserID(rs.getString("email"));
+                  order.setProductName(rs.getString("pname"));
+                  order.setOrderQuantity(rs.getInt("quantity"));
+                  order.setProductPrice(rs.getInt("product_cost"));
+                  order.setTotalPrice(rs.getInt("total_cost"));
+                  order.setOrderName(rs.getString("name"));
+                  order.setOrderPhone(rs.getInt("phone"));
+                  order.setOrderAdress(rs.getString("address"));
+                  order.setDateTime(rs.getString("datetime"));
+                orderList.add(order);
+            }
+
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // ... (연결 해제 등의 처리)
+        }
+
+        return orderList;
+    }
+
+
 }
 
 

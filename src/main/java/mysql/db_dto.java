@@ -25,6 +25,7 @@ public class db_dto {
         this.userPassword = userPassword;
     }
 
+    //판매자가 등록한 상품의 전체 조회 변수 , 함수
     //유저uid
     private int orderNumber;
     //상품pid
@@ -112,6 +113,81 @@ public class db_dto {
     public void setSize(String size) {
         this.size = size;
     }
+
+    //고객이 주문한 상품의 전체 조회 변수 , 함수
+    //주문코드
+    private int orderCode;
+    //주문한 고객 이름
+    private String orderName;
+    //주문한수량
+    private int orderQuantity;
+    //주문총액
+    private int totalPrice;
+    //결제날짜
+    private String dateTime;
+    //주문한 고객전화번호
+    private int orderPhone;
+
+    public int getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(int orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public String getOrderName() {
+        return orderName;
+    }
+
+    public void setOrderName(String orderName) {
+        this.orderName = orderName;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public int getOrderPhone() {
+        return orderPhone;
+    }
+
+    public void setOrderPhone(int orderPhone) {
+        this.orderPhone = orderPhone;
+    }
+
+    public String getOrderAdress() {
+        return orderAdress;
+    }
+
+    public void setOrderAdress(String orderAdress) {
+        this.orderAdress = orderAdress;
+    }
+
+    //주문한 고객주소
+    private String orderAdress;
+
+
 }
 
 
