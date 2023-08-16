@@ -19,11 +19,11 @@
     String modify_pw = request.getParameter("modify_pw"); // 비밀번호
     String modify_phone = request.getParameter("modify_phone"); // 전화번호
     String modify_company = request.getParameter("modify_company"); // 회사명
-    String post_code  = request.getParameter("post_code"); // 우편 번호
-    String road_address = request.getParameter("road_address"); // 도로명 주소
-    String jibun_address = request.getParameter("jibun_address"); // 지번 주소
-    String detail_address = request.getParameter("detail_address"); // 상세 주소
-    String extra_address = request.getParameter("extra_address"); // 참고항목
+    String post_code  = request.getParameter("user_postcode"); // 우편 번호
+    String road_address = request.getParameter("user_roadAddress"); // 도로명 주소
+    String jibun_address = request.getParameter("user_jibunAddress"); // 지번 주소
+    String detail_address = request.getParameter("user_detailAddress"); // 상세 주소
+    String extra_address = request.getParameter("user_extraAddress"); // 참고항목
     String full_address = road_address + "," + jibun_address + "," + detail_address + "," + extra_address;
 
     db_dao userDao = new db_dao();
@@ -40,6 +40,8 @@
         return;
     }else {
         // 데이터 삽입 실패
+        out.println("데이터 삽입 실패");
+        out.println(update_data);
     }
 %>
 </body>

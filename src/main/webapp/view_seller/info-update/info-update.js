@@ -72,3 +72,40 @@ function userDaumPostcode() {
         }
     }).open();
 }
+
+// 글자 크기 자동으로 맞춰주는 스크립트
+function changeFontSize(inputValue) {
+    const inputElement1 = document.getElementById("user_roadAddress");
+    const inputElement2 = document.getElementById("user_jibunAddress");
+    const inputElement3 = document.getElementById("user_detailAddress");
+    const inputElement4 = document.getElementById("user_extraAddress");
+    const maxLength = 10; // 글자 크기를 최대로 할 글자 수
+
+    // 글자 크기 계산 및 적용
+    const fontSize = 13 - (Math.min(inputValue.length / maxLength, 1)) * 10;
+    inputElement1.style.fontSize = fontSize + "px";
+    inputElement2.style.fontSize = fontSize + "px";
+    inputElement3.style.fontSize = fontSize + "px";
+    inputElement4.style.fontSize = fontSize + "px";
+}
+
+const passwordField = document.getElementById('modify_pw');
+const confirmPasswordField = document.getElementById('pw_check');
+const passwordError = document.getElementById('passwordError');
+// 비밀번호 확인 스크립트
+function validatePassword() {
+    if (passwordField.value !== confirmPasswordField.value) {
+        passwordError.textContent = '비밀번호가 일치하지 않습니다.';
+        return false;
+    } else {
+        passwordError.textContent = '';
+        return true;
+    }
+}
+
+confirmPasswordField.addEventListener('keyup', validatePassword);
+document.getElementById('updateForm').addEventListener('submit', function(event) {
+    if (!validatePassword()) {
+        event.preventDefault(); // 폼 제출 방지
+    }
+});
