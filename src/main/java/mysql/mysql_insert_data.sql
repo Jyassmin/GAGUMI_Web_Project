@@ -12,7 +12,7 @@ VALUES
 
 INSERT INTO user (name, role, email, pw, phone, company, address, zipcode)
 VALUES
-    ('가구마트', 1, 'galoreinfo@gmail.com', 'furniture123', '01011112222', '가구마트 주식회사', '서울특별시 강남구 메인로 123', '00010'),
+    ('가구마트', 1, 'seller', '12341234', '01011112222', '가구마트 주식회사', '서울특별시 강남구 메인로 123', '00010'),
     ('홈액센츠', 1, 'accentscontact@naver.com', 'homeaccentspw', '01033334444', '홈액센츠 주식회사', '서울특별시 서초구 박스아파트 456', '00011'),
     ('우아한디자인', 1, 'elegantdesigns@daum.net', 'elegant123', '01055556666', '우아한디자인 주식회사', '서울특별시 강북구 은행길 789', '00012'),
     ('편안한리빙', 1, 'comfortliving@gmail.com', 'comfortpass', '01077778888', '편안한리빙 주식회사', '서울특별시 종로구 오크아파트 101', '00013'),
