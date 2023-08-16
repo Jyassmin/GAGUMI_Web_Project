@@ -13,7 +13,7 @@ public class db_dao {
     Connection conn = db_util.getConnection();
 
     /*login : 입력받은 id, pw가 user테이블에 있는지 확인. 있다면 1. 없다면 0 반환*/
-    public int login(String userID, String userPassword) {
+    public int login(String userEmail, String userPassword) {
         String SQL = "SELECT count(*) AS total FROM user where email=? AND pw=?";
 
         try {
@@ -21,7 +21,7 @@ public class db_dao {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setString(1, userID);
+            pstmt.setString(1, userEmail);
             pstmt.setString(2, userPassword);
 
             // 명령어를 수행한 결과
@@ -180,8 +180,8 @@ public class db_dao {
         return productList;
     }
 
-
-    public String getNameByUid(String userId) {
+    // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.
+    public String getNameByEmail(String userEmail) {
 
         String SQL = "SELECT name from user where email=?";
 
@@ -190,7 +190,7 @@ public class db_dao {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setString(1, userId);
+            pstmt.setString(1, userEmail);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
             String result_name = rs.getString(1);
@@ -211,6 +211,38 @@ public class db_dao {
             }
         }
         return null;
+    }
+
+    public int getUidByEmail(String userEmail) {
+
+        String SQL = "SELECT uid from user where email=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, userEmail);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int result_uid = rs.getInt(1);
+            rs.close();
+
+            return result_uid; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 
     // 고객정보 수정 시 업데이트 하는 함수
