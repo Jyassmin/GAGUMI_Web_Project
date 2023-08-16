@@ -62,9 +62,9 @@
         <td><%=order.getOrderCode()%></td>
         <td><%=order.getUserID()%></td>
         <td><%=order.getProductName()%></td>
-        <td><%=order.getProductPrice()%></td>
+        <td><%= NumberFormat.getInstance().format(order.getProductPrice()) %>원</td>
         <td><%=order.getOrderQuantity()%></td>
-        <td><%=order.getTotalPrice()%></td>
+        <td><%= NumberFormat.getInstance().format(order.getTotalPrice()) %>원</td>
         <td><%=order.getOrderName()%></td>
         <td><%=order.getOrderPhone()%></td>
         <td><%=order.getOrderAdress()%></td>
