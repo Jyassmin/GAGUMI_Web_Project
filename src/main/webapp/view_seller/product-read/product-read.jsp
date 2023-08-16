@@ -17,9 +17,9 @@
 <%
     // DAO 인스턴스 생성
     db_dao userDao = new db_dao();
-
+    String currentUser = (String)session.getAttribute("uid");
     // 상품 조회 메서드 호출
-    List<db_dto> productList = userDao.print_product();
+    List<db_dto> productList = userDao.print_product(currentUser);
 %>
 <header>
     <!-- 상단 메뉴 -->
