@@ -111,7 +111,7 @@ public class db_dao {
     public int product_add(String currentUser, int category2, String p_name, int stock, int cost, String desc, String p_iamge, String size) {
         int uid = getUidByEmail(currentUser);
         String SQL = "INSERT INTO product (uid, ca2id, name, stock, cost, `desc`, pimage, size) values (?,?,?,?,?,?,?,?);";
-        if
+
         try {
             // 실행 가능 상태의 sql문으로 만듦.
             PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -149,7 +149,7 @@ public class db_dao {
     }
   
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
-    public List<db_dto> print_product(String email ) {
+    public List<db_dto> print_product(String email) {
 
 
         String SQL = "SELECT * FROM product WHERE uid = 1";
@@ -344,9 +344,9 @@ public class db_dao {
             }
         }
         return -1;
-
+    }
     // 정보 수정 시 판매자의 개인정보 가져오는 함수
-    public HashMap<String, String> getSellerInfo(String email){
+    public HashMap<String, String> getSellerInfo(String currentUser) {
         String SQL = "select email, name, pw, phone, company, address, zipcode from user where uid = ?;";
 
         HashMap<String, String> sellerInfo = new HashMap<>();
@@ -388,6 +388,8 @@ public class db_dao {
 
     }
 }
+
+
 
 // 참고) 전체 출력 코드
 //        while (rs.next())
