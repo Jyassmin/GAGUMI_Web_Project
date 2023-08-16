@@ -15,18 +15,18 @@
 
 </head>
 <body>
-    <%db_dao userDao = new db_dao();%> // dao 인스턴스 생성
+    <%db_dao dbDao = new db_dao();%> // dao 인스턴스 생성
     <header class="header-fixed">
         <!-- top-menu -->
         <ul class="top-menu">
             <%
-                String uid = (String) session.getAttribute("memberId");
-                String name = "";
-                if (uid != null) {
-                    name = userDao.getNameByUid(uid);
+                String user_email = (String) session.getAttribute("memberEmail");
+                String user_name = "";
+                if (user_email != null) {
+                    user_name = dbDao.getNameByEmail(user_email);
                 }
             %>
-            <li><p><%= name %>님 환영합니다.</p></li>
+            <li><p><%= user_name %>님 환영합니다.</p></li>
             <li><a href="#">게시판</a></li>
             <li class=my-page><a href="#">마이페이지</a>
                 <ul class="submenu">
