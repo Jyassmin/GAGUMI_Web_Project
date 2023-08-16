@@ -1,6 +1,7 @@
 package mysql;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.System.out;
@@ -107,16 +108,16 @@ public class db_dao {
     }
 
     /*제품 등록 함수*/
-    public int product_add(int userID, int category2, String p_name, int stock, int cost, String desc, String p_iamge, String size) {
-//
+    public int product_add(String currentUser, int category2, String p_name, int stock, int cost, String desc, String p_iamge, String size) {
+        int uid = getUidByEmail(currentUser);
         String SQL = "INSERT INTO product (uid, ca2id, name, stock, cost, `desc`, pimage, size) values (?,?,?,?,?,?,?,?);";
-
+        if
         try {
             // 실행 가능 상태의 sql문으로 만듦.
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setInt(1, userID);
+            pstmt.setInt(1, uid);
             pstmt.setInt(2, category2);
             pstmt.setString(3, p_name);
             pstmt.setInt(4, stock);
@@ -149,7 +150,6 @@ public class db_dao {
   
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email ) {
-
         String SQL = "SELECT * FROM product WHERE uid = ?";
         List<db_dto> productList = new ArrayList<>();
 
@@ -182,7 +182,7 @@ public class db_dao {
     }
 
     // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.
-    public String getNameByEmail(String userEmail) {
+    public int getNameByEmail(String userEmail) {
 
         String SQL = "SELECT name from user where email=?";
 
@@ -194,7 +194,7 @@ public class db_dao {
             pstmt.setString(1, userEmail);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
-            String result_name = rs.getString(1);
+            int result_name = rs.getInt(1);
             rs.close();
 
             return result_name; // name 반환
@@ -211,9 +211,10 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-        return null;
+        return -1;
     }
 
+    // 현재 로그인한 유저의 session Email을 활용하여 UID 가져오는 함수
     public int getUidByEmail(String userEmail) {
 
         String SQL = "SELECT uid from user where email=?";
@@ -252,7 +253,7 @@ public class db_dao {
         //(판매자) UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;
         //(고객 ) UPDATE user SET name = ?, pw =?, phone =?, gender = ?, birthday =?, address =? WHERE role = 0 AND UID = ?;
         //판매자
-        String SQL = "UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;";
+        String SQL = "UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ?, zipcode = ? WHERE role = 1 AND UID = ?;";
 
         try {
             // 실행 가능 상태의 sql문으로 만듦.
@@ -264,8 +265,9 @@ public class db_dao {
             pstmt.setString(3, phone);
             pstmt.setString(4, company);
             pstmt.setString(5, full_address);
+            pstmt.setString(6, post_code);
             //pstmt.setString(6, full_address);
-            pstmt.setInt(6, 10);
+            pstmt.setInt(7, 10);
 
             // 명령어를 수행한 결과
             // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
@@ -287,6 +289,48 @@ public class db_dao {
             }
         }
         return -1;
+    }
+
+    // 정보 수정 시 판매자의 개인정보 가져오는 함수
+    public HashMap<String, String> getSellerInfo(String email){
+        String SQL = "select email, name, pw, phone, company, address, zipcode from user where uid = ?;";
+
+        HashMap<String, String> sellerInfo = new HashMap<>();
+        ResultSet rs = null;
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            pstmt.setInt(1, 10); // 판매자 ID를 설정하세요
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                sellerInfo.put("email", rs.getString("email"));
+                sellerInfo.put("name", rs.getString("name"));
+                sellerInfo.put("pw", rs.getString("pw"));
+                sellerInfo.put("phone", rs.getString("phone"));
+                sellerInfo.put("company", rs.getString("company"));
+                String fullAddress = rs.getString("address");
+                String[] addressParts = fullAddress.split(","); // 쉼표로 구분된 부분 분리
+                sellerInfo.put("roadAddress", addressParts[0]); // 첫 번째 부분 저장
+                sellerInfo.put("jibunAddress", addressParts[1]); // 두 번째 부분 저장
+                sellerInfo.put("detailAddress", addressParts[2]); // 세 번째 부분 저장
+                sellerInfo.put("extraAddress", addressParts[3]); // 네 번째 부분 저장
+                sellerInfo.put("postCode", rs.getString("zipcode"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return sellerInfo;
     }
 }
 
