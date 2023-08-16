@@ -186,7 +186,7 @@ public class db_dao {
     }
 
     // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.
-    public int getNameByEmail(String userEmail) {
+    public String getNameByEmail(String userEmail) {
 
         String SQL = "SELECT name from user where email=?";
 
@@ -198,7 +198,7 @@ public class db_dao {
             pstmt.setString(1, userEmail);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
-            int result_name = rs.getInt(1);
+            String result_name = rs.getString(1);
             rs.close();
 
             return result_name; // name 반환
@@ -215,7 +215,7 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-        return -1;
+        return null;
     }
 
     // 현재 로그인한 유저의 session Email을 활용하여 UID 가져오는 함수

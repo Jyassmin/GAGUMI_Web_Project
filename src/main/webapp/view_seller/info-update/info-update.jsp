@@ -1,11 +1,5 @@
 <%@ page import="mysql.db_dao" %>
-<%@ page import="java.util.HashMap" %><%--
-  Created by IntelliJ IDEA.
-  User: elane
-  Date: 2023-08-16
-  Time: PM 2:05
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">

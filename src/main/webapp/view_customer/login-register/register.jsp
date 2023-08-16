@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,9 @@
     <link rel="stylesheet" href="register.css">
 </head>
 <body>
+    <%
+        request.setCharacterEncoding("UTF-8"); // 지렁이 글자를 한국어로!
+    %>
     <header>
         <!-- top-menu -->
         <ul class="top-menu">
@@ -30,8 +35,8 @@
         <section class="register">
             <!--    고객, 판매자 선택    -->
             <div class="register-top">
-                <input type="button" class="select_button" id="select_customer" value="고 객"> <!--글씨 스타일 변경 필요-->
-                <input type="button" class="select_button" id="select_seller" value="판 매 자">
+                <input type="radio" class="select_button" id="select_customer" value="고 객"> <!--글씨 스타일 변경 필요-->
+                <input type="radio" class="select_button" id="select_seller" value="판 매 자">
             </div>
             <!--   정보입력 & 제출     -->
             <form class="register-box-input" id="register_form" action="register_process.jsp" method="get" onsubmit=" return checkPassword();">
@@ -73,8 +78,19 @@
                     </div>
                     <div class="info">
                         <p class="info-name">주소</p>
-                        <input required class="info-value" type="text"  name="user_adress"><br>
+                        <input id="address_search" type="button" onclick="userDaumPostcode_register()" value="주소 입력하기"><br>
                     </div>
+                    <div id="address_align_center">
+                       <input class="address_show" type="text" id="user_postcode" name="user_postcode" placeholder="우편번호" value="">
+                       <input class="address_show" type="text" id="user_roadAddress" name="user_roadAddress" placeholder="도로명주소" oninput="changeFontSize(this.value)" value="">
+                       <input class="address_show" type="text" id="user_jibunAddress" name="user_jibunAddress" placeholder="지번주소" oninput="changeFontSize(this.value)" value="">
+                       <span id="guide" style="color:#999;display:none"></span>
+                       <input class="address_show" type="text" id="user_detailAddress" name="user_detailAddress" placeholder="상세주소" oninput="changeFontSize(this.value)" value="">
+                       <input class="address_show" type="text" id="user_extraAddress" name="user_extraAddress" placeholder="참고항목" oninput="changeFontSize(this.value)" value="">
+                   </div>
+
+                        <%--<Br><Br>--%>
+                        <%--<input required class="info-value" type="text"  name="user_adress"><br>--%>
                     <!-- seller : 판매자 선택시 아래 메뉴를 보이도록함. -->
                 </div>
             </form>
@@ -83,6 +99,7 @@
                 <button type="submit" form="register_form" id="id_submit">가 입 하 기</button>
             </div>
         </section>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script src="./register.js"></script> <!-- js추가 -->
     </main>
 
