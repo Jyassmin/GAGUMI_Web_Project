@@ -136,7 +136,7 @@ header{
     justify-content: space-around;
     align-items: baseline;
 
-    margin: 30px 5%;
+    margin: 30px 5% 5px 5%;
     padding-left: 5%;
 }
 
@@ -149,6 +149,37 @@ header{
     width: 60%;
     height: 30px;
     padding-left: 5%;
+}
+
+#div_address {
+    width: 100%;
+    margin: 30px 5%;
+    padding-left: 5%;
+}
+
+#address_search {
+    width: 60%;
+    height: 40px;
+    padding-left: 4%;
+
+    margin: 0px 5%;
+    outline: none;
+    font-size: 15px;
+    font-weight: bolder;
+    background: #a43e1d;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+#address_align_center {
+    text-align: center;
+}
+
+.address_show {
+    width: 80%;
+    margin: 1px;
 }
 
 /*제출*/
