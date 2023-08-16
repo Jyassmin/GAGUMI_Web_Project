@@ -347,6 +347,7 @@ public class db_dao {
     }
     // 정보 수정 시 판매자의 개인정보 가져오는 함수
     public HashMap<String, String> getSellerInfo(String currentUser) {
+        int currentUID = getUidByEmail(currentUser);
         String SQL = "select email, name, pw, phone, company, address, zipcode from user where uid = ?;";
 
         HashMap<String, String> sellerInfo = new HashMap<>();
@@ -355,7 +356,7 @@ public class db_dao {
             // 데이터베이스 연결 및 쿼리 실행
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
-            pstmt.setInt(1, 10); // 판매자 ID를 설정하세요
+            pstmt.setInt(1, currentUID); // 판매자 ID를 설정하세요
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
