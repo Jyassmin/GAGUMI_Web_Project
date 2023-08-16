@@ -63,7 +63,6 @@
                        <input type="text" id="user_detailAddress" name="user_detailAddress" placeholder="상세주소" oninput="changeFontSize(this.value)" value="<%= sellerInfo.get("detailAddress") %>">
                        <input type="text" id="user_extraAddress" name="user_extraAddress" placeholder="참고항목" oninput="changeFontSize(this.value)" value="<%= sellerInfo.get("extraAddress") %>">
                    </span>
-
                 </p>
             </div>
         </form>

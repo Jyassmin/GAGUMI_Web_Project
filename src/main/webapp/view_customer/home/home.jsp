@@ -30,7 +30,7 @@
             <li><a href="#">게시판</a></li>
             <li class=my-page><a href="#">마이페이지</a>
                 <ul class="submenu">
-                    <li><a href="#">정보수정</a></li>
+                    <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
                     <li><a href="#">주문내역</a></li>
                     <li><a href="#">장바구니</a></li>
                 </ul>
