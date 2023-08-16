@@ -35,7 +35,7 @@
                     <li><a href="#">장바구니</a></li>
                 </ul>
             </li>
-            <li><a href="#" onclick ="location.href='../login-register/login.html'">로그인</a></li>
+            <li><a href="#" onclick ="location.href='../login/login.html'">로그인</a></li>
             <li><a href="#" onclick ="location.href='../login-register/register.html'">회원가입</a></li>
         </ul>
         <!-- //top-menu -->

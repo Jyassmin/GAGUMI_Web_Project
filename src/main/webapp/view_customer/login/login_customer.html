@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>고객 로그인</title>
+    <link rel="stylesheet" href="../../base-style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<header>
+    <!-- top-menu -->
+    <ul class="top-menu">
+        <li><a href="#">게시판</a></li>
+        <li><a href="#">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+
+    <!--  logo   -->
+    <div class="logo">
+        <img src="../../images/logo.png">
+    </div>
+    <!-- menu-name -->
+    <div class="menu-name">
+        <p>로 그 인</p>
+    </div>
+</header>
+
+<main>
+    <!--  login  -->
+    <section class="login">
+        <!--    고객, 판매자 선택    -->
+        <div class="login-top">
+            <a id="select_customer_in_customer" href="./login_customer.html">고 객</a>
+            <a id="select_seller_in_customer" href="login_seller.html">판 매 자</a>
+        </div>
+
+         <!--   정보입력 & 제출     -->
+        <form class="input" id="login_form" action="login_process.jsp" method="post">
+            <input type="hidden" name="page_role" value="0"> <!--customer로그인이기에 role값을 지정-->
+            <input required type="text" placeholder="아이디" class="info-value" name="input_id">
+            <input required type="password" placeholder="비밀번호" class="info-value" name="input_pw">
+        </form>
+        <div class="login-box-submit" id="button_login">
+            <button type="submit" form="login_form" id="id_submit">로 그 인</button>
+        </div>
+    </section>
+</main>
+
+<!--  footer  -->
+<div class="gap"></div>
+<footer>
+    <div class="footer1">
+        <div class="project-intro">
+            <h4>PROJECT INTRO.</h4>
+            <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
+        </div>
+        <div class="product">
+            <h4>PRODUCT</h4>
+            <ul>
+                <li><a href="#">의자</a></li>
+                <li><a href="#">서랍/수납장</a></li>
+                <li><a href="#">책상</a></li>
+                <li><a href="#">침대</a></li>
+                <li><a href="#">장롱</a></li>
+            </ul>
+        </div>
+        <div class="mypage">
+            <h4>MYPAGE</h4>
+            <ul>
+                <li><a href="#">정보 수정</a></li>
+                <li><a href="#">주문 내역</a></li>
+                <li><a href="#">장바구니</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class = "">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
+</footer>
+</body>
+</html>

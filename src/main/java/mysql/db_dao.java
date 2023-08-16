@@ -14,16 +14,17 @@ public class db_dao {
     Connection conn = db_util.getConnection();
 
     /*login : 입력받은 id, pw가 user테이블에 있는지 확인. 있다면 1. 없다면 0 반환*/
-    public int login(String userEmail, String userPassword) {
-        String SQL = "SELECT count(*) AS total FROM user where email=? AND pw=?";
+    public int login(String page_role, String userEmail, String userPassword) {
+        String SQL = "SELECT count(*) AS total FROM user where role=? AND email=? AND pw=?";
 
         try {
             // 실행 가능 상태의 sql문으로 만듦.
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setString(1, userEmail);
-            pstmt.setString(2, userPassword);
+            pstmt.setString(1, page_role);
+            pstmt.setString(2, userEmail);
+            pstmt.setString(3, userPassword);
 
             // 명령어를 수행한 결과
             // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)

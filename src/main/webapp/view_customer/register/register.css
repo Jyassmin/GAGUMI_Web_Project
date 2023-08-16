@@ -38,12 +38,12 @@ header{
 }
 
 /*logo*/
-.logo{
+.logo>a{
     display: flex;
     justify-content: center;
 }
 
-.logo > img{
+.logo > a> img{
     width: 30%;
     margin-bottom: 5.3%;
 }
@@ -59,14 +59,14 @@ header{
     margin-bottom: 40px;
 }
 
-/*login*/
-.login {
+/*register*/
+.register {
     background-color: #F5EFE2;
     border: 4px solid #a43e1d;
     margin: 10px 25%;
 }
 
-.login-top {
+.register-top, .register-box-input {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -75,22 +75,8 @@ header{
     align-items: flex-start;
 }
 
-.login-top-customer {
-    width: 50%;
-    height: 100%;
-    text-align: center;
-    padding: 18px 0px;
-    font-size: 24px;
-    font-weight: bold;
-}
 
-/*호버가 안돼 ㅠㅠ*/
-/*.login-top-customer :hover {*/
-/*    background-color: red;*/
-/*    color: white;*/
-/*}*/
-
-.login-top-seller {
+#select_customer_in_customer, #select_seller_in_seller {
     width: 50%;
     height: 50%;
     text-align: center;
@@ -98,26 +84,111 @@ header{
     font-size: 24px;
     font-weight: bold;
 
+    outline: none;
+    cursor: pointer;
+    border-radius: 0px;
+    border-width: 100px;
+
+    background-color: #F5EFE2;
+    color: #A43E1D;
+}
+
+#select_seller_in_customer, #select_customer_in_seller {
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    padding: 18px 0px;
+    font-size: 24px;
+    font-weight: bold;
+
+    outline: none;
+    cursor: pointer;
+    border-radius: 0px;
+    border-width: 100px;
+
     background-color: #A43E1D;
     color: #FFFFFF;
 }
 
-/*input*/
-.input {
+#select_customer:active {
+    transform: none;
+}
+#select_seller:active {
+    transform: none;
+}
+
+
+
+/*register-box-input*/
+.input1, .input2 {
     width: 50%;
-    margin: 40px auto; /*가로에 auto를 주면 자동 수평 중앙 정렬이 됌*/
-    text-align: center;
+    margin: 20px 0px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: baseline;
+
+    margin: 30px 5% 5px 5%;
+    padding-left: 5%;
+}
+
+.info-name {
+    width: 35%;
+    height: 30px;
 }
 
 .info-value {
-    width: 70%;
+    width: 60%;
     height: 30px;
     padding-left: 5%;
-    margin: 5px auto;
 }
 
-.login-box-submit {
+#div_address {
+    width: 100%;
+    margin: 30px 5%;
+    padding-left: 5%;
+}
+
+#address_search {
+    width: 60%;
+    height: 40px;
+    padding-left: 4%;
+
+    margin: 0px 5%;
+    outline: none;
+    font-size: 15px;
+    font-weight: bolder;
+    background: #a43e1d;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+#address_align_center {
     text-align: center;
+}
+
+.address_show {
+    width: 80%;
+    margin: 1px;
+}
+
+/*제출*/
+.register-box-submit {
+    text-align: right;
+}
+
+.register-box-submit > input {
+    margin: 0px 5% 30px 5%;
+    width: 30%;
+    height: 50px;
+    font-size: 20px;
 }
 
 #id_submit {
@@ -158,10 +229,33 @@ footer{
 .product,
 .mypage{
     flex: 1;
-    margin: 0 10px;
+    margin: 0 40px;
     max-width: 300px;
 }
+.product{
+    margin-left: 180px;
+}
+.product a{
+    display: block;
+    color: white;
+    margin: 30px 0;
 
+}
+.product a:hover{
+    text-decoration: underline;
+}
+.mypage{
+    margin-right: -170px;
+}
+.mypage a:hover{
+    text-decoration: underline;
+}
+.mypage a{
+    color: white;
+    display: block;
+    color: white;
+    margin: 30px 0;
+}
 .project-intro h4,
 .product h4,
 .mypage h4{
@@ -172,5 +266,8 @@ footer{
 .product ul,
 .mypage ul{
     margin: 0;
+}
+.copyright{
+    text-align: center;
 }
 
