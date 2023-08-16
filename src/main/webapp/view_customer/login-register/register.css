@@ -75,26 +75,48 @@ header{
     align-items: flex-start;
 }
 
-.register-top-customer {
+#select_customer {
     width: 50%;
     height: 50%;
     text-align: center;
     padding: 18px 0px;
     font-size: 24px;
     font-weight: bold;
+
+    outline: none;
+    cursor: pointer;
+    border-radius: 0px;
+    border-width: 100px;
+
+    background-color: #F5EFE2;
+    color: #A43E1D;
 }
 
-.register-top-seller {
+#select_seller {
     width: 50%;
     height: 50%;
     text-align: center;
     padding: 18px 0px;
     font-size: 24px;
     font-weight: bold;
+
+    outline: none;
+    cursor: pointer;
+    border-radius: 0px;
+    border-width: 100px;
 
     background-color: #A43E1D;
     color: #FFFFFF;
 }
+
+#select_customer:active {
+    transform: none;
+}
+#select_seller:active {
+    transform: none;
+}
+
+
 
 /*register-box-input*/
 .input1, .input2 {
