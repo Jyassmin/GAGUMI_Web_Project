@@ -22,7 +22,7 @@
 
     <!--  logo   -->
     <div class="logo">
-        <a href="../home/home.jsp"><img src="../../images/logo.png"></a>
+        <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
     <!-- menu-name -->
     <div class="menu-name">
@@ -44,30 +44,33 @@
             <div class="input1">
                 <div class="info">
                     <p class="info-name">이름</p>
-                    <input required class="info-value" type="text" name="user_name"><br>
+                    <input required class="info-value" type="text" name="user_name" placeholder="ex) 홍길동"><br>
                 </div>
                 <div class="info">
                     <p class="info-name">이메일</p>
-                    <input required class="info-value" type="email" name="user_email"><br>
+                    <input required class="info-value" type="email" name="user_email" placeholder="ex) example@naver.com"><br>
                 </div>
                 <div class="info">
                     <p class="info-name">비밀번호</p>
-                    <input required class="info-value" type="password" name="user_pw" id="password_js"><br>
+                    <input required class="info-value" type="password" name="user_pw" id="password_js"
+                           placeholder="영문, 숫자 조합 8글자 이상"
+                           pattern="^(?=.*[a-zA-Z])(?=.*\d).{8,}$"
+                           title="영문, 숫자 조합으로 8글자 이상이어야 합니다."><br>
                 </div>
                 <div class="info">
                     <p class="info-name">비밀번호 확인</p>
-                    <input required class="info-value" type="password" id="password_check_js"><br> <!--비밀번호 체크하는 js아래에 작성-->
+                    <input required class="info-value" type="password" id="password_check_js" placeholder="비밀번호를 입력해주세요"><br> <!--비밀번호 체크하는 js아래에 작성-->
                 </div>
             </div>
             <!-- 고객에게는 생년월일과 성별을 받고, 판매자에게는 회사명을 받도록. -->
             <div class="input2">
                 <div class="info">
                     <p class="info-name">휴대폰번호</p>
-                    <input required class="info-value" type="text"  name="user_phone"><br>
+                    <input required class="info-value" type="text"  name="user_phone"  id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
                 </div>
                 <div class="info" id="company_name">
                     <p class="info-name">회사명</p>
-                    <input required class="info-value" type="text"  name="user_company" value=""><br>
+                    <input required class="info-value" type="text"  name="user_company" value="" placeholder="ex) (주)가구미"><br>
                 </div>
                 <div class="info">
                     <p class="info-name">주소</p>

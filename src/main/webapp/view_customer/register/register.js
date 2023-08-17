@@ -29,16 +29,43 @@ const companyName = document.getElementById('company_name');
 //     selectSeller.style.color = '#A43E1D';
 // });
 
-function checkPassword() {
-    var password = document.getElementById("password_js").value;
-    var confirmPassword = document.getElementById("password_check_js").value;
 
-    if (password !== confirmPassword) {
-        alert("비밀번호가 일치하지 않습니다.");
-        return false;
-    }
-    return true;
-}
+const phoneInput = document.getElementById('user_phone_input');
+
+    phoneInput.addEventListener('input', function(event) {
+        const inputText = event.target.value.replace(/-/g, ''); // 하이픈 제거
+
+        if (inputText.startsWith('010') && inputText.length <= 13) {
+            let formattedText = inputText;
+            if (inputText.length >= 7) {
+                formattedText = `${inputText.slice(0, 3)}-${inputText.slice(3, 7)}-${inputText.slice(7, 13)}`;
+            } else if (inputText.length >= 3) {
+                formattedText = `${inputText.slice(0, 3)}-${inputText.slice(3)}`;
+            }
+            event.target.value = formattedText;
+        } else if (inputText.length > 13) {
+            event.target.value = inputText.slice(0, 13); // 13자를 넘어가면 입력 제한
+        }
+});
+
+const birthdayInput = document.getElementById('user_birthday_input');
+
+    birthdayInput.addEventListener('input', function(event) {
+        const inputText = event.target.value.replace(/-/g, ''); // 하이픈 제거
+
+        if (inputText.length <= 10) {
+            let formattedText = inputText;
+            if (inputText.length >= 5) {
+                formattedText = `${inputText.slice(0, 4)}-${inputText.slice(4, 6)}-${inputText.slice(6, 10)}`;
+            } else if (inputText.length >= 4) {
+                formattedText = `${inputText.slice(0, 4)}-${inputText.slice(4)}`;
+            }
+            event.target.value = formattedText;
+        } else {
+            event.target.value = inputText.slice(0, 10); // 10자를 넘어가면 입력 제한
+        }
+});
+
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function userDaumPostcode_register() {
@@ -94,4 +121,15 @@ function userDaumPostcode_register() {
             }
         }
     }).open();
+}
+
+function checkPassword() {
+    var password = document.getElementById("password_js").value;
+    var confirmPassword = document.getElementById("password_check_js").value;
+
+    if (password !== confirmPassword) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    }
+    return true;
 }

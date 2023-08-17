@@ -35,7 +35,7 @@
     </ul>
     <!-- //top-menu -->
     <div class="logo">
-        <a href="../home/home.jsp"><img src="../../images/logo.png"></a>
+        <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
     <h1>개인 정보 수정</h1>
 </header>

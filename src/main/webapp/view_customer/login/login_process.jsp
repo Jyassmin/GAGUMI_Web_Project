@@ -37,7 +37,7 @@
         session.setAttribute("memberPw", user_pw);
         script.println("alert('로그인에 성공했습니다.')");
         if (page_role.equals("0")) { // Customer
-            script.println("location.href='../home/home.jsp';");
+            script.println("location.href='../../index.jsp';");
         } else { // Seller
             script.println("location.href='../../view_seller/seller-home/seller-home.jsp';");
         }
