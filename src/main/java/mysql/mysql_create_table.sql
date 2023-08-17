@@ -12,7 +12,7 @@ CREATE TABLE `user` (
                         `gender` INT NULL,
                         `birthday` CHAR(10) NULL,
                         `company` VARCHAR(40) NULL,
-                        `address` VARCHAR(50) NOT NULL,
+                        `address` VARCHAR(255) NOT NULL,
                         `zipcode` CHAR(10) NOT NULL
 );
 

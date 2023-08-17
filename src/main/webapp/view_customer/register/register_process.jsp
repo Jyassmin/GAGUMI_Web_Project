@@ -42,9 +42,9 @@
     if (check_insert == 1) {
         script.println("alert('회원가입이 완료되었습니다. 로그인하여 이용하실 수 있습니다.')");
         if (page_role.equals("0")) {
-            script.println("location.href='../login/login_customer.html';");
+            script.println("location.href='../login/login_customer.jsp?register_success=1&user_email=" + user_email + "';");
         } else {
-            script.println("location.href='../login/login_seller.html';");
+            script.println("location.href='../login/login_seller.jsp?register_success=1&user_email=" + user_email + "';");
         }
     } else {
         script.println("alert('회원가입에 실패했습니다.')"); // 아이디 중복 체크 해야함

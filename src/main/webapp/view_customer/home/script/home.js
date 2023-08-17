@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //         link.addEventListener("click", function(event) {
 //             event.preventDefault(); // 기본 동작 방지
 //             // 원하는 페이지 주소로 이동
-//             window.location.href = "../login/login_customer.html";
+//             window.location.href = "../login/login_customer.jsp";
 //         });
 //     });
 // });
