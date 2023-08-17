@@ -20,13 +20,14 @@
     </ul>
     <!-- //top-menu -->
     <div class="logo">
-        <a href="../seller-home/seller-home.html"> <img src="../../images/logo.png"></a>
+        <a href="../seller-home/seller-home.jsp"> <img src="../../images/logo.png"></a>
     </div>
     <h1>개인 정보 수정</h1>
 </header>
 <main>
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
+        System.out.println(currentUser);
         db_dao userDao = new db_dao();
         HashMap<String, String> sellerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
     %>

@@ -349,19 +349,24 @@ public class db_dao {
     // 정보 수정 시 판매자의 개인정보 가져오는 함수
     public HashMap<String, String> getSellerInfo(String currentUser) {
         int currentUID = getUidByEmail(currentUser);
+        System.out.println("currentUId = " + currentUID);
         String SQL = "select email, name, pw, phone, company, address, zipcode from user where role = 1 AND uid = ?;";
 
-        HashMap<String, String> sellerInfo = new HashMap<>();
-        ResultSet rs = null;
         try {
-            // 데이터베이스 연결 및 쿼리 실행
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
 
-            pstmt.setInt(1, currentUID); // 판매자 ID를 설정하세요
-            rs = pstmt.executeQuery();
+            HashMap<String, String> sellerInfo = new HashMap<>();
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+
+            pstmt1.setInt(1, currentUID); // 판매자 ID를 설정하세요
+            rs = pstmt1.executeQuery();
 
             if (rs.next()) {
-                sellerInfo.put("email", rs.getString("email"));
+                //pstmt1.setInt(1, currentUID); // 판매자 ID를 설정하세요
+                //rs = pstmt1.executeQuery();
+                //sellerInfo.put("email", rs.getString("email"));
+                System.out.println("Email = " + rs.getString("email"));
                 sellerInfo.put("name", rs.getString("name"));
                 sellerInfo.put("pw", rs.getString("pw"));
                 sellerInfo.put("phone", rs.getString("phone"));
@@ -374,6 +379,8 @@ public class db_dao {
                 sellerInfo.put("extraAddress", addressParts[3]); // 네 번째 부분 저장
                 sellerInfo.put("postCode", rs.getString("zipcode"));
             }
+            return sellerInfo;
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -386,8 +393,7 @@ public class db_dao {
             }
         }
 
-        return sellerInfo;
-
+        return null;
     }
     //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
     public List<db_dto> print_orderList(String email) {
