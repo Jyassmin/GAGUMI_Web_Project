@@ -135,7 +135,9 @@ input[type=button] {
     font-size: 15px;
     padding: 2px 3px;
     letter-spacing: normal;
+    height: 20px;
 }
+
 /*비밀번호 변경하기 버튼*/
 #changePassword {
     margin: 5px auto;
@@ -150,6 +152,40 @@ input[type=button] {
 #modifyPassword, #modifyPasswordCheck {
     display: none;
 }
+
+#gender {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-around;
+
+    border: 1px solid gray; /* 회색 테두리 추가 */
+    margin: 5%;
+    padding: 0px 10px;
+    height: 40px;
+}
+#gender > div {
+    display: flex; /* 내부 div 요소도 flex로 설정 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-around;
+    width: 40%;
+    padding-left: 12%;
+}
+#gender > div > input {
+    width: 30%;
+    padding-left: 10%;
+}
+#gender label {
+    width: 70%;
+    text-align: left;
+    padding-left: 10%;
+}
+
+
+
+
 /*주소 입력 칸*/
 #address > span > input{
     font-size: 13px;
