@@ -13,7 +13,7 @@
     <!--공통 css style-->
     <link rel="stylesheet" href="../../base-style.css">
     <!--product-create 스타일-->
-    <link rel="stylesheet" href="customer-info.css">
+    <link rel="stylesheet" href="customer-info.css?after">
     <meta charset="UTF-8">
     <title>개인 정보 수정</title>
 </head>
@@ -45,12 +45,19 @@
         db_dao userDao = new db_dao();
         HashMap<String, String> customerInfo = userDao.getCustomerInfo(currentUser); // 고객 정보 가져오기
     %>
+
     <section id="passwordCheck">
         <h4>비밀번호 확인</h4>
         <input type="password" id="passwordInput" placeholder="비밀번호">
         <button id="checkPasswordButton">확인</button>
     </section>
-
+    <div class="wrap">
+        <!-- left-menu-->
+        <ul class="left-menu">
+            <li><a href="#" id="customer-info">정보수정</a></li>
+            <li><a href="#">주문내역</a></li>
+            <li><a href="#">장바구니</a></li>
+        </ul>
     <section id="updateInfo">
         <h4>정보 수정</h4>
         <form id="updateForm" action="customer-info-update-request.jsp" method="post">
@@ -87,7 +94,7 @@
             <a href="#" id="update_button">정보 수정</a>
         </div>
     </section>
-
+    </div>
     <script src="../../jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <%--<script src="customer-info.js"></script>--%>
