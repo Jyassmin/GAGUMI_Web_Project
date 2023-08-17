@@ -63,6 +63,33 @@ h1{
     letter-spacing: 8px;
 }
 /*----------header*/
+
+/*left-menu*/
+.left-menu{
+    margin-top: inherit;
+    background-color: #F5EFE2;
+    text-align: center;
+    height: 100px;
+}
+.left-menu>li{
+    width: 120px;
+    background-color: #F5EFE2;
+
+}
+.left-menu > li > a{
+    display: block;
+    padding: 14px;
+}
+.left-menu > li > a:hover{
+    background-color: #a43e1d;
+    color: white;
+}
+/*left 메뉴 에서 장바구니 페이지인것을 표시함*/
+#customer-info{
+    background-color: #a43e1d;
+    color: white;
+}
+/*----leftmenu*/
 /*정보 수정 창 section*/
 #updateInfo{
     display: none;
