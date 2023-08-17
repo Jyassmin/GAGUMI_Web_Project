@@ -42,3 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         submenu.style.display = "none";
     });
 });
+
+function navigateToPage(pageURL) {
+    window.location.href = pageURL;
+}
