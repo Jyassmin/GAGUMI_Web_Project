@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <title>판매자 로그인</title>
     <link rel="stylesheet" href="../../base-style.css">
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 <header>
@@ -30,12 +30,13 @@
     <section class="login">
         <!--    고객, 판매자 선택    -->
         <div class="login-top">
-            <p class="login-top-customer" id="select_customer">고 객</p>
-            <p class="login-top-seller" id="select_seller">판 매 자</p>
+            <a id="select_customer_in_seller" href="./login_customer.html">고 객</a>
+            <a id="select_seller_in_seller" href="login_seller.html">판 매 자</a>
         </div>
 
-         <!--   정보입력 & 제출     -->
+        <!--   정보입력 & 제출     -->
         <form class="input" id="login_form" action="login_process.jsp" method="post">
+            <input type="hidden" name="page_role" value="1"><!--seller로그인이기에 role값을 지정-->
             <input required type="text" placeholder="아이디" class="info-value" name="input_id">
             <input required type="password" placeholder="비밀번호" class="info-value" name="input_pw">
         </form>
@@ -43,7 +44,6 @@
             <button type="submit" form="login_form" id="id_submit">로 그 인</button>
         </div>
     </section>
-    <script src="./login.js"></script> <!-- js추가 -->
 </main>
 
 <!--  footer  -->

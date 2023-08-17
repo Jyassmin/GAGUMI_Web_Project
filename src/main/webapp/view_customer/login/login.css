@@ -38,12 +38,12 @@ header{
 }
 
 /*logo*/
-.logo>a{
+.logo{
     display: flex;
     justify-content: center;
 }
 
-.logo > a> img{
+.logo > img{
     width: 30%;
     margin-bottom: 5.3%;
 }
@@ -59,14 +59,14 @@ header{
     margin-bottom: 40px;
 }
 
-/*register*/
-.register {
+/*login*/
+.login {
     background-color: #F5EFE2;
     border: 4px solid #a43e1d;
     margin: 10px 25%;
 }
 
-.register-top, .register-box-input {
+.login-top {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -75,7 +75,7 @@ header{
     align-items: flex-start;
 }
 
-#select_customer {
+#select_customer_in_customer, #select_seller_in_seller {
     width: 50%;
     height: 50%;
     text-align: center;
@@ -92,7 +92,7 @@ header{
     color: #A43E1D;
 }
 
-#select_seller {
+#select_seller_in_customer, #select_customer_in_seller {
     width: 50%;
     height: 50%;
     text-align: center;
@@ -109,89 +109,28 @@ header{
     color: #FFFFFF;
 }
 
-#select_customer:active {
-    transform: none;
-}
-#select_seller:active {
-    transform: none;
-}
+/*호버가 안돼 ㅠㅠ*/
+/*.login-top-customer :hover {*/
+/*    background-color: red;*/
+/*    color: white;*/
+/*}*/
 
-
-
-/*register-box-input*/
-.input1, .input2 {
+/*input*/
+.input {
     width: 50%;
-    margin: 20px 0px;
-}
-
-#company_name {
-    display: none;
-}
-
-.info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: space-around;
-    align-items: baseline;
-
-    margin: 30px 5% 5px 5%;
-    padding-left: 5%;
-}
-
-.info-name {
-    width: 35%;
-    height: 30px;
-}
-
-.info-value {
-    width: 60%;
-    height: 30px;
-    padding-left: 5%;
-}
-
-#div_address {
-    width: 100%;
-    margin: 30px 5%;
-    padding-left: 5%;
-}
-
-#address_search {
-    width: 60%;
-    height: 40px;
-    padding-left: 4%;
-
-    margin: 0px 5%;
-    outline: none;
-    font-size: 15px;
-    font-weight: bolder;
-    background: #a43e1d;
-    color: white;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-
-#address_align_center {
+    margin: 40px auto; /*가로에 auto를 주면 자동 수평 중앙 정렬이 됌*/
     text-align: center;
 }
 
-.address_show {
-    width: 80%;
-    margin: 1px;
+.info-value {
+    width: 70%;
+    height: 30px;
+    padding-left: 5%;
+    margin: 5px auto;
 }
 
-/*제출*/
-.register-box-submit {
-    text-align: right;
-}
-
-.register-box-submit > input {
-    margin: 0px 5% 30px 5%;
-    width: 30%;
-    height: 50px;
-    font-size: 20px;
+.login-box-submit {
+    text-align: center;
 }
 
 #id_submit {
@@ -232,33 +171,10 @@ footer{
 .product,
 .mypage{
     flex: 1;
-    margin: 0 40px;
+    margin: 0 10px;
     max-width: 300px;
 }
-.product{
-    margin-left: 180px;
-}
-.product a{
-    display: block;
-    color: white;
-    margin: 30px 0;
 
-}
-.product a:hover{
-    text-decoration: underline;
-}
-.mypage{
-    margin-right: -170px;
-}
-.mypage a:hover{
-    text-decoration: underline;
-}
-.mypage a{
-    color: white;
-    display: block;
-    color: white;
-    margin: 30px 0;
-}
 .project-intro h4,
 .product h4,
 .mypage h4{
@@ -269,8 +185,5 @@ footer{
 .product ul,
 .mypage ul{
     margin: 0;
-}
-.copyright{
-    text-align: center;
 }
 

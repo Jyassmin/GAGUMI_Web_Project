@@ -4,28 +4,30 @@ const birthday = document.getElementById('birthday');
 const gender = document.getElementById('gender');
 const companyName = document.getElementById('company_name');
 
-selectCustomer.addEventListener('click', () => {
-    birthday.style.display = 'flex';
-    gender.style.display = 'flex';
-    companyName.style.display = 'none';
-    selectCustomer.style.backgroundColor = '#F5EFE2';
-    selectCustomer.style.color = '#a43e1d';
-    selectSeller.style.backgroundColor = '#a43e1d';
-    selectSeller.style.color = '#ffffff';
-    // F5EFE2
-    // #a43e1d
-    // ffffff
-});
-
-selectSeller.addEventListener('click', () => {
-    birthday.style.display = 'none';
-    gender.style.display = 'none';
-    companyName.style.display = 'flex';
-    selectCustomer.style.backgroundColor = '#A43E1D';
-    selectCustomer.style.color = '#FFFFFF';
-    selectSeller.style.backgroundColor = '#F5EFE2';
-    selectSeller.style.color = '#A43E1D';
-});
+// 원래는 한 페이지 내에서 고객과, 판매자를 처리하려했는데, 이게 잘못된 접근이라 아래 코드 사용x.
+// 그러나 click 이벤트 침고하기엔 좋아서 일단 남김.
+// selectCustomer.addEventListener('click', () => {
+//     birthday.style.display = 'flex';
+//     gender.style.display = 'flex';
+//     companyName.style.display = 'none';
+//     selectCustomer.style.backgroundColor = '#F5EFE2';
+//     selectCustomer.style.color = '#a43e1d';
+//     selectSeller.style.backgroundColor = '#a43e1d';
+//     selectSeller.style.color = '#ffffff';
+//     // F5EFE2
+//     // #a43e1d
+//     // ffffff
+// });
+//
+// selectSeller.addEventListener('click', () => {
+//     birthday.style.display = 'none';
+//     gender.style.display = 'none';
+//     companyName.style.display = 'flex';
+//     selectCustomer.style.backgroundColor = '#A43E1D';
+//     selectCustomer.style.color = '#FFFFFF';
+//     selectSeller.style.backgroundColor = '#F5EFE2';
+//     selectSeller.style.color = '#A43E1D';
+// });
 
 function checkPassword() {
     var password = document.getElementById("password_js").value;
