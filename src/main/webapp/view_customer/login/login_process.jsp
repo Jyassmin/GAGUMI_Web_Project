@@ -7,7 +7,6 @@
 
     // 이전 페이지에서 데이터 가져오기(null체크)
     String page_role = request.getParameter("page_role"); // 0(cutomer) 또는 1(seller) 페이지에서 온건지 확인
-    System.out.println(page_role);
     String user_email = null; // test
     String user_pw = null; // 12341234
     if (request.getParameter("input_id") != null) {
