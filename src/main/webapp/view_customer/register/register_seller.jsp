@@ -40,6 +40,7 @@
         </div>
         <!--   정보입력 & 제출     -->
         <form class="register-box-input" id="register_form" action="register_process.jsp" method="get" onsubmit=" return checkPassword();">
+            <input type="hidden" name="page_role" value="1"><!--seller로그인이기에 role값을 지정-->
             <div class="input1">
                 <div class="info">
                     <p class="info-name">이름</p>
@@ -66,11 +67,11 @@
                 </div>
                 <div class="info" id="company_name">
                     <p class="info-name">회사명</p>
-                    <input class="info-value" type="text"  name="user_company" value=""><br>
+                    <input required class="info-value" type="text"  name="user_company" value=""><br>
                 </div>
                 <div class="info">
                     <p class="info-name">주소</p>
-                    <input id="address_search" type="button" onclick="userDaumPostcode_register()" value="주소 입력하기"><br>
+                    <input required id="address_search" type="button" onclick="userDaumPostcode_register()" value="주소 입력하기"><br>
                 </div>
                 <div id="address_align_center">
                     <input class="address_show" type="text" id="user_postcode" name="user_postcode" placeholder="우편번호" value="">

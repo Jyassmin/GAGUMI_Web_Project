@@ -50,12 +50,12 @@
             <a href="#"><i class="bi bi-search"></i></a>
         </div>
         <ul class="navmenu">
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">의자</a></li>
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">쇼파</a></li>
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">서랍/수납장</a></li>
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">책상</a></li>
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">침대</a></li>
-            <li><a href="#" onclick ="location.href='../product-list/product-list.html'">장롱</a></li>
+            <li><a href="../product-list/product-list.html">의자</a></li>
+            <li><a href="../product-list/product-list.html">쇼파</a></li>
+            <li><a href="../product-list/product-list.html">서랍/수납장</a></li>
+            <li><a href="../product-list/product-list.html">책상</a></li>
+            <li><a href="../product-list/product-list.html">침대</a></li>
+            <li><a href="../product-list/product-list.html">장롱</a></li>
         </ul>
     </header>
     <div class="main-content">
@@ -63,10 +63,10 @@
         <img src="../../images/main-image.webp">
     </section>
     <section class="main-banner">
-       <div><a href="#">주문내역</a></div>
+       <div><a href="../order-history/orderhistory.html">주문내역</a></div>
        <div><a href="#">게시판</a></div>
-       <div><a href="#">장바구니</a></div>
-       <div><a href="#">마이페이지</a></div>
+       <div><a href="../basket/basket.html">장바구니</a></div>
+       <div><a href="../customer-info/customer-info.jsp">마이페이지</a></div>
        <div><a href="#">회사소개</a></div>
     </section>
     </div>

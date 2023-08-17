@@ -54,44 +54,31 @@ public class db_dao {
     }
 
 
-    public int regiser(String user_name, String user_email, String user_pw, String user_phone
-            , String user_birthday, String user_gender, String user_company, String user_address) {
+    public int regiser(String page_role, String user_name, String user_email, String user_pw, String user_phone
+            , String user_birthday, String user_gender, String user_company, String full_address ,String user_postcode) {
         Connection conn = db_util.getConnection();
 
         try {
             String SQL;
             PreparedStatement pstmt;
 
-            // 실행 가능 상태의 sql문으로 만듦.
-            if (user_company == null) { // 고객일 떄 role 0, 판매자는 1.
-                SQL = "INSERT INTO user (name, role, email, pw, phone, gender, birthday, address) " +
-                        "VALUES (?, 0, ?, ?, ?, ?, ?, ?)";
+            SQL = "INSERT INTO user (role, name, email, pw, phone, gender, birthday, company, address, zipcode) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                pstmt = conn.prepareStatement(SQL);
-                pstmt.setString(1, user_name);
-                pstmt.setString(2, user_email);
-                pstmt.setString(3, user_pw);
-                pstmt.setString(4, user_phone);
-                pstmt.setString(5, user_gender);
-                pstmt.setString(6, user_birthday);
-                pstmt.setString(7, user_address);
+            System.out.println(user_gender + "-" + user_birthday + "-" + user_company);
 
-            } else {
-                SQL = "INSERT INTO user (name, role, email, pw, phone, company, address) " +
-                        "VALUES (?, 1, ?, ?, ?, ?, ?)";
-                pstmt = conn.prepareStatement(SQL);
-                pstmt.setString(1, user_name);
-                pstmt.setString(2, user_email);
-                pstmt.setString(3, user_pw);
-                pstmt.setString(4, user_phone);
-                pstmt.setString(5, user_company);
-                pstmt.setString(6, user_address);
-            }
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, page_role);
+            pstmt.setString(2, user_name);
+            pstmt.setString(3, user_email);
+            pstmt.setString(4, user_pw);
+            pstmt.setString(5, user_phone);
+            pstmt.setString(6, user_gender);
+            pstmt.setString(7, user_birthday);
+            pstmt.setString(8, user_company);
+            pstmt.setString(9, full_address);
+            pstmt.setString(10, user_postcode);
 
-            // 명령어를 수행한 결과
-            // execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
-            // executeUpdate -> 레코드 삽입, 수정, 삭제 등 데이터 조작 명령어 사용(CRUD)
-            // executeQuery -> 레코드 조회, 테이블 조회 등 조회 명령어 사용(Select)
             return pstmt.executeUpdate(); // insert된 레코드 수. 1이면 삽입 성공!
 
         } catch (SQLException e) {
