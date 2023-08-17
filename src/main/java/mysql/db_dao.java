@@ -140,14 +140,16 @@ public class db_dao {
   
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email) {
-
+        // email = test@naver.com
         Connection conn = db_util.getConnection();
-        String SQL = "SELECT * FROM product WHERE uid = 1";
+        int uid = getUidByEmail(email);
+        String SQL = "SELECT * FROM product WHERE uid = ?";
 
         List<db_dto> productList = new ArrayList<>();
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1,uid);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -169,7 +171,13 @@ public class db_dao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // ... (연결 해제 등의 처리)
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         return productList;
@@ -386,6 +394,7 @@ public class db_dao {
 
         return null;
     }
+
     //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
     public List<db_dto> print_orderList(String email) {
         Connection conn = db_util.getConnection();
@@ -435,9 +444,14 @@ public class db_dao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // ... (연결 해제 등의 처리)
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-
         return orderList;
     }
 
