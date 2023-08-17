@@ -4,10 +4,11 @@ const updateInfoSection = document.getElementById('updateInfo');
 const passwordInput = document.getElementById('passwordInput');
 const checkPasswordButton = document.getElementById('checkPasswordButton');
 const updateForm = document.getElementById('updateForm');
+const originalPassword = document.getElementById('current_pw'); // 실제 비밀번호로 변경하세요
 
 // 비밀번호 입력 후 일치하는지 확인하는 함수
 checkPasswordButton.addEventListener('click', () => {
-    const password = '1234'; // 실제 비밀번호로 변경하세요
+    const password = originalPassword.value;
 
     if (passwordInput.value === password) {
         passwordCheckSection.style.display = 'none';
@@ -89,7 +90,7 @@ function changeFontSize(inputValue) {
     inputElement4.style.fontSize = fontSize + "px";
 }
 
-// 비밀번호 확인 스크립트
+// 비밀번호 확인 체크 스크립트
 const passwordField = document.getElementById('modify_pw');
 const confirmPasswordField = document.getElementById('pw_check');
 const passwordError = document.getElementById('passwordError');

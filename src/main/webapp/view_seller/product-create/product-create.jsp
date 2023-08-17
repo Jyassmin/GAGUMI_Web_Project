@@ -42,7 +42,7 @@
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('제품 등록 성공')");
-        script.println("location.href='../seller-home/seller-home.html';");
+        script.println("location.href='../seller-home/seller-home.jsp';");
         script.println("</script>");
         script.close();
         return;
