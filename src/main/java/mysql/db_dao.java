@@ -11,10 +11,11 @@ import static java.lang.System.out;
 // form에서 입력받은 데이터를 받아, sql문을 만들어 실행하고, 결과를 반환
 
 public class db_dao {
-    Connection conn = db_util.getConnection();
+    //Connection conn = db_util.getConnection();
 
     /*login : 입력받은 id, pw가 user테이블에 있는지 확인. 있다면 1. 없다면 0 반환*/
     public int login(String page_role, String userEmail, String userPassword) {
+        Connection conn = db_util.getConnection();
         String SQL = "SELECT count(*) AS total FROM user where role=? AND email=? AND pw=?";
 
         try {
@@ -55,7 +56,7 @@ public class db_dao {
 
     public int regiser(String user_name, String user_email, String user_pw, String user_phone
             , String user_birthday, String user_gender, String user_company, String user_address) {
-
+        Connection conn = db_util.getConnection();
 
         try {
             String SQL;
@@ -110,6 +111,7 @@ public class db_dao {
 
     /*제품 등록 함수*/
     public int product_add(String currentUser, int category2, String p_name, int stock, int cost, String desc, String p_iamge, String size) {
+        Connection conn = db_util.getConnection();
         int uid = getUidByEmail(currentUser);
         String SQL = "INSERT INTO product (uid, ca2id, name, stock, cost, `desc`, pimage, size) values (?,?,?,?,?,?,?,?);";
 
@@ -152,7 +154,7 @@ public class db_dao {
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email) {
 
-
+        Connection conn = db_util.getConnection();
         String SQL = "SELECT * FROM product WHERE uid = 1";
 
         List<db_dto> productList = new ArrayList<>();
@@ -188,7 +190,7 @@ public class db_dao {
 
     // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.
     public String getNameByEmail(String userEmail) {
-
+        Connection conn = db_util.getConnection();
         String SQL = "SELECT name from user where email=?";
 
         try {
@@ -221,7 +223,7 @@ public class db_dao {
 
     // 현재 로그인한 유저의 session Email을 활용하여 UID 가져오는 함수
     public int getUidByEmail(String userEmail) {
-
+        Connection conn = db_util.getConnection();
         String SQL = "SELECT uid from user where email=?";
 
         try {
@@ -254,6 +256,7 @@ public class db_dao {
 
     // 고객정보 수정 시 업데이트 하는 함수
     public int sellerUpdateInfo(String name, String pw, String phone, String company, String post_code, String full_address){
+        Connection conn = db_util.getConnection();
         // 권한에 맞춰서 다르게 작성 - role(0 고객, 1 판매자)
         //(판매자) UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;
         //(고객 ) UPDATE user SET name = ?, pw =?, phone =?, gender = ?, birthday =?, address =? WHERE role = 0 AND UID = ?;
@@ -299,6 +302,7 @@ public class db_dao {
 
     //카테고리 숫자를 문자로 바꾸어주는 함수
     public String getCategoryText(int category) {
+        Connection conn = db_util.getConnection();
         String[] categoryArray = {
                 "스툴",
                 "화장대 의자",
@@ -321,6 +325,7 @@ public class db_dao {
     }
     //pid기준으로 상품 삭제해주는 함수
     public int deleteProduct(int pid) {
+        Connection conn = db_util.getConnection();
         out.println("함수들어옴");
         String SQL = "DELETE FROM product WHERE pid = ? ";
         try {
@@ -348,6 +353,7 @@ public class db_dao {
     }
     // 정보 수정 시 판매자의 개인정보 가져오는 함수
     public HashMap<String, String> getSellerInfo(String currentUser) {
+        Connection conn = db_util.getConnection();
         int currentUID = getUidByEmail(currentUser);
         System.out.println("currentUId = " + currentUID);
         String SQL = "select email, name, pw, phone, company, address, zipcode from user where role = 1 AND uid = ?;";
@@ -397,7 +403,7 @@ public class db_dao {
     }
     //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
     public List<db_dto> print_orderList(String email) {
-
+        Connection conn = db_util.getConnection();
         String SQL = "SELECT " +
                 "h.hid, " +
                 "u.email, " +
@@ -453,6 +459,7 @@ public class db_dao {
 
     // 현재 로그인한 고객 정보 가져오는 함수
     public HashMap<String, String> getCustomerInfo(String currentUser) {
+        Connection conn = db_util.getConnection();
         int currentUID = getUidByEmail(currentUser);
         String SQL = "select email, name, pw, phone, gender, birthday, address, zipcode from user where role = 0 AND uid = ?;";
 
