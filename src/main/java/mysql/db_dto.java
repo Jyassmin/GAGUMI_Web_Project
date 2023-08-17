@@ -40,6 +40,14 @@ public class db_dto {
 
     public db_dto() {
     }
+
+    // 상품 리스트 출력할 놈
+    public db_dto(String image, String productName, int productPrice) {
+        this.image = image;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
+
     public db_dto(int productNumber, String image, String productName, int productCategory,
                   int productPrice, int productQuantity) {
         this.productNumber = productNumber;

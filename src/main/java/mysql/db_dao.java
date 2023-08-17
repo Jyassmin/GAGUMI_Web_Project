@@ -135,7 +135,7 @@ public class db_dao {
         }
         return -1;
     }
-  
+
     // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email) {
         // email = test@naver.com
@@ -552,6 +552,84 @@ public class db_dao {
             }
         }
         return -1;
+    }
+
+    public List<db_dto> getProductList(int bigCategory){
+        Connection conn = db_util.getConnection();
+        String[] smallCategory = getSmallCategory(bigCategory); // 대분류로 소분류 가져오기
+        for (String s : smallCategory){
+            System.out.println("smallCategory : " + s);
+        }
+        List<db_dto> category = new ArrayList<>();
+        String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN (?, ?, ?, ?, ?);";
+        //String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN ('1', '2');";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // ca2id 배열 값들을 SQL 쿼리에 설정
+            for (int i = 0; i < 5; i++) {
+                pstmt.setString(i + 1, smallCategory[i]);
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+            // 결과 출력
+            while (rs.next()) {
+                String image = rs.getString("pimage");
+                String name = rs.getString("name");
+                int cost = rs.getInt("cost");
+                db_dto product = new db_dto(image, name, cost);
+                category.add(product);
+            }
+            return category;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public String[] getSmallCategory(int bigCategory){
+        Connection conn = db_util.getConnection();
+        String[] category = new String[5];
+        String SQL = "SELECT ca2id FROM category2 WHERE ca1id = ?";
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setInt(1, bigCategory);
+
+            ResultSet rs = pstmt.executeQuery();
+            int cnt = 0;
+            while (rs.next()){
+                category[cnt++] = rs.getString(1);
+            }
+            return category;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }
 

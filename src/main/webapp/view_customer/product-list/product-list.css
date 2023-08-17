@@ -61,20 +61,7 @@ header{
     margin-bottom: 40px;
 }
 
-/*register*/
-.list_row {
-    margin: 5% 5%;
-}
-
-.list_flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: stretch;
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
+/*상품 정보 각 1개*/
 .product_box {
     margin: 0px 5%;
     width: 23%;
