@@ -433,9 +433,9 @@ public class db_dao {
                 db_dto order = new db_dto();
                   order.setOrderCode(rs.getInt("hid"));
                   order.setUserID(rs.getString("email"));
-                  order.setProductName(rs.getString("pname"));
+                  //order.setProductName(rs.getString("pname"));
                   order.setOrderQuantity(rs.getInt("quantity"));
-                  order.setProductPrice(rs.getInt("product_cost"));
+                  //order.setProductPrice(rs.getInt("product_cost"));
                   order.setTotalPrice(rs.getInt("total_cost"));
                   order.setOrderName(rs.getString("name"));
                   order.setOrderPhone(rs.getString("phone"));
