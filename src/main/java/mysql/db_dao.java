@@ -135,14 +135,12 @@ public class db_dao {
         }
         return -1;
     }
+  
+    // 판매자가 등록한 상품내역을 가져오는 함수
 
-    // 일단 uid가 1인 사람이 등록한 상품내역을 가져오는 함수
     public List<db_dto> print_product(String email) {
-        // email = test@naver.com
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
-        System.out.println("email : " + email);
-        System.out.println("uid : " + uid);
         String SQL = "SELECT * FROM product WHERE uid = ?";
 
         try {
@@ -153,22 +151,14 @@ public class db_dao {
             System.out.println(pstmt);
             while (rs.next()) {
                 int pid = rs.getInt("pid");
-                int uid1 = rs.getInt("uid");
                 String image = rs.getString("pimage");
                 String name = rs.getString("name");
                 int car2id = rs.getInt("ca2id");
                 int cost = rs.getInt("cost");
-                int quantity = rs.getInt("stock");
-                String desc = rs.getString("desc");
-                String size = rs.getString("size");
-
-                System.out.println("name : " + name);
-                System.out.println("stock : " + quantity);
-
-//                db_dto product = new db_dto(pid, uid1, image, name, car2id, cost, quantity, desc, size);
-//                productList.add(product);
+                int stock = rs.getInt("stock");
+                db_dto product = new db_dto(pid, image, name, car2id, cost, stock);
+                productList.add(product);
             }
-
             rs.close();
             return productList;
         } catch (SQLException e) {
@@ -182,10 +172,7 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-
         return null;
-
-
     }
 
     // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.
@@ -403,6 +390,7 @@ public class db_dao {
     //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
     public List<db_dto> print_orderList(String email) {
         Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(email);
         String SQL = "SELECT " +
                 "h.hid, " +
                 "u.email, " +
@@ -418,29 +406,33 @@ public class db_dao {
                 "INNER JOIN user u ON h.uid = u.uid " +
                 "INNER JOIN product p ON h.pid = p.pid " +
                 "WHERE " +
-                "p.uid = 1 " +
+                "p.uid = 10 " +
                 "ORDER BY " +
                 "h.datetime DESC";
-
+        System.out.println("SQL: ");
 
         List<db_dto> orderList = new ArrayList<>();
 
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             ResultSet rs = pstmt.executeQuery();
+//            pstmt.setInt(1,uid);
 
             while (rs.next()) {
-                db_dto order = new db_dto();
-                  order.setOrderCode(rs.getInt("hid"));
-                  order.setUserID(rs.getString("email"));
-                  //order.setProductName(rs.getString("pname"));
-                  order.setOrderQuantity(rs.getInt("quantity"));
-                  //order.setProductPrice(rs.getInt("product_cost"));
-                  order.setTotalPrice(rs.getInt("total_cost"));
-                  order.setOrderName(rs.getString("name"));
-                  order.setOrderPhone(rs.getString("phone"));
-                  order.setOrderAdress(rs.getString("address"));
-                  order.setDateTime(rs.getString("datetime"));
+
+                int hid = rs.getInt("hid");
+                String userEmail = rs.getString("email");
+                String pname = rs.getString("pname");
+                int quantity = rs.getInt("quantity");
+                int product_cost = rs.getInt("product_cost");
+                int total_cost = rs.getInt("total_cost");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                String address= rs.getString("address");
+                String datetime= rs.getString("datetime");
+                db_dto order = new db_dto(hid, userEmail, pname, quantity , product_cost, total_cost,
+                        name, phone, address, datetime);
+
                 orderList.add(order);
             }
 

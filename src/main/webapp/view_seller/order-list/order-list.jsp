@@ -20,7 +20,7 @@
 <%
     // DAO 인스턴스 생성
     db_dao userDao = new db_dao();
-    String currentUser = (String) session.getAttribute("uid");
+    String currentUser = (String) session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
     List<db_dto> orderList = userDao.print_orderList(currentUser);
 %>
@@ -32,7 +32,7 @@
     </ul>
     <!-- //top-menu -->
     <div class="logo">
-        <a href="../seller-home/seller-home.html"><img src="../../images/logo.png"></a>
+        <a href="../seller-home/seller-home.jsp"><img src="../../images/logo.png"></a>
     </div>
     <h1>고객주문목록</h1>
 </header>
@@ -67,13 +67,15 @@
         <td><%= NumberFormat.getInstance().format(order.getTotalPrice()) %>원</td>
         <td><%=order.getOrderName()%></td>
         <td><%=order.getOrderPhone()%></td>
-        <td><%=order.getOrderAdress()%></td>
+        <td><%=order.getOrderAddress()%></td>
         <td><%=order.getDateTime()%></td>
     </tr>
     <%  // 주문번호 증가
         productNumber++;
     } // for문 종료
     %>
+    <% out.println("orderList size: " + orderList.size()); %>
+
 </table>
 </body>
 </html>
