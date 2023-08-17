@@ -418,6 +418,7 @@ public class db_dao {
 //            pstmt.setInt(1,uid);
 
             while (rs.next()) {
+
                 int hid = rs.getInt("hid");
                 String userEmail = rs.getString("email");
                 String pname = rs.getString("pname");
@@ -430,6 +431,7 @@ public class db_dao {
                 String datetime= rs.getString("datetime");
                 db_dto order = new db_dto(hid, userEmail, pname, quantity , product_cost, total_cost,
                         name, phone, address, datetime);
+
                 orderList.add(order);
             }
 

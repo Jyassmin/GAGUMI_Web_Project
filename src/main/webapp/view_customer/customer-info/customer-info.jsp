@@ -73,9 +73,19 @@
             <div>
                 <p><span>전화번호</span> <input type="text" name="modify_phone" value="<%= customerInfo.get("phone") %>"></p>
                 <p><span>생년월일</span> <input type="text" name="modify_birthday" value="<%= customerInfo.get("birthday") %>"></p>
-                <p><span>성별</span> <input type="text" name="modify_sex" value="<%= customerInfo.get("gender") %>"></p>
+                <div class="info" id="gender">
+                    <div>
+                        <input type="radio" id="radio_male" name="modify_sex" value="0" <%= customerInfo.get("gender").equals("0") ? "checked" : "" %>>
+                        <label for="radio_male">남성</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="radio_female" name="modify_sex" value="1" <%= customerInfo.get("gender").equals("1") ? "checked" : "" %>>
+                        <label for="radio_female">여성</label>
+                    </div>
+                </div>
+                <%--<p><span>성별</span> <input type="text" name="modify_sex" value="<%= customerInfo.get("gender") %>"></p>--%>
                 <%--우편 번호를 통해서 주소 입력 받기--%>
-                <p><input type="button" onclick="userDaumPostcode()" value="우편번호 찾기"></p>
+                <p><input type="button" onclick="userDaumPostcode()" value="우편번호 찾기" id="button_adress"></p>
                 <p id="address">
                    <span>
                        <input type="text" id="user_postcode" name="user_postcode" placeholder="우편번호" value="<%= customerInfo.get("postCode") %>">

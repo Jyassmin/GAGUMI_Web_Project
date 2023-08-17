@@ -64,10 +64,10 @@
         <img src="images/main-image.webp">
     </section>
     <section class="main-banner">
-       <div><a href="view_customer/order-history/orderhistory.html">주문내역</a></div>
+       <div><a href="./view_customer/order-history/orderhistory.html">주문내역</a></div>
        <div><a href="#">게시판</a></div>
-       <div><a href="view_customer/basket/basket.html">장바구니</a></div>
-       <div><a href="view_customer/customer-info/customer-info.jsp">마이페이지</a></div>
+       <div><a href="./view_customer/basket/basket.html">장바구니</a></div>
+       <div><a href="./view_customer/customer-info/customer-info.jsp">마이페이지</a></div>
        <div><a href="#">회사소개</a></div>
     </section>
     </div>
