@@ -43,9 +43,8 @@
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
         db_dao userDao = new db_dao();
-        HashMap<String, String> customerInfo = userDao.getCustomerInfo(currentUser); // 고객 정보 가져오기
+        HashMap<String, String> customerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
     %>
-
     <section id="passwordCheck">
         <h4>비밀번호 확인</h4>
         <input type="password" id="passwordInput" placeholder="비밀번호">
