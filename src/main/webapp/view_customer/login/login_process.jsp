@@ -44,7 +44,11 @@
 
     } else {
         script.println("alert('아이디 또는 비밀번호가 일치하지 않습니다.')");
-        script.println("location.href='./login.html';");
+        if (page_role.equals("0")) {
+            script.println("location.href='./login_customer.html';");
+        } else {
+            script.println("location.href='./login_seller.html';");
+        }
     }
     script.println("</script>");
     script.close();
