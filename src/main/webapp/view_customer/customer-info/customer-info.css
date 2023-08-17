@@ -130,13 +130,43 @@ p {
     margin: 6%;
 }
 
-/*정보 수정 버튼*/
-#button {
-    margin: 5px 15%;
+/*버튼*/
+input[type=button] {
+    font-size: 15px;
+    padding: 2px 3px;
+    letter-spacing: normal;
+}
+/*비밀번호 변경하기 버튼*/
+#changePassword {
+    margin: 5px auto;
     text-align: center;
+    width: 100%;
+}
+/*변경 전 비밀번호*/
+#current_pw {
+    display: none;
+}
+/*비밀번호 수정, 수정한 비밀번호 체크*/
+#modifyPassword, #modifyPasswordCheck {
+    display: none;
+}
+/*주소 입력 칸*/
+#address > span > input{
+    font-size: 13px;
+    height: 15%;
+    width: 100%;
+    transition: font-size 0.2s ease; /* 글자 크기 변화에 애니메이션 추가 */
+}
+
+/*우편 번호 검색 버튼*/
+#button {
+    margin: 5px auto;
+    text-align: center;
+    width: 50%;
 }
 /*정보 수정 버튼*/
-#update_button {
+#modify_button{
+    maring: 0 auto;
     background-color: #a43e1d;
     color: white;
     font-size: 18px;
@@ -144,4 +174,6 @@ p {
     padding: 10px 25px;
     border-radius: 13px;
     display: inline-block;
+    outline: none;
+    border: none;
 }
