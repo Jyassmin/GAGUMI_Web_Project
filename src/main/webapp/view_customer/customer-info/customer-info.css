@@ -65,11 +65,20 @@ h1{
 /*----------header*/
 
 /*left-menu*/
-.left-menu{
-    margin-top: inherit;
+.wrap{
+    display: flex;
+    margin-top: 20px;
+}
+
+.left-menu {
+    margin: 10px 0; /* 위아래 여백은 그대로 유지하고 좌우 여백을 0으로 설정 */
     background-color: #F5EFE2;
     text-align: center;
     height: 100px;
+    position: absolute;
+    left: 30px;
+    top: 214px; /* 원하는 위치에 맞게 조정 */
+
 }
 .left-menu>li{
     width: 120px;
