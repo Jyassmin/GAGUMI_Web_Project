@@ -40,7 +40,7 @@
         if (page_role.equals("0")) { // Customer
             script.println("location.href='../home/home.jsp';");
         } else { // Seller
-            script.println("location.href='../../view_seller/seller-home/seller-home.html';");
+            script.println("location.href='../../view_seller/seller-home/seller-home.jsp';");
         }
 
     } else {
