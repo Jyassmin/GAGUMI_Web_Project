@@ -143,31 +143,36 @@ public class db_dao {
         // email = test@naver.com
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
+        System.out.println("email : " + email);
+        System.out.println("uid : " + uid);
         String SQL = "SELECT * FROM product WHERE uid = ?";
 
-        List<db_dto> productList = new ArrayList<>();
-
         try {
+            List<db_dto> productList = new ArrayList<>();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1,uid);
+            pstmt.setInt(1, uid);
             ResultSet rs = pstmt.executeQuery();
-
+            System.out.println(pstmt);
             while (rs.next()) {
-                db_dto product = new db_dto();
-                product.setProductNumber(rs.getInt("pid"));
-                product.setOrderNumber(rs.getInt("uid"));
-                product.setImage(rs.getString("pimage"));
-                product.setProductName(rs.getString("name"));
-                product.setProductCategory(rs.getInt("ca2id"));
-                product.setProductPrice(rs.getInt("cost"));
-                product.setProductQuantity(rs.getInt("stock"));
-                product.setProductDescription(rs.getString("desc"));
-                product.setSize(rs.getString("size"));
-                productList.add(product);
+                int pid = rs.getInt("pid");
+                int uid1 = rs.getInt("uid");
+                String image = rs.getString("pimage");
+                String name = rs.getString("name");
+                int car2id = rs.getInt("ca2id");
+                int cost = rs.getInt("cost");
+                int quantity = rs.getInt("stock");
+                String desc = rs.getString("desc");
+                String size = rs.getString("size");
+
+                System.out.println("name : " + name);
+                System.out.println("stock : " + quantity);
+
+//                db_dto product = new db_dto(pid, uid1, image, name, car2id, cost, quantity, desc, size);
+//                productList.add(product);
             }
 
             rs.close();
-
+            return productList;
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -180,7 +185,9 @@ public class db_dao {
             }
         }
 
-        return productList;
+        return null;
+
+
     }
 
     // "000님 환영합니다"를 위해 세션(email)을 주면 name 반환해주는 함수.

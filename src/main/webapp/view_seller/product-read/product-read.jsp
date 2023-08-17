@@ -20,7 +20,7 @@
 <%
     // DAO 인스턴스 생성
     db_dao userDao = new db_dao();
-    String currentUser = (String)session.getAttribute("uid");
+    String currentUser = (String)session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
     List<db_dto> productList = userDao.print_product(currentUser);
 %>
@@ -32,14 +32,14 @@
     </ul>
     <!-- 상단 메뉴 끝 -->
     <div class="logo">
-        <a href="../seller-home/seller-home.html"><img src="../../images/logo.png" alt="로고"></a>
+        <a href="../seller-home/seller-home.jsp"><img src="../../images/logo.png" alt="로고"></a>
     </div>
     <h1>등록상품조회</h1>
 </header>
 
 <table class="product-table">
     <tr>
-        <th>주문번호</th>
+        <th></th>
         <th>제품코드</th>
         <th>이미지</th>
         <th>상품명</th>
@@ -57,7 +57,7 @@
     <tr>
         <td><%= productNumber %></td>
         <td><%= product.getProductNumber()%></td>
-        <td><img src="../../images/empty-image.png" alt="<%= product.getProductName() %>" width="50"></td>
+        <td><img src="<%=product.getImage()%>" alt="<%= product.getProductName() %>" width="50"></td>
         <td><%= product.getProductName() %></td>
         <td><%= userDao.getCategoryText(product.getProductCategory()) %></td>
         <!--숫자를 10,000 뒤에서 세자리로 포맷팅하여 출력-->
