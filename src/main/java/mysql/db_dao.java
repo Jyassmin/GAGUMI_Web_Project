@@ -65,8 +65,6 @@ public class db_dao {
             SQL = "INSERT INTO user (role, name, email, pw, phone, gender, birthday, company, address, zipcode) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            System.out.println(user_gender + "-" + user_birthday + "-" + user_company);
-
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, page_role);
             pstmt.setString(2, user_name);
