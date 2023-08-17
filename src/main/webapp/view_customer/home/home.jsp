@@ -35,6 +35,8 @@
                     <li><a href="#">장바구니</a></li>
                 </ul>
             </li>
+            <li><a href="#" onclick="navigateToPage('../login/login_customer.html')">로그인 테스트</a></li>
+
             <li><a href="../login/login_customer.html">로그인</a></li>
             <li><a href="../register/register_customer.jsp">회원가입</a></li>
         </ul>
