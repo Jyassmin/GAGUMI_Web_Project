@@ -62,7 +62,7 @@
         <td><%= userDao.getCategoryText(product.getProductCategory()) %></td>
         <!--숫자를 10,000 뒤에서 세자리로 포맷팅하여 출력-->
         <td><%= NumberFormat.getInstance().format(product.getProductPrice()) %>원</td>
-        <td><%= product.getProductQuantity() %>개</td>
+        <td><%= product.getStock() %>개</td>
         <td><a class="modify" href="../product-update/product-update.html">수정</a>
             <a class="delete" href="<%= deleteProductURL(product.getProductNumber()) %>">삭제</a>
         </td>
