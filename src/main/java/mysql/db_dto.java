@@ -5,7 +5,6 @@ package mysql;
 // getter(), setter() 메소드 생성
 
 public class db_dto {
-
     private String userID;
     private String userPassword;
 
@@ -26,8 +25,6 @@ public class db_dto {
     }
 
     //판매자가 등록한 상품의 전체 조회 변수 , 함수
-    //유저uid
-    private int orderNumber;
     //상품pid
     private int productNumber;
     //이미지
@@ -40,79 +37,38 @@ public class db_dto {
     private int productPrice;
     //상품
     private int productQuantity;
-    private String productDescription;
-    private String size;
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public db_dto() {
     }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public db_dto(int productNumber, String image, String productName, int productCategory,
+                  int productPrice, int productQuantity) {
+        this.productNumber = productNumber;
+        this.image = image;
+        this.productName = productName;
+        this.productCategory = productCategory;
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
     }
     public int getProductNumber() {
         return productNumber;
     }
-
-    public void setProductNumber(int productNumber) {
-        this.productNumber = productNumber;
-    }
-
     public String getImage() {
         return image;
     }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getProductName() {
         return productName;
     }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public int getProductCategory() {
         return productCategory;
     }
-
-    public void setProductCategory(int productCategory) {
-        this.productCategory = productCategory;
-    }
-
     public int getProductPrice() {
         return productPrice;
     }
-
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
-    }
-
     public int getProductQuantity() {
         return productQuantity;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
-    }
 
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     //고객이 주문한 상품의 전체 조회 변수 , 함수
     //주문코드
