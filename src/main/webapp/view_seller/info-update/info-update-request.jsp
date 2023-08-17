@@ -14,6 +14,7 @@
 <body>
 <%
     request.setCharacterEncoding("UTF-8");
+    String currentUser = (String) session.getAttribute("memberEmail");
 
     String modify_name = request.getParameter("modify_name"); // 이름
     String modify_pw = request.getParameter("modify_pw"); // 비밀번호
@@ -27,7 +28,7 @@
     String full_address = road_address + "," + jibun_address + "," + detail_address + "," + extra_address;
 
     db_dao userDao = new db_dao();
-    int update_data = userDao.sellerUpdateInfo(modify_name, modify_pw, modify_phone, modify_company, post_code, full_address);
+    int update_data = userDao.sellerUpdateInfo(currentUser, modify_name, modify_pw, modify_phone, modify_company, post_code, full_address);
 
     if(update_data > 0){
         // 데이터 삽입 성공

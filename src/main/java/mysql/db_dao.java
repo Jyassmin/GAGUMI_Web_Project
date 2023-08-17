@@ -255,8 +255,9 @@ public class db_dao {
     }
 
     // 고객정보 수정 시 업데이트 하는 함수
-    public int sellerUpdateInfo(String name, String pw, String phone, String company, String post_code, String full_address){
+    public int sellerUpdateInfo(String currentUser, String name, String pw, String phone, String company, String post_code, String full_address){
         Connection conn = db_util.getConnection();
+        int currentUID = getUidByEmail(currentUser);
         // 권한에 맞춰서 다르게 작성 - role(0 고객, 1 판매자)
         //(판매자) UPDATE user SET name = ?, pw = ?, phone = ?, company = ?, address = ? WHERE role = 1 AND UID = ?;
         //(고객 ) UPDATE user SET name = ?, pw =?, phone =?, gender = ?, birthday =?, address =? WHERE role = 0 AND UID = ?;
@@ -369,10 +370,7 @@ public class db_dao {
             rs = pstmt1.executeQuery();
 
             if (rs.next()) {
-                //pstmt1.setInt(1, currentUID); // 판매자 ID를 설정하세요
-                //rs = pstmt1.executeQuery();
-                //sellerInfo.put("email", rs.getString("email"));
-                System.out.println("Email = " + rs.getString("email"));
+                sellerInfo.put("email", rs.getString("email"));
                 sellerInfo.put("name", rs.getString("name"));
                 sellerInfo.put("pw", rs.getString("pw"));
                 sellerInfo.put("phone", rs.getString("phone"));

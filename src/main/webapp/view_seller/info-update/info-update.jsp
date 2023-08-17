@@ -31,6 +31,7 @@
         db_dao userDao = new db_dao();
         HashMap<String, String> sellerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
     %>
+    <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= sellerInfo.get("pw")%>"></p>
     <section id="passwordCheck">
         <h4>비밀번호 확인</h4>
         <input type="password" id="passwordInput" placeholder="비밀번호">
@@ -44,7 +45,6 @@
                 <p><span>이메일</span> <input disabled name="email" type="text"  value="<%= sellerInfo.get("email") %>"></p>
                 <p><span>이름</span> <input name="modify_name" type="text"  value="<%= sellerInfo.get("name") %>"></p>
                 <p id="changePassword"><input id="changePasswordButton" type="button" onclick="togglePasswordChangeFields()" value="비밀번호 변경하기"></p>
-                <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= sellerInfo.get("pw")%>"></p>
                 <p id="modifyPassword"><span>변경할 비밀번호</span><br> <input id="modify_pw" name="modify_pw" type="password" value="<%= sellerInfo.get("pw")%>"></p>
                 <p id="modifyPasswordCheck"><span>변경된 비밀번호 확인</span> <input type="password" id="pw_check" value="<%= sellerInfo.get("pw")%>"></p>
                 <p><span id="passwordError" style="color: red;"></span><br></p>
