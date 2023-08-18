@@ -45,7 +45,7 @@
         <div class="menu-item">
             <a href="../order-list/order-list.jsp">주문목록</a>
             <a href="../product-read/product-read.jsp">상품조회</a>
-            <a href="../sales-check/sales-check.html">매출조회</a>
+            <a href="../sales-check/sales-check.jsp">매출조회</a>
         </div>
     </section>
 </main>
