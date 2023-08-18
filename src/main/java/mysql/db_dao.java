@@ -138,25 +138,25 @@ public class db_dao {
   
     // 판매자가 등록한 상품내역을 가져오는 함수
 
-    public List<db_dto> print_product(String email) {
+    public List<ProductDTO> print_product(String email) {
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
         String SQL = "SELECT * FROM product WHERE uid = ?";
 
         try {
-            List<db_dto> productList = new ArrayList<>();
+            List<ProductDTO> productList = new ArrayList<>();
             PreparedStatement pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1, uid);
             ResultSet rs = pstmt.executeQuery();
             System.out.println(pstmt);
             while (rs.next()) {
                 int pid = rs.getInt("pid");
-                String image = rs.getString("pimage");
-                String name = rs.getString("name");
-                int car2id = rs.getInt("ca2id");
-                int cost = rs.getInt("cost");
+                int ca2id = rs.getInt("ca2id");
+                String product_name = rs.getString("name");
                 int stock = rs.getInt("stock");
-                db_dto product = new db_dto(pid, image, name, car2id, cost, stock);
+                int cost = rs.getInt("cost");
+                String image = rs.getString("pimage");
+                ProductDTO product = new ProductDTO(pid, ca2id, product_name, stock, cost, image);
                 productList.add(product);
             }
             rs.close();
@@ -387,56 +387,29 @@ public class db_dao {
         return null;
     }
 
+
+
     //고객 주문 목록 출력 해주는 함수 다만, 기준 일단 uid=1인 사람 기준으로 가져오기
-    public List<db_dto> print_orderList(String email) {
+    public String getHistoryUid(int current_uid) {
         Connection conn = db_util.getConnection();
-        int uid = getUidByEmail(email);
-        String SQL = "SELECT " +
-                "h.hid, " +
-                "u.email, " +
-                "u.name, " +
-                "h.pname, " +
-                "h.quantity, " +
-                "h.cost as total_cost, " +
-                "h.datetime, " +
-                "u.phone, " +
-                "u.address, " +
-                "p.cost as product_cost " +
-                "FROM  history h "+
-                "INNER JOIN user u ON h.uid = u.uid " +
-                "INNER JOIN product p ON h.pid = p.pid " +
-                "WHERE " +
-                "p.uid = 10 " +
-                "ORDER BY " +
-                "h.datetime DESC";
-        System.out.println("SQL: ");
 
-        List<db_dto> orderList = new ArrayList<>();
-
+        String SQL = "select h.uid from history h join product p on h.pid = p.pid where p.uid = ?";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(SQL);
-            ResultSet rs = pstmt.executeQuery();
-//            pstmt.setInt(1,uid);
+            StringBuffer sb = new StringBuffer();
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
 
-            while (rs.next()) {
+            pstmt1.setInt(1, current_uid); // 판매자 ID를 설정하세요
+            rs = pstmt1.executeQuery();
 
-                int hid = rs.getInt("hid");
-                String userEmail = rs.getString("email");
-                String pname = rs.getString("pname");
-                int quantity = rs.getInt("quantity");
-                int product_cost = rs.getInt("product_cost");
-                int total_cost = rs.getInt("total_cost");
-                String name = rs.getString("name");
-                String phone = rs.getString("phone");
-                String address= rs.getString("address");
-                String datetime= rs.getString("datetime");
-                db_dto order = new db_dto(hid, userEmail, pname, quantity , product_cost, total_cost,
-                        name, phone, address, datetime);
-
-                orderList.add(order);
+            if (rs.next()) {
+                sb.append( rs.getString(1));
+                sb.append(", ");
             }
-
-            rs.close();
+            sb.append("null");
+            String c_list = sb.toString();
+            return c_list;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -449,7 +422,61 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-        return orderList;
+
+        return null;
+
+
+
+    //print_orderList
+    }public ArrayList<HashMap<String, String>> print_orderList(String email) {
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(email);
+        String c_list = getHistoryUid(uid); // 해당 판매자의 물품을 구매한 고객의 리스트
+        String SQL = "select h.hid, u.email, h.pname, h.cost, h.quantity, h.cost*h.quantity, u.name, u.phone, u.address, h.datetime\n" +
+                "from history h join user u on h.uid = u.uid\n" +
+                "    join product p on h.pid = p.pid\n" +
+                "where u.uid in (?) and p.uid = ?;";
+        try {
+            ArrayList<HashMap<String, String>> history_list = new ArrayList<>();
+            HashMap<String, String> hashmap_dummy = new HashMap<>();
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+
+            pstmt1.setString(1, c_list);
+            pstmt1.setInt(2, uid);
+
+            rs = pstmt1.executeQuery();
+
+            if (rs.next()) {
+                hashmap_dummy.put("hid", rs.getString(1));
+                hashmap_dummy.put("email", rs.getString(2));
+                hashmap_dummy.put("pname", rs.getString(3));
+                hashmap_dummy.put("cost", rs.getString(4));
+                hashmap_dummy.put("quantity", rs.getString(5));
+                hashmap_dummy.put("total_cost", rs.getString(6));
+                hashmap_dummy.put("name", rs.getString(7));
+                hashmap_dummy.put("phone", rs.getString(8));
+                hashmap_dummy.put("address", rs.getString(9));
+                hashmap_dummy.put("datetime", rs.getString(10));
+                history_list.add(hashmap_dummy);
+            }
+            return history_list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+
     }
 
 

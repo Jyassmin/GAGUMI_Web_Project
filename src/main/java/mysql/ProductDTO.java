@@ -19,6 +19,12 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
+    // 판매자 조회시 고객이 주문한 주문목록 출력을 위한 (제품명, 제품가격)을 담은 생성자
+    public ProductDTO(String product_name, int cost) {
+        this.product_name = product_name;
+        this.cost = cost;
+    }
+
     // 카테고리 별 상품 목록 출력을 위한 (이미지, 제품명, 제품 가격)을 담은 생성자
     public ProductDTO(String product_name, int cost, String pimage) {
         this.product_name = product_name;
