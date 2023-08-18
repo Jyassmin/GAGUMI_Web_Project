@@ -25,6 +25,13 @@ public class ProductDTO {
         this.cost = cost;
     }
 
+    // 판매자 총매출 출력을 위한 (제품명, 가격, 수량)을 담은 생성자 - 약간 꼼수
+    public ProductDTO(String product_name, int stock, int cost) {
+        this.product_name = product_name;
+        this.stock = stock;
+        this.cost = cost;
+    }
+
     // 카테고리 별 상품 목록 출력을 위한 (이미지, 제품명, 제품 가격)을 담은 생성자
     public ProductDTO(String product_name, int cost, String pimage) {
         this.product_name = product_name;
