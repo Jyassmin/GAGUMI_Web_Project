@@ -1,6 +1,7 @@
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mysql.db_dto" %>
+<%@ page import="mysql.ProductDTO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@
             productName = java.net.URLDecoder.decode(productName, "UTF-8");
         }
         db_dao user_dao = new db_dao();
-        List<db_dto> productList = user_dao.getProductList(productID); // 대분류별 제품 목록 덩어리
+        List<ProductDTO> productList = user_dao.getProductList(productID); // 대분류별 제품 목록 덩어리
     %>
     <header>
         <!-- top-menu -->
@@ -51,13 +52,13 @@
             <%
                 if(productList != null){
                     //제품 리스트의 수량만큼 제품 정보 출력하기
-                    for(db_dto p : productList){
+                    for(ProductDTO p : productList){
             %>
             <p>테스트 입미둥</p>
             <a>
                 <img class="product_box_img" src="../../images/chair/chair1.jpg">
-                <p class="product_box_name"><%=p.getProductName()%></p>
-                <p class="product_box_cost"><%=p.getProductPrice()%></p>
+                <p class="product_box_name"><%=p.getProduct_name()%></p>
+                <p class="product_box_cost"><%=p.getCost()%></p>
             </a>
             <%
                     } // for문 닫는 괄호

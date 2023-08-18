@@ -546,13 +546,14 @@ public class db_dao {
         return -1;
     }
 
-    public List<db_dto> getProductList(int bigCategory){
+    // 카테고리별 제품 목록 가져오는 함수
+    public List<ProductDTO> getProductList(int bigCategory){
         Connection conn = db_util.getConnection();
         String[] smallCategory = getSmallCategory(bigCategory); // 대분류로 소분류 가져오기
         for (String s : smallCategory){
             System.out.println("smallCategory : " + s);
         }
-        List<db_dto> category = new ArrayList<>();
+        List<ProductDTO> category = new ArrayList<>();
         String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN (?, ?, ?, ?, ?);";
         //String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN ('1', '2');";
 
@@ -571,7 +572,7 @@ public class db_dao {
                 String image = rs.getString("pimage");
                 String name = rs.getString("name");
                 int cost = rs.getInt("cost");
-                db_dto product = new db_dto(image, name, cost);
+                ProductDTO product = new ProductDTO(image, cost, name);
                 category.add(product);
             }
             return category;
@@ -591,6 +592,7 @@ public class db_dao {
         return null;
     }
 
+    // 소분
     public String[] getSmallCategory(int bigCategory){
         Connection conn = db_util.getConnection();
         String[] category = new String[5];
