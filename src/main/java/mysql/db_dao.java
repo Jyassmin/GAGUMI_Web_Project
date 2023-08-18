@@ -707,6 +707,7 @@ public class db_dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     // 판매자가 등록한 상품 중에서 상품코드(pid)를 기준으로 상품 정보를 조회하는 함수
@@ -748,6 +749,8 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
+        return null;
+    }
 
     // 판매자가 등록한 제품 pid 가져오는 함수
     public String getProductPid(int uid){
