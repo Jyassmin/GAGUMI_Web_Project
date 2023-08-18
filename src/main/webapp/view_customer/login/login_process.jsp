@@ -45,9 +45,9 @@
     } else {
         script.println("alert('아이디 또는 비밀번호가 일치하지 않습니다.')");
         if (page_role.equals("0")) {
-            script.println("location.href='./login_customer.html';");
+            script.println("location.href='./login_customer.jsp';");
         } else {
-            script.println("location.href='./login_seller.html';");
+            script.println("location.href='./login_seller.jsp';");
         }
     }
     script.println("</script>");

@@ -459,7 +459,7 @@ public class db_dao {
         int currentUID = getUidByEmail(currentUser);
         String SQL = "select email, name, pw, phone, gender, birthday, address, zipcode from user where role = 0 AND uid = ?;";
 
-        HashMap<String, String> customerInfo = new HashMap<>();
+        HashMap<String, String> customerInfo     = new HashMap<>();
         ResultSet rs = null;
         try {
             // 데이터베이스 연결 및 쿼리 실행
