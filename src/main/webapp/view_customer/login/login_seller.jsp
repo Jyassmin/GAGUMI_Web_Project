@@ -11,9 +11,8 @@
     <%
         // 회원가입하고 login으로 왔을 때 email을 자동으로 입력하게.
         // 쿼리 매개변수에서 값을 가져와서 표시(만약 home에서 왔다면 아래 값이 null이다.)
-        String register_success = request.getParameter("register_success"); // 로그인페이지에서 왔다면 1
         String user_email = request.getParameter("user_email"); // 자동으로 가져올 유저 ID
-        if (!register_success.equals("1")) {
+        if (user_email == null) { // Home에서 왔으면 공백 문자열로
             user_email = "";
         }
     %>

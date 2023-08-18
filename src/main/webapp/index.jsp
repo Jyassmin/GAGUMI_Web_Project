@@ -35,8 +35,9 @@
                 </ul>
             </li>
             <%--<li><a href="#" class="move_login_customer">로그인 테스트</a></li>--%> <!--class & js로 페이지 이동하는 예시-->
-            <li><a href="view_customer/login/login_customer.jsp">로그인</a></li>
-            <li><a href="view_customer/register/register_customer.jsp">회원가입</a></li>
+            <li><a href="./view_customer/login/login_customer.jsp">로그인</a></li>
+            <li><a href="./view_customer/login/logout_process.jsp">로그아웃</a></li>
+            <li><a href="./view_customer/register/register_customer.jsp">회원가입</a></li>
         </ul>
         <!-- //top-menu -->
 
