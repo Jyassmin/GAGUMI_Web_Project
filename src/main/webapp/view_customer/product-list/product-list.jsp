@@ -1,7 +1,7 @@
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.db_dto" %>
 <%@ page import="mysql.ProductDTO" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,9 +56,9 @@
             %>
             <p>테스트 입미둥</p>
             <a>
-                <img class="product_box_img" src="../../images/chair/chair1.jpg">
+                <img class="product_box_img" src="../<%=p.getPimage()%>" alt="productImage">
                 <p class="product_box_name"><%=p.getProduct_name()%></p>
-                <p class="product_box_cost"><%=p.getCost()%></p>
+                <p class="product_box_cost"><%=NumberFormat.getInstance().format(p.getCost())%>원</p>
             </a>
             <%
                     } // for문 닫는 괄호
@@ -73,7 +73,8 @@
         <div class="footer1">
             <div class="project-intro">
                 <h4>PROJECT INTRO.</h4>
-                <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
+                <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18,
+                    2023 and was developed using JSP, HTML, MYSQL, etc.</p>
             </div>
             <div class="product">
                 <h4>PRODUCT</h4>

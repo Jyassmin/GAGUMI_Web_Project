@@ -599,7 +599,7 @@ public class db_dao {
                 String image = rs.getString("pimage");
                 String name = rs.getString("name");
                 int cost = rs.getInt("cost");
-                ProductDTO product = new ProductDTO(image, cost, name);
+                ProductDTO product = new ProductDTO(name, cost, image);
                 category.add(product);
             }
             return category;
