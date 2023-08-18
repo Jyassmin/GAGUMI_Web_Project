@@ -62,15 +62,15 @@
         <td><%=h_dummy.get("hid")%></td>
         <td><%=h_dummy.get("email")%></td>
         <td><%=h_dummy.get("pname")%></td>
-        <td><%= NumberFormat.getInstance().format(h_dummy.get("cost")) %>원</td>
+        <td><%= NumberFormat.getInstance().format(Integer.parseInt(h_dummy.get("cost"))) %>원</td>
         <td><%=h_dummy.get("quantity")%></td>
-        <td><%= NumberFormat.getInstance().format(h_dummy.get("total_cost")) %>원</td>
+        <td><%= NumberFormat.getInstance().format(Integer.parseInt(h_dummy.get("total_cost"))) %>원</td>
         <td><%=h_dummy.get("name")%></td>
         <td><%=h_dummy.get("phone")%></td>
         <td><%=h_dummy.get("address")%></td>
         <td><%=h_dummy.get("datetime")%></td>
     </tr>
-    <%  // 주문번호 증가
+    <%  // 번호 증가
         productNumber++;
     } // for문 종료
     %>
