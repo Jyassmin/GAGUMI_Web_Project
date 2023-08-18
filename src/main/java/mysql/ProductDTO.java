@@ -33,11 +33,14 @@ public class ProductDTO {
     }
 
     // 카테고리 별 상품 목록 출력을 위한 (이미지, 제품명, 제품 가격)을 담은 생성자
-    public ProductDTO(String product_name, int cost, String pimage) {
+
+    public ProductDTO(int pid, String product_name, int cost, String pimage) {
+        this.pid = pid;
         this.product_name = product_name;
         this.cost = cost;
         this.pimage = pimage;
     }
+
     //판매자의 등록 상품 조회를 위한 (제품 코드, 이미지, 제품명, 카테고리, 가격, 재고)을 담은 생성자
     public ProductDTO(int pid, int ca2id, String product_name, int stock, int cost, String pimage) {
         this.pid = pid;
@@ -56,6 +59,7 @@ public class ProductDTO {
         this.desc = desc;
         this.pimage = pimage;
     }
+
     /*getter---------------------------------------------------*/
 
     public int getPid() {

@@ -582,8 +582,7 @@ public class db_dao {
             System.out.println("smallCategory : " + s);
         }
         List<ProductDTO> category = new ArrayList<>();
-        String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN (?, ?, ?, ?, ?);";
-        //String SQL = "SELECT pimage, name, cost FROM product WHERE ca2id IN ('1', '2');";
+        String SQL = "SELECT pid, pimage, name, cost FROM product WHERE ca2id IN (?, ?, ?, ?, ?);";
 
         try {
             // 실행 가능 상태의 sql문으로 만듦.
@@ -597,10 +596,11 @@ public class db_dao {
             ResultSet rs = pstmt.executeQuery();
             // 결과 출력
             while (rs.next()) {
+                int pid = rs.getInt("pid");
                 String image = rs.getString("pimage");
                 String name = rs.getString("name");
                 int cost = rs.getInt("cost");
-                ProductDTO product = new ProductDTO(name, cost, image);
+                ProductDTO product = new ProductDTO(pid, name, cost, image);
                 category.add(product);
             }
             return category;
@@ -822,6 +822,7 @@ public class db_dao {
         return null;
     }
 
+    // 제품 하나 당 총 매출 계산하는 함수
     public List<ProductDTO> printOneProductTotalCost(String currentEmail){
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(currentEmail); // 현재 로그인한 판매자 email -> uid로 변경
