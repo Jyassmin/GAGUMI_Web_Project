@@ -1,0 +1,121 @@
+/*header*/
+header{
+    width:100%;
+}
+/*top-menu*/
+.top-menu{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.top-menu>li{
+    font-size: 12px;
+    margin: 0 12px;
+}
+
+
+.logout .info-update {
+    padding: 8px;
+
+}
+
+
+/*logo*/
+.logo>a{
+    display: flex;
+    justify-content: center;
+}
+
+.logo > a > img{
+    width: 30%;
+
+}
+
+/*상단타이틀*/
+h1{
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+}
+
+/*정보 수정 창 section*/
+#updateInfo{
+    display: none;
+}
+/*정보 수정 입력 창*/
+#updateForm{
+    display: flex;
+    justify-content: space-around;
+}
+#updateForm > div {
+    width: 100%
+}
+
+
+/*비밀번호 확인 및 정보수정 입력 창*/
+section {
+    background-color: #F5EFE2;
+    border: 1px solid #a43e1d;
+    margin: 10px 20%;
+    padding: 3%;
+}
+/*정보수정 텍스트*/
+h4 {
+    margin-bottom: 8px;
+}
+/*수정할 정보(이름, 전화번호 등등)*/
+p {
+    display: flex;
+    justify-content: space-between;
+    margin: 6%;
+}
+
+/*버튼*/
+input[type=button] {
+    font-size: 15px;
+    padding: 2px 3px;
+    letter-spacing: normal;
+}
+/*비밀번호 변경하기 버튼*/
+#changePassword {
+    margin: 5px auto;
+    text-align: center;
+    width: 100%;
+}
+/*변경 전 비밀번호*/
+#current_pw {
+    display: none;
+}
+/*비밀번호 수정, 수정한 비밀번호 체크*/
+#modifyPassword, #modifyPasswordCheck {
+    display: none;
+}
+/*주소 입력 칸*/
+#address > span > input{
+    font-size: 13px;
+    height: 15%;
+    width: 100%;
+    transition: font-size 0.2s ease; /* 글자 크기 변화에 애니메이션 추가 */
+}
+
+/*우편 번호 검색 버튼*/
+#button {
+    margin: 5px auto;
+    text-align: center;
+    width: 50%;
+}
+/*정보 수정 버튼*/
+#modify_button{
+    maring: 0 auto;
+    background-color: #a43e1d;
+    color: white;
+    font-size: 18px;
+    width: 85%;
+    padding: 10px 25px;
+    border-radius: 13px;
+    display: inline-block;
+    outline: none;
+    border: none;
+}
