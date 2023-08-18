@@ -752,6 +752,44 @@ public class db_dao {
         return null;
     }
 
+    //등록상품수정 디비에 적용하는 함수
+    public int productUpdateInfo(String currentUser, String modifyName, int modifyCost, int  modifyStock, String modifyDesc, String modifyPimage) {
+        Connection conn = db_util.getConnection();
+        int currentUID = getUidByEmail(currentUser);
+        //product테이블 pid 기준으로 업데이트 될 값 세팅
+        String SQL = "UPDATE product SET name = ?, cost = ?, stock = ?, `desc` = ?, pimage = ? WHERE pid = ?;";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, modifyName);
+            pstmt.setInt(2, modifyCost);
+            pstmt.setInt(3, modifyStock);
+            pstmt.setString(4, modifyDesc);
+            pstmt.setString(5, modifyPimage);
+
+            // 명령어를 수행한 결과
+            // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
+            // 2_executeUpdate -> 레코드 삽입, 수정, 삭제 등 데이터 조작 명령어 사용(CRUD)
+            // 3_executeQuery -> 레코드 조회, 테이블 조회 등 조회 명령어 사용(Select)
+            return pstmt.executeUpdate(); // 업데이트된 행 수 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1; // 업데이트 실패 시 반환 값
+    }
+
+
     // 판매자가 등록한 제품 pid 가져오는 함수
     public String getProductPid(int uid){
         Connection conn = db_util.getConnection();
