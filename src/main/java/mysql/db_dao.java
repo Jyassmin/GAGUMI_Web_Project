@@ -351,10 +351,10 @@ public class db_dao {
             HashMap<String, String> sellerInfo = new HashMap<>();
             ResultSet rs = null;
             // 데이터베이스 연결 및 쿼리 실행
-            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+            PreparedStatement ptsmt = conn.prepareStatement(SQL);
 
-            pstmt1.setInt(1, currentUID); // 판매자 ID를 설정하세요
-            rs = pstmt1.executeQuery();
+            ptsmt.setInt(1, currentUID); // 판매자 ID를 설정하세요
+            rs = ptsmt.executeQuery();
 
             if (rs.next()) {
                 sellerInfo.put("email", rs.getString("email"));
@@ -389,6 +389,7 @@ public class db_dao {
 
 
 
+
     //고객 주문 목록 출력 해주는 함수, 판매자 기준 조회
     public String getHistoryUid(int current_uid) {
         Connection conn = db_util.getConnection();
@@ -398,11 +399,10 @@ public class db_dao {
             StringBuffer sb = new StringBuffer();
             ResultSet rs = null;
             // 데이터베이스 연결 및 쿼리 실행
-            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+            PreparedStatement ptsmt = conn.prepareStatement(SQL);
 
-            //pstmt1.setInt(1, current_uid); // 판매자 ID를 설정하세요
-            pstmt1.setInt(1, 10); // 판매자 ID를 설정하세요
-            rs = pstmt1.executeQuery();
+            ptsmt.setInt(1, current_uid); // 판매자 ID를 설정하세요
+            rs = ptsmt.executeQuery();
 
             while (rs.next()) {
                 sb.append( rs.getString(1));
@@ -429,7 +429,8 @@ public class db_dao {
 
 
     //print_orderList
-    }public ArrayList<HashMap<String, String>> print_orderList(String email) {
+    }
+    public ArrayList<HashMap<String, String>> print_orderList(String email) {
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
         String c_list = getHistoryUid(uid); // 해당 판매자의 물품을 구매한 고객의 리스트
@@ -442,13 +443,12 @@ public class db_dao {
 
             ResultSet rs = null;
             // 데이터베이스 연결 및 쿼리 실행
-            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+            PreparedStatement ptsmt = conn.prepareStatement(SQL);
 
-            //pstmt1.setString(1, c_list);
-            System.out.println(c_list);
-            pstmt1.setInt(1, uid);
+            //System.out.println(c_list);
+            ptsmt.setInt(1, uid);
 
-            rs = pstmt1.executeQuery();
+            rs = ptsmt.executeQuery();
 
             while (rs.next()) {
                 HashMap<String, String> hashmap_dummy = new HashMap<>();
@@ -463,15 +463,7 @@ public class db_dao {
                 hashmap_dummy.put("address", rs.getString(9));
                 hashmap_dummy.put("datetime", rs.getString(10));
                 history_list.add(hashmap_dummy);
-                System.out.println("name " + rs.getString(7));
             }
-                System.out.println(history_list.get(0).get("hid"));
-                System.out.println(history_list.get(1).get("hid"));
-                System.out.println(history_list.get(2).get("hid"));
-                System.out.println(history_list.get(3).get("hid"));
-                System.out.println(history_list.get(4).get("hid"));
-                System.out.println(history_list.get(5).get("hid"));
-
 
             return history_list;
 
@@ -631,7 +623,7 @@ public class db_dao {
         return null;
     }
 
-    // 소분
+    // 대분류를 통한 소분류 가져오기
     public String[] getSmallCategory(int bigCategory){
         Connection conn = db_util.getConnection();
         String[] category = new String[5];
@@ -664,6 +656,7 @@ public class db_dao {
         }
         return null;
     }
+
 
     // 판매자가 등록한 상품 중에서 상품코드(pid)를 기준으로 상품 정보를 조회하는 함수
     public List<ProductDTO> ProductByPid(String email, int targetPid) {
@@ -704,6 +697,120 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
+
+    // 판매자가 등록한 제품 pid 가져오는 함수
+    public String getProductPid(int uid){
+        Connection conn = db_util.getConnection();
+        String sql = "select pid from product where uid = ?;";
+        try {
+            StringBuffer sb = new StringBuffer();
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            ptsmt.setInt(1, uid);
+            rs = ptsmt.executeQuery();
+
+            while(rs.next()){
+                sb.append(rs.getString(1));
+                sb.append(", ");
+            }
+            sb.append("null");
+            rs.close();
+            String pidList = sb.toString();
+            return pidList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+    // 총매출 출력 함수
+    public int[] printTotalCost(String currentEmail){
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(currentEmail); // 현재 로그인한 판매자 email -> uid로 변경
+        String pidList = getProductPid(uid); // 현재 판매자가 등록한 상품 구매한 고객 uid 가져오기
+
+        String sql = "SELECT SUM(h.quantity*h.cost), SUM(h.quantity) FROM history h WHERE h.pid IN (" + pidList +");";
+        try {
+            int[] total_list = new int[2];
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            rs = ptsmt.executeQuery();
+
+            rs.next();
+            total_list[0] = rs.getInt(1);
+            total_list[1] = rs.getInt(2);
+            rs.close();
+
+            return total_list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public List<ProductDTO> printOneProductTotalCost(String currentEmail){
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(currentEmail); // 현재 로그인한 판매자 email -> uid로 변경
+
+        String sql = "SELECT p.name, SUM(h.quantity*h.cost) AS 'TOTAL', SUM(h.quantity) " +
+                    "FROM product p LEFT JOIN history h ON p.pid = h.hid " +
+                    "WHERE p.uid = ? GROUP BY p.name ORDER BY TOTAL;";
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            ResultSet rs = null;
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            ptsmt.setInt(1, uid);
+            rs = ptsmt.executeQuery();
+            List<ProductDTO> revenue = new ArrayList<>(); //각 제품의 총 매출 정보를 담을 리스트
+            String product_name = ""; // 제품 명
+            int quan = 0, cost = 0; // 주문 수량, 제품 금액
+
+            while(rs.next()){
+                product_name = rs.getString(1);
+                cost = rs.getInt(2);
+                quan = rs.getInt(3);
+                ProductDTO pdto = new ProductDTO(product_name, quan, cost);
+                revenue.add(pdto);
+            }
+
+            rs.close();
+
+            return revenue;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+
         return null;
     }
 }
