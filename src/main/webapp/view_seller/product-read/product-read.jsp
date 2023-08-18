@@ -1,10 +1,10 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.db_dto" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="mysql.db_util" %>
+<%@ page import="mysql.ProductDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +22,7 @@
     db_dao userDao = new db_dao();
     String currentUser = (String)session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
-    List<db_dto> productList = userDao.print_product(currentUser);
+    List<ProductDTO> productList = userDao.print_product(currentUser);
 %>
 <header>
     <!-- 상단 메뉴 -->
@@ -51,20 +51,20 @@
 
     <%-- 상품 목록을 순회하며 테이블 행을 생성 --%>
     <%  int productNumber = 1; //주문번호 1부터 시작
-        for (db_dto product : productList) {
+        for (ProductDTO product : productList) {
     %>
 
     <tr>
         <td><%= productNumber %></td>
-        <td><%= product.getProductNumber()%></td>
-        <td><img src="<%=product.getImage()%>" alt="<%= product.getProductName() %>" width="50"></td>
-        <td><%= product.getProductName() %></td>
-        <td><%= userDao.getCategoryText(product.getProductCategory()) %></td>
+        <td><%= product.getPid()%></td>
+        <td><img src="<%=product.getPimage()%>" alt="<%= product.getProduct_name() %>" width="50"></td>
+        <td><%= product.getProduct_name()%></td>
+        <td><%= userDao.getCategoryText(product.getCa2id()) %></td>
         <!--숫자를 10,000 뒤에서 세자리로 포맷팅하여 출력-->
-        <td><%= NumberFormat.getInstance().format(product.getProductPrice()) %>원</td>
+        <td><%= NumberFormat.getInstance().format(product.getCost()) %>원</td>
         <td><%= product.getStock() %>개</td>
-        <td><a class="modify" href="../product-update/product-update.html">수정</a>
-            <a class="delete" href="<%= deleteProductURL(product.getProductNumber()) %>">삭제</a>
+        <td><a class="modify" href="../product-update/product-update.jsp?pid=<%=product.getPid()%>">수정</a>
+            <a class="delete" href="<%= deleteProductURL(product.getPid()) %>">삭제</a>
         </td>
     </tr>
     <%!

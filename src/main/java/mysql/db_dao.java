@@ -389,7 +389,8 @@ public class db_dao {
 
 
 
-    //고객 주문 목록 출력 해주는 함수
+
+    //고객 주문 목록 출력 해주는 함수, 판매자 기준 조회
     public String getHistoryUid(int current_uid) {
         Connection conn = db_util.getConnection();
 
@@ -656,6 +657,47 @@ public class db_dao {
         return null;
     }
 
+
+    // 판매자가 등록한 상품 중에서 상품코드(pid)를 기준으로 상품 정보를 조회하는 함수
+    public List<ProductDTO> ProductByPid(String email, int targetPid) {
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(email);
+        String SQL = "SELECT * FROM product WHERE uid = ? AND pid = ?;";
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, uid);
+            pstmt.setInt(2, targetPid); // targetPid로 받은 상품코드(pid)를 사용
+
+            ResultSet rs = pstmt.executeQuery();
+            List<ProductDTO> productList = new ArrayList<>(); // 여러 상품 정보를 담을 리스트 생성
+
+            while (rs.next()) {
+                int pid = rs.getInt("pid");
+                String name = rs.getString("name");
+                int cost = rs.getInt("cost");
+                int stock = rs.getInt("stock");
+                String desc = rs.getString("desc");
+                String pimage = rs.getString("pimage");
+
+                ProductDTO product = new ProductDTO(pid, name, cost, stock, desc, pimage);
+                productList.add(product); // 리스트에 상품 정보 추가
+            }
+
+            return productList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     // 판매자가 등록한 제품 pid 가져오는 함수
     public String getProductPid(int uid){
         Connection conn = db_util.getConnection();
@@ -768,6 +810,8 @@ public class db_dao {
             }
         }
 
+
         return null;
     }
 }
+
