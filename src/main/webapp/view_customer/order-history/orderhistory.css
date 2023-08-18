@@ -63,14 +63,6 @@ h1{
     text-align: center;
     letter-spacing: 8px;
 }
-section {
-    margin: 5%;
-    background-color: #F5EFE2;
-    border: 1px solid #a43e1d;
-}
-div {
-    margin: 2%;
-}
 hr {
     margin-bottom: 5px;
     outline: none;
@@ -86,6 +78,7 @@ hr {
 
 /*left-menu*/
 .left-menu{
+    width: 10%;
     margin-top: inherit;
     background-color: #F5EFE2;
     text-align: center;
@@ -104,22 +97,27 @@ hr {
     background-color: #a43e1d;
     color: white;
 }
+
 /*left 메뉴 에서 장바구니 페이지인것을 표시함*/
 #order-history{
     background-color: #a43e1d;
     color: white;
 }
 
+.main-show {
+    width: 90%;
+}
+
 /* table-container */
 .table-container {
     width: 100%;
-    margin-top: 20px;
+    margin: 20px 0px;
 }
 
 /* order-table */
 
 .order-table{
-    width: 80%;
+    width: 70%;
     border-collapse: collapse;
     margin: 0 auto;
 }
@@ -137,6 +135,7 @@ hr {
 .order-table thead {
     background-color: #F5EFE2;
 }
+
 .order-date p{
     margin-left: 4px;
     text-align: left;
@@ -146,12 +145,35 @@ hr {
     text-align: right;
 }
 
+/*제품 정보 단위*/
+#h_tbody {
+    height: 220px;
+}
+
+#h_image {
+    width: 35%;
+}
+#h_info {
+    width: 70%;
+    padding-left: 10px;
+    align-content: center;
+}
+
+
+
 .product-details p{
     text-align: left;
     margin-left: 4px;
 }
 .price{
     font-weight: bold;
+}
+
+
+/*gap*/
+.gap{
+    width: 100%;
+    height: 20px;
 }
 
 /*footer*/

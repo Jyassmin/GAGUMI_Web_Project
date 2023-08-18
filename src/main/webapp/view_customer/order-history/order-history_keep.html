@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주문내역</title>
+    <!--    공통 스타일-->
+    <link rel="stylesheet" href="../../base-style.css">
+    <!--    order-payment 스타일-->
+    <link rel="stylesheet" href="orderhistory.css?after">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
+</head>
+<body>
+<header>
+    <!-- top-menu -->
+    <ul class="top-menu">
+        <li><a href="#">OOO님 환영합니다.</a></li>
+        <li><a href="#">게시판</a></li>
+        <li class=my-page><a href="#">마이페이지</a>
+            <ul class="submenu">
+                <li><a href="#">정보수정</a></li>
+                <li><a href="#">주문내역</a></li>
+                <li><a href="#">장바구니</a></li>
+            </ul>
+        </li>
+        <li><a href="#">로그아웃</a></li>
+        <li><a href="#">회원가입</a></li>
+    </ul>
+    <!-- //top-menu -->
+    <div class="logo">
+        <a href="../../index.jsp"><img src="../../images/logo.png"></a>
+    </div>
+    <h1>주문내역</h1>
+</header>
+
+<main class="wrap">
+    <!-- left-menu-->
+    <ul class="left-menu">
+        <li><a href="#">정보수정</a></li>
+        <li><a href="#" id="order-history">주문내역</a></li>
+        <li><a href="#">장바구니</a></li>
+    </ul>
+    <!-- 주문 내역 테이블   -->
+    <section class="main-show">
+        <div class="table-container">
+            <table class="order-table"> <!--주문블럭 반복-->
+                <thead>
+                <tr>
+                    <th class="order-date"><p>주문일자 : 2023.08.09<p></th>
+                    <th class="order-number"><p>주문번호 : 10001<p></th>
+                </tr>
+                </thead>
+                <!-- 아래는 동적 으로 DB가 추가될 행들이 들어갈 자리 모양 예시-->
+                <tbody> <!--제품주문정보 반복-->
+                <tr>
+                    <td><img src="../../images/empty-image.png" alt="Product 1" width="100"></td>
+                    <td class="product-details">
+                        <p>제품명 : 개쩌는 의자</p>
+                        <p><span class="price">가격 : </span></p> <!--bold-->
+                        <p>수량 : </p>
+                        <p>판매자 : 디랩</p>
+                        <p>문의번호 : 010-1234-5678 </p>
+                    </td>
+                </tr>
+                </tbody>
+                <!-- 나머지 행들도 위와 같이 추가 -->
+            </table>
+        </div>
+        <div class="gap"></div>
+    </section>
+</main>
+
+
+
+
+
+
+<!--footer-->
+<footer>
+    <div class="footer1">
+        <div class="project-intro">
+            <h4>PROJECT INTRO.</h4>
+            <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
+        </div>
+        <div class="product">
+            <h4>PRODUCT</h4>
+            <ul>
+                <li><a href="#">의자</a></li>
+                <li><a href="#">서랍/수납장</a></li>
+                <li><a href="#">책상</a></li>
+                <li><a href="#">침대</a></li>
+                <li><a href="#">장롱</a></li>
+            </ul>
+        </div>
+        <div class="mypage">
+            <h4>MYPAGE</h4>
+            <ul>
+                <li><a href="#">정보 수정</a></li>
+                <li><a href="#">주문 내역</a></li>
+                <li><a href="#">장바구니</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class = "copyright">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
+</footer>
+</body>
+</html>

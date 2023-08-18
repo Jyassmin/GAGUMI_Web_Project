@@ -425,11 +425,8 @@ public class db_dao {
         }
 
         return null;
-
-
-
-    //print_orderList
     }
+
     public ArrayList<HashMap<String, String>> print_orderList(String email) {
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
@@ -658,6 +655,60 @@ public class db_dao {
     }
 
 
+    // 고객의 email을 받아 주문 목록 출력
+    // 주문번호별 주문내역 모음(Arraylist) > 주문번호가 같은 제품들 정보(Arraylist) > 제품 정보(Hasmap)
+    public ArrayList<ArrayList<HashMap<String, String>>> order_history_dao(String email) {
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(email); // 고객의 uid
+        String SQL = "select h.oid, h.datetime, h.pname, h.cost, h.quantity, u.name, u.phone, p.pimage " +
+                    "from product p join history h on p.pid = h.pid " +
+                    "join user u on p.uid = u.uid " +
+                    "where h.uid = ? order by h.oid ASC, h.pname ASC;";
+
+        try {
+            ArrayList<ArrayList<HashMap<String, String>>> oder_list_all = new ArrayList<>(); // 아래 주문정보 리스트를 저장(oid별로)
+            ArrayList<HashMap<String, String>> order_list_dummy = null;
+            HashMap<String, String> hashmap_dummy;
+            ResultSet rs = null;
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement pstmt1 = conn.prepareStatement(SQL);
+
+            //pstmt1.setString(1, c_list);
+            pstmt1.setInt(1, uid);
+
+            rs = pstmt1.executeQuery();
+
+            String check_oid = "";
+            while (rs.next()) {
+                if (!check_oid.equals(rs.getString(1))) { // oid가 달라지면 Arraylist 새로 만들기(oid가 같은 해쉬만 담기위해
+                    if (order_list_dummy != null) { // 처음에는 null이기 때문에 null이 아니면 담도록한다.
+                        oder_list_all.add(order_list_dummy);
+                    }
+                    order_list_dummy = new ArrayList<>(); // 같은 oid끼리 제품별 주문정보 해쉬를 저장하기 위해 초기화
+                    check_oid = rs.getString(1); // oid를 저장하여 다음 row의 oid랑 다른지 확인할 수 있도록 함
+                }
+                hashmap_dummy = new HashMap<>(); // 초기화
+                hashmap_dummy.put("oid", rs.getString(1));
+                hashmap_dummy.put("datetime", rs.getString(2));
+                hashmap_dummy.put("pname", rs.getString(3));
+                hashmap_dummy.put("cost", rs.getString(4));
+                hashmap_dummy.put("quantity", rs.getString(5));
+                hashmap_dummy.put("name", rs.getString(6));
+                hashmap_dummy.put("phone", rs.getString(7));
+                hashmap_dummy.put("pimage", rs.getString(8));
+                order_list_dummy.add(hashmap_dummy);
+                //System.out.println("name " + rs.getString(7)); // 확인
+            }
+            if (order_list_dummy != null) { // 마지막 반복문에서는 rs.next로 그냥 끝나기 때문에 마지막 더미를 추가해주고 끝낸다.(결과가 비어있을 수 있으니 null 체크)
+                oder_list_all.add(order_list_dummy);
+            }
+            return oder_list_all;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // 판매자가 등록한 상품 중에서 상품코드(pid)를 기준으로 상품 정보를 조회하는 함수
     public List<ProductDTO> ProductByPid(String email, int targetPid) {
         Connection conn = db_util.getConnection();
@@ -730,9 +781,9 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-
         return null;
     }
+    
     // 총매출 출력 함수
     public int[] printTotalCost(String currentEmail){
         Connection conn = db_util.getConnection();
@@ -765,7 +816,6 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-
         return null;
     }
 
@@ -809,8 +859,6 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-
-
         return null;
     }
 }
