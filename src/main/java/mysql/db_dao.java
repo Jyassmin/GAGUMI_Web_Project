@@ -653,10 +653,3 @@ public class db_dao {
         return null;
     }
 }
-
-
-
-// 참고) 전체 출력 코드
-//        while (rs.next())
-//        {
-//            out.println("count = " + rs.getInt(1));
