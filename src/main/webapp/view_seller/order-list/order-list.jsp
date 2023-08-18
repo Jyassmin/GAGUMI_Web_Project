@@ -1,10 +1,10 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.db_dto" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="mysql.db_util" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +22,7 @@
     db_dao userDao = new db_dao();
     String currentUser = (String) session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
-    List<db_dto> orderList = userDao.print_orderList(currentUser);
+    ArrayList<HashMap<String, String>> history_list = userDao.print_orderList(currentUser);
 %>
 <header>
     <!-- top-menu -->
@@ -53,29 +53,27 @@
     </tr>
     <%--주문목록을 순회하며 테이블 행을 생성--%>
     <%
-        int productNumber = 1; //주문번호 1부터 시작
-        for (db_dto order : orderList) {
+        int productNumber = 1; //1부터 시작
+        for ( HashMap<String,String> h_dummy : history_list) {
     %>
     <!-- 여기에 동적으로 추가될 행들이 들어갈 자리  모양 예시-->
     <tr>
         <td><%=productNumber%></td>
-        <td><%=order.getOrderCode()%></td>
-        <td><%=order.getUserID()%></td>
-        <td><%=order.getProductName()%></td>
-        <td><%= NumberFormat.getInstance().format(order.getProductPrice()) %>원</td>
-        <td><%=order.getOrderQuantity()%></td>
-        <td><%= NumberFormat.getInstance().format(order.getTotalPrice()) %>원</td>
-        <td><%=order.getOrderName()%></td>
-        <td><%=order.getOrderPhone()%></td>
-        <td><%=order.getOrderAddress()%></td>
-        <td><%=order.getDateTime()%></td>
+        <td><%=h_dummy.get("hid")%></td>
+        <td><%=h_dummy.get("email")%></td>
+        <td><%=h_dummy.get("pname")%></td>
+        <td><%= NumberFormat.getInstance().format(h_dummy.get("cost")) %>원</td>
+        <td><%=h_dummy.get("quantity")%></td>
+        <td><%= NumberFormat.getInstance().format(h_dummy.get("total_cost")) %>원</td>
+        <td><%=h_dummy.get("name")%></td>
+        <td><%=h_dummy.get("phone")%></td>
+        <td><%=h_dummy.get("address")%></td>
+        <td><%=h_dummy.get("datetime")%></td>
     </tr>
     <%  // 주문번호 증가
         productNumber++;
     } // for문 종료
     %>
-    <% out.println("orderList size: " + orderList.size()); %>
-
 </table>
 </body>
 </html>
