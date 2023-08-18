@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>상품목록</title>
     <link rel="stylesheet" href="../../base-style.css">
-    <link rel="stylesheet" href="product-list.css">
+    <link rel="stylesheet" href="product-list.css?after">
 </head>
 <body>
     <%
@@ -54,7 +54,6 @@
                     //제품 리스트의 수량만큼 제품 정보 출력하기
                     for(ProductDTO p : productList){
             %>
-            <p>테스트 입미둥</p>
             <a>
                 <img class="product_box_img" src="../<%=p.getPimage()%>" alt="productImage">
                 <p class="product_box_name"><%=p.getProduct_name()%></p>

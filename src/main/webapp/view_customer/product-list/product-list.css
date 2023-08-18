@@ -61,33 +61,38 @@ header{
     margin-bottom: 40px;
 }
 
+
 /*상품 정보 각 1개*/
 .product_box {
-    margin: 0px 5%;
-    width: 23%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열을 생성하고, 각 열은 동일한 너비 */
+    gap: 2%; /* 간격 설정 */
+    justify-items: center; /* 가로로 가운데 정렬 */
+    width: 100%; /* 너비 100% 설정 */
+    box-sizing: border-box; /* 패딩과 여백을 포함한 크기 계산 */
     text-align: center;
+
 }
 
 .product_box_img {
     width: 100%;
     height: 70%;
-    padding: 20px 20px;
+    padding: 20px;
     display: block;
+    object-fit: cover; /* 이미지 비율 유지 하면서 채우기 */
 }
 .product_box_name {
     width: 100%;
     height: 15%;
-    padding: 5px 20px;
+    margin-bottom: -12%;
+    font-weight: bold;
+    font-size: 18px;
 }
 .product_box_cost {
     width: 100%;
     height: 15%;
-    padding: 0px 20px;
+    font-size: 18px;
 }
-
-
-
 
 /*----------/공통-------------*/
 /*gap*/

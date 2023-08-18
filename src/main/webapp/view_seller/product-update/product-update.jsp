@@ -1,5 +1,7 @@
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.ProductDTO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +34,11 @@
 </header>
 <%
     String currentUser = (String) session.getAttribute("memberEmail");
+    String pid = request.getParameter("pid");
     System.out.println(currentUser);
     db_dao userDao = new db_dao();
-    HashMap<String, String> sellerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
+    // 제품 수정 시 기존에 등록된 제품의 정보가 조회 되는 함수
+    List<ProductDTO> productList = userDao.print_product(currentUser);
 %>
 <main>
     <!--상품 수정 정보 입력 창-->
