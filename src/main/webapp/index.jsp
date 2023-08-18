@@ -19,25 +19,35 @@
         <!-- top-menu -->
         <ul class="top-menu">
             <%
-                String user_email = (String) session.getAttribute("memberEmail");
+                String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
                 String user_name = "";
                 if (user_email != null) {
                     user_name = dbDao.getNameByEmail(user_email);
                 }
             %>
-            <li><p><%= user_name %>님 환영합니다.</p></li>
+            <% if (user_email != null) { %>
+                <li><p><%= user_name %>님 환영합니다.</p></li>
+            <% } %>
             <li><a href="#">게시판</a></li>
-            <li class=my-page><a href="#">마이페이지</a>
-                <ul class="submenu">
-                    <li><a href="view_customer/customer-info/customer-info.jsp">정보수정</a></li>
-                    <li><a href="#">주문내역</a></li>
-                    <li><a href="#">장바구니</a></li>
-                </ul>
-            </li>
+            <% if (user_email != null) { %>
+                <li class=my-page><a href="#">마이페이지</a>
+                    <ul class="submenu">
+                        <li><a href="view_customer/customer-info/customer-info.jsp">정보수정</a></li>
+                        <li><a href="#">주문내역</a></li>
+                        <li><a href="#">장바구니</a></li>
+                    </ul>
+                </li>
+            <% } %>
             <%--<li><a href="#" class="move_login_customer">로그인 테스트</a></li>--%> <!--class & js로 페이지 이동하는 예시-->
-            <li><a href="./view_customer/login-logout/login_customer.jsp">로그인</a></li>
-            <li><a href="./view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
-            <li><a href="./view_customer/register/register_customer.jsp">회원가입</a></li>
+            <% if (user_email == null) { %>
+                <li><a href="./view_customer/login-logout/login_customer.jsp">로그인</a></li>
+            <% } %>
+            <% if (user_email != null) { %>
+                <li><a href="./view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
+            <% } %>
+            <% if (user_email == null) { %>
+                <li><a href="./view_customer/register/register_customer.jsp">회원가입</a></li>
+            <% } %>
         </ul>
         <!-- //top-menu -->
 
