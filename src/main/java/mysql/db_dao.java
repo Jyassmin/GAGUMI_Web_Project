@@ -400,10 +400,11 @@ public class db_dao {
             // 데이터베이스 연결 및 쿼리 실행
             PreparedStatement pstmt1 = conn.prepareStatement(SQL);
 
-            pstmt1.setInt(1, current_uid); // 판매자 ID를 설정하세요
+            //pstmt1.setInt(1, current_uid); // 판매자 ID를 설정하세요
+            pstmt1.setInt(1, 10); // 판매자 ID를 설정하세요
             rs = pstmt1.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 sb.append( rs.getString(1));
                 sb.append(", ");
             }
@@ -432,23 +433,25 @@ public class db_dao {
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
         String c_list = getHistoryUid(uid); // 해당 판매자의 물품을 구매한 고객의 리스트
-        String SQL = "select h.hid, u.email, h.pname, h.cost, h.quantity, h.cost*h.quantity, u.name, u.phone, u.address, h.datetime\n" +
-                "from history h join user u on h.uid = u.uid\n" +
-                "    join product p on h.pid = p.pid\n" +
-                "where u.uid in (?) and p.uid = ?;";
+        String SQL = "select h.hid, u.email, h.pname, h.cost, h.quantity, h.cost*h.quantity, u.name, u.phone, u.address, h.datetime " +
+                "from history h join user u on h.uid = u.uid" +
+                "    join product p on h.pid = p.pid " +
+                "where u.uid in (" + c_list + ") and p.uid = ?;";
         try {
             ArrayList<HashMap<String, String>> history_list = new ArrayList<>();
-            HashMap<String, String> hashmap_dummy = new HashMap<>();
+
             ResultSet rs = null;
             // 데이터베이스 연결 및 쿼리 실행
             PreparedStatement pstmt1 = conn.prepareStatement(SQL);
 
-            pstmt1.setString(1, c_list);
-            pstmt1.setInt(2, uid);
+            //pstmt1.setString(1, c_list);
+            System.out.println(c_list);
+            pstmt1.setInt(1, uid);
 
             rs = pstmt1.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
+                HashMap<String, String> hashmap_dummy = new HashMap<>();
                 hashmap_dummy.put("hid", rs.getString(1));
                 hashmap_dummy.put("email", rs.getString(2));
                 hashmap_dummy.put("pname", rs.getString(3));
@@ -460,7 +463,16 @@ public class db_dao {
                 hashmap_dummy.put("address", rs.getString(9));
                 hashmap_dummy.put("datetime", rs.getString(10));
                 history_list.add(hashmap_dummy);
+                System.out.println("name " + rs.getString(7));
             }
+                System.out.println(history_list.get(0).get("hid"));
+                System.out.println(history_list.get(1).get("hid"));
+                System.out.println(history_list.get(2).get("hid"));
+                System.out.println(history_list.get(3).get("hid"));
+                System.out.println(history_list.get(4).get("hid"));
+                System.out.println(history_list.get(5).get("hid"));
+
+
             return history_list;
 
         } catch (SQLException e) {
