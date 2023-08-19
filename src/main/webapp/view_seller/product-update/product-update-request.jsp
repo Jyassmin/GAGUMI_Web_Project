@@ -24,26 +24,30 @@
     String modify_pimage = request.getParameter("modify_pimage"); // 상품이미지
 
     db_dao userDao = new db_dao();
-    int update_data = userDao.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, modify_pimage);
+
+    // <product-update.jsp>에서 가져온 상품 코드(pid)를 사용하여 상품 정보를 업데이트합니다.
+    String pidParam = request.getParameter("pid");
+    int targetPid = 0;
+    if (pidParam != null && !pidParam.isEmpty()) {
+        targetPid = Integer.parseInt(pidParam);
+    }
+
+    // 상품 정보 업데이트 시도
+    int update_data = userDao.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, modify_pimage, targetPid);
 
     if(update_data > 0){
-        //데이터 삽입 성공
-        // 업데이트 성공
-        out.println("정보 수정 성공: " + update_data + "개의 행이 업데이트되었습니다.");
+        // 데이터 업데이트 성공
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('정보 수정 성공')");
+        script.println("alert('상품 수정 성공')");
         script.println("location.href='../seller-home/seller-home.jsp';");
         script.println("</script>");
         script.close();
-        return;
-    }else {
-        // 데이터 삽입 실패
-        out.println("데이터 삽입 실패");
-// 업데이트 실패
-        out.println("정보 수정 실패: 행이 업데이트되지 않았습니다.");
+    } else {
+        // 데이터 업데이트 실패
+        out.println("데이터 삽입 실패.");
         out.println(update_data);
     }
 %>
-  </body>
+</body>
 </html>
