@@ -69,7 +69,6 @@
     </tr>
     <%!
         String deleteProductURL(int pid) {
-            System.out.println("deleteProductURL 함수 호출됨"); // 디버깅 메시지 추가
             return String.format("./product-read-delete.jsp?pid=%d", pid);
         }
     %>

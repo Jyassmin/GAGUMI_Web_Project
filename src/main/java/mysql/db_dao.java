@@ -426,7 +426,7 @@ public class db_dao {
 
         return null;
     }
-
+    //판매자 기준으로 로그인 후 고객주문목록 조회하는 함수
     public ArrayList<HashMap<String, String>> print_orderList(String email) {
         Connection conn = db_util.getConnection();
         int uid = getUidByEmail(email);
@@ -753,11 +753,11 @@ public class db_dao {
     }
 
     //등록상품수정 디비에 적용하는 함수
-    public int productUpdateInfo(String currentUser, String modifyName, int modifyCost, int  modifyStock, String modifyDesc, String modifyPimage) {
+    public int productUpdateInfo(String currentUser, String modifyName, int modifyCost, int  modifyStock, String modifyDesc, String modifyPimage, int targetPid) {
         Connection conn = db_util.getConnection();
         int currentUID = getUidByEmail(currentUser);
         //product테이블 pid 기준으로 업데이트 될 값 세팅
-        String SQL = "UPDATE product SET name = ?, cost = ?, stock = ?, `desc` = ?, pimage = ? WHERE pid = ?;";
+        String SQL = "UPDATE product SET name = ?, cost = ?, stock = ?, `desc` = ?, pimage = ? WHERE uid = ? AND pid = ?;";
 
         try {
             // 실행 가능 상태의 sql문으로 만듦.
@@ -768,6 +768,8 @@ public class db_dao {
             pstmt.setInt(3, modifyStock);
             pstmt.setString(4, modifyDesc);
             pstmt.setString(5, modifyPimage);
+            pstmt.setInt(6, currentUID);
+            pstmt.setInt(7, targetPid);
 
             // 명령어를 수행한 결과
             // 1_execute -> 테이블 생성, 수정, 삭제 등 데이터베이스 관리 명령어 사용(table)
