@@ -89,7 +89,7 @@
                     for(ProductDTO p : productList){
             %>
             <a href="../product-detail/product-detail.jsp?pid=<%=p.getPid()%>">
-                <img class="product_box_img" src="../<%=p.getPimage()%>" alt="productImage">
+                <img class="product_box_img" src="<%=p.getPimage()%>" alt="productImage">
                 <p class="product_box_name"><%=p.getProduct_name()%></p>
                 <p class="product_box_cost"><%=NumberFormat.getInstance().format(p.getCost())%>원</p>
             </a>

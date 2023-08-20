@@ -190,7 +190,7 @@ hr {
     margin-right: 6%;
 }
 
-input[type="button"] {
+.delete input[type="submit"] {
     font-family: dream-bold, sans-serif;
     font-size: 16px;
     border: none;
@@ -203,11 +203,16 @@ input[type="button"] {
     margin-right: 1%;
     text-align: center;
 }
-.delete input[type="button"] span {
+.delete input[type="submit"] span {
     display: inline-block;
     vertical-align: middle;
 }
-
+.delete [type="submit"]:hover{
+    cursor: pointer;
+}
+.delete [type="submit"]:active{
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
+}
 .total-price-wrap{
     margin-top: 20px;
     display: flex;

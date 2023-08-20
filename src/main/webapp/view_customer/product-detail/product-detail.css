@@ -98,7 +98,7 @@ header{
 }
 
 /*상단타이틀*/
-h1{
+#title{
     margin-top: 20px;
     text-align: center;
     letter-spacing: 8px;
@@ -150,12 +150,28 @@ h1{
     color: #A43E1D;
     text-align: center;
 }
+
 /*장바구니 버튼*/
 .product-basket-button{
     text-align: center;
     width: 100%;
     position: absolute;
     bottom: 0;
+}
+button {
+    font-size: 18px;
+    background-color: #a43e1d;
+    border-radius: 15px;
+    color: white;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
 }
 
 /*제품 정보 구분선*/

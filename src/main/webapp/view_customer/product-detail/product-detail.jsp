@@ -1,4 +1,6 @@
+<%@ page import="mysql.ProductDTO" %>
 <%@ page import="mysql.db_dao" %>
+<%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +43,12 @@
         <% if (user_email != null) { %><li><a href="../login-logout/logout_process.jsp">로그아웃</a></li><% } %>
         <% if (user_email == null) { %><li><a href="../register/register_customer.jsp">회원가입</a></li><% } %>
     </ul>
+  
     <!-- //top-menu -->
     <div class="logo">
         <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
+
     <!--  search      -->
     <div class="search">
         <input type="text" placeholder="검색">
@@ -58,38 +62,48 @@
         <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
         <li><a href="../product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
     </ul>
-    <h1>상품 정보</h1>
+    <h1 id="title">상품 정보</h1>
+    <hr>
 </header>
 <main>
+    <%
+        String currentUser = (String) session.getAttribute("memberEmail");
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        db_dao detail_dao = new db_dao();
+        ProductDTO pdto = detail_dao.printProductDetail(pid);
+    %>
+
+
     <section class="product-section">
         <div class="product-detail">
             <!--상품 이미지-->
             <div class="product-detail-image" >
-                <img src="../../images/sofa/sofa1.jpg" alt="product-image">
+                <img src="../<%=pdto.getPimage()%>" alt="product-image">
             </div>
             <!--제픔정보-->
             <div class="product-detail-info" >
                 <!--제품명, 제품 설명-->
                 <div class="product-desc-top">
-                    <h1>댕편한 소파</h1>
-                    <p style="height: 100px">위 코드에서 font-size 값을 조절하여 원하는 글씨 크기로
-                        변경할 수 있습니다. 값을 픽셀(px) 단위로 설정하거나, em, rem, % 등의
-                        다른 단위를 사용하여 글씨 크기를 조절할 수 있습니다. 예를 들어, 글씨 크기를
-                        상대적인 em 단위로 설정하려면 아래와 같이 할 수 있습니다:</p>
+                    <h1><%=pdto.getProduct_name()%></h1>
+                    <p style="height: 100px"><%=pdto.getDesc()%></p>
                 </div>
                 <!--제품 크기, 제품 가격, 수량-->
-                <div class="product-desc-bottom">
-                    <p>제품 크기 : 150X100X200</p>
-                    <h3>10,000원</h3>
-                    <p>수량 <input id="quantity" type="number" min="1" max="100" value="1"></p>
-                </div>
+                <form id="basket" name="basket" action="product-detail-request.jsp" method="post">
+                    <input style="display: none" type="text" name="pid" value="<%=pdto.getPid()%>">
+                    <div class="product-desc-bottom">
+                        <p>제품 크기 : <%=pdto.getSize()%></p>
+                        <h3><%=NumberFormat.getInstance().format(pdto.getCost())%>원</h3>
+                        <p>수량 <input name="quantity" id="quantity" type="number" min="1" max="100" value="1"></p>
+                    </div>
+                </form>
                 <!--장바구니 담기 버튼-->
                 <div class="product-basket-button">
-                    <input id="basket-button" type="button" value=" 장 바 구 니 담 기 ">
+                        <button type="submit" form="basket" id="product-basket-button">장 바 구 니 담 기</button>
                 </div>
             </div>
         </div>
     </section>
+
     <hr>
     <!--리뷰 작성 및 리뷰 내용 보기-->
     <section class="review-section">
@@ -97,15 +111,29 @@
             <!--리뷰 작성 버튼-->
             <div class="review-button">
                 <form action="../review-writer/review-writer.html">
-
+                    <input id="review-button" type="button" value=" 리 뷰 작 성 하 기  ">
                 </form>
-                <input id="review-button" type="button" value=" 리 뷰 작 성 하 기  ">
             </div>
 
         </div>
 
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const basketForm = document.getElementById('basket');
+            const loginStatus = <%= currentUser %>; // 로그인 상태에 따라 값을 설정해주세요
+            console.log(loginStatus)
+            basketForm.addEventListener('submit', function(event) {
+                if (loginStatus == null) {
+                    event.preventDefault();
+                    if (confirm('로그인 후에 장바구니에 담을 수 있습니다. 로그인 페이지로 이동하시겠습니까?')) {
+                        window.location.href = '../../view_customer/login-logout/login_customer.jsp'; // 로그인 페이지의 URL
+                    }
+                }
+            });
+        });
+    </script>
 
 </main>
 <footer>
