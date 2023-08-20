@@ -876,7 +876,7 @@ public class db_dao {
             PreparedStatement ptsmt = conn.prepareStatement(sql);
             ptsmt.setInt(1, uid);
             rs = ptsmt.executeQuery();
-            List<ProductDTO> revenue = new ArrayList<>(); //각 제품의 총 매출 정보를 담을 리스트
+            List<ProductDTO> detail = new ArrayList<>(); //각 제품의 총 매출 정보를 담을 리스트
             String product_name = ""; // 제품 명
             int quan = 0, cost = 0; // 주문 수량, 제품 금액
 
@@ -885,12 +885,12 @@ public class db_dao {
                 cost = rs.getInt(2);
                 quan = rs.getInt(3);
                 ProductDTO pdto = new ProductDTO(product_name, quan, cost);
-                revenue.add(pdto);
+                detail.add(pdto);
             }
 
             rs.close();
 
-            return revenue;
+            return detail;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -904,6 +904,77 @@ public class db_dao {
             }
         }
         return null;
+    }
+
+    // 제품 디테일 출력하는 함수
+    public ProductDTO printProductDetail(int pid){
+        Connection conn = db_util.getConnection();
+        String sql = "SELECT name, stock, cost, `desc`, pimage, size  FROM product WHERE pid = ?;";
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            ResultSet rs = null;
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            ptsmt.setInt(1, pid);
+            rs = ptsmt.executeQuery();
+            ProductDTO pdto = null;
+            String product_name = ""; // 제품 명
+            int stock = 0, cost = 0; // 재고, 제품 금액
+            String desc = "", pimage="", size="" ; //제품 설명, 제품 이미지, 제품 사이즈
+
+            while(rs.next()){
+                product_name = rs.getString(1);
+                stock = rs.getInt(2);
+                cost = rs.getInt(3);
+                desc = rs.getString(4);
+                pimage = rs.getString(5);
+                size = rs.getString(6);
+                pdto = new ProductDTO(pid, product_name, cost, stock, desc, pimage, size);
+            }
+
+            rs.close();
+
+            return pdto;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    // 장바구니 담기 함수
+    public int insertShoppingCart(String currentUser, int pid, int quantity) {
+        Connection conn = db_util.getConnection();
+        int uid = getUidByEmail(currentUser);
+        String sql = "INSERT INTO shoppingcart (uid, pid, quantity) VALUES (?,?,?)";
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            ptsmt.setInt(1, uid);
+            ptsmt.setInt(2, pid);
+            ptsmt.setInt(3, quantity);
+
+            return ptsmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
     }
 }
 

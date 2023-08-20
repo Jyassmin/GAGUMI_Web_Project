@@ -60,6 +60,17 @@ public class ProductDTO {
         this.pimage = pimage;
     }
 
+    // 제품 디테일 출력하는 생성자(제품 코드, 제품명, 가격, 재고, 설명, 이미지, 사이즈)
+    public ProductDTO(int pid, String product_name, int cost, int stock, String desc, String pimage, String size) {
+        this.pid = pid;
+        this.product_name = product_name;
+        this.cost = cost;
+        this.stock = stock;
+        this.desc = desc;
+        this.pimage = pimage;
+        this.size = size;
+    }
+
     /*getter---------------------------------------------------*/
 
     public int getPid() {
