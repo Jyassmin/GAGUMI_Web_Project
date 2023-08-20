@@ -1,8 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mysql.ProductDTO" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

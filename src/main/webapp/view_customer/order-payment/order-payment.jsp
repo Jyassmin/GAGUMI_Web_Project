@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="mysql.db_dao" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,34 +17,69 @@
 <header>
     <!-- top-menu -->
     <ul class="top-menu">
-        <li><a href="#">OOO님 환영합니다.</a></li>
-        <li><a href="#">게시판</a></li>
+        <%--세션에서 UID를 가져와 name을 저장--%>
+        <%
+            db_dao user_dao = new db_dao();
+            String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
+            String user_name = "";
+            if (user_email != null) {
+                user_name = user_dao.getNameByEmail(user_email);
+            }
+        %>
+        <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
+        <% if (user_email != null) { %><li><p><%= user_name %>님 환영합니다</p></li><% } %>
+        <li><a href="../board/board.html">게시판</a></li> <!--게시판은 항상 보이게-->
+        <% if (user_email != null) { %>
         <li class=my-page><a href="#">마이페이지</a>
             <ul class="submenu">
-                <li><a href="#">정보수정</a></li>
-                <li><a href="#">주문내역</a></li>
-                <li><a href="#">장바구니</a></li>
+                <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
+                <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+                <li><a href="../basket/basket.jsp">장바구니</a></li>
             </ul>
         </li>
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">회원가입</a></li>
+        <% } %>
+        <%--<li><a href="#" class="move_login_customer">로그인 테스트</a></li>--%> <!--class & js로 페이지 이동하는 예시-->
+        <% if (user_email == null) { %><li><a href="../login-logout/login_customer.jsp">로그인</a></li><% } %>
+        <% if (user_email != null) { %><li><a href="../login-logout/logout_process.jsp">로그아웃</a></li><% } %>
+        <% if (user_email == null) { %><li><a href="../register/register_customer.jsp">회원가입</a></li><% } %>
     </ul>
-    <!-- //top-menu -->
+
+    <!--  logo   -->
     <div class="logo">
         <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
+
+    <!--  search      -->
+    <div class="search">
+        <input type="text" placeholder="검색">
+        <a href="#"><i class="bi bi-search"></i></a>
+    </div>
+    <ul class="navmenu">
+        <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
+        <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
+    </ul>
     <h1>주문/결제</h1>
 </header>
 <!--주문 정보 전체 창-->
 <section class="order">
+    <%
+        int user_uid = user_dao.getUidByEmail(user_email);
+        String user_address = user_dao.getAddressByUid(user_uid);
+        String user_phone = user_dao.getPhoneByUid(user_uid);
+
+    %>
     <!--배송정보-->
     <div class="address">
         <div>
-            <h3>배송지</h3>
+            <h3>배 송 지</h3>
         </div>
         <hr>
         <div>
-            <p>주소</p>
+            <p>주소 : <%= user_address %></p> <!--주소 입력-->
         </div>
         <select name="message">
             <option value="">배송 메세지를 선택하세요.</option>
@@ -52,22 +89,26 @@
             <option value="">부재 시 전화 남겨주시거나 문자 주세요.</option>
         </select>
     </div>
+
     <!--주문자 정보-->
     <div class="order-person">
         <div>
-            <h3>주문자</h3>
+            <h3>주 문 자</h3>
         </div>
+        <hr>
         <div>
-            <p>이름</p>
-            <p>아이디</p>
-            <p>휴대전화</p>
+            <p>이름 : <%= user_name %></p>
+            <p>아이디 : <%= user_email %></p>
+            <p>휴대전화 : <%= user_phone %></p>
         </div>
     </div>
+</section>
+<section>
     <!--주문 상품 정보-->
     <div class="order-products">
         <div>
             <h3>주문상품</h3>
-            <p>판매자</p>
+            <p>판매자 : </p> <!--판매자-->
         </div>
         <div id="order-product-info">
             <span id="order-img"><img src="../../images/sofa/sofa1.jpg"></span>
@@ -77,7 +118,6 @@
                 <p><span>30,000원</span> | <span>3개</span></p>
             </span>
         </div>
-
     </div>
 </section>
 <!--결제정보 전체 창-->
