@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="view_customer/home/home.css">
     <script src="jquery.min.js"></script>
     <script src="view_customer/home/script/home.js"></script>
-
 </head>
 <body>
     <%db_dao dbDao = new db_dao();%> // dao 인스턴스 생성
@@ -34,7 +33,7 @@
                     <ul class="submenu">
                         <li><a href="./view_customer/customer-info/customer-info.jsp">정보수정</a></li>
                         <li><a href="view_customer/order-history/order-history.jsp">주문내역</a></li>
-                        <li><a href="./view_customer/basket/basket.html">장바구니</a></li>
+                        <li><a href="view_customer/basket/basket.jsp">장바구니</a></li>
                     </ul>
                 </li>
             <% } %>
@@ -47,7 +46,7 @@
 
         <!--  logo   -->
         <div class="logo">
-            <a href="#"><img src="images/logo.png"></a>
+            <a href="./index.jsp"><img src="images/logo.png"></a>
         </div>
         <!--  search      -->
         <div class="search">
@@ -68,11 +67,18 @@
         <img src="images/main-image.webp">
     </section>
     <section class="main-banner">
-        <% if (user_email != null) { %><div><a href="./view_customer/order-history/order-history.jsp">주문내역</a></div><% } %>
+        <% if (user_email == null) { %><div><a href="./view_customer/login-logout/login_customer.jsp">주문내역</a></div>
+        <% } else { %><div><a href="./view_customer/order-history/order-history.jsp">주문내역</a></div><% } %>
+
         <div><a href="./view_customer/board/board.html">게시판</a></div>
-        <% if (user_email != null) { %><div><a href="./view_customer/basket/basket.html">장바구니</a></div><% } %>
-        <% if (user_email != null) { %><div><a href="./view_customer/customer-info/customer-info.jsp">마이페이지</a></div><% } %>
-       <div><a href="#">회사소개</a></div>
+
+        <% if (user_email == null) { %><div><a href="./view_customer/login-logout/login_customer.jsp">장바구니</a></div>
+        <% } else { %><div><a href="view_customer/basket/basket.jsp">장바구니</a></div><% } %>
+
+        <% if (user_email == null) { %><div><a href="./view_customer/login-logout/login_customer.jsp">마이페이지</a></div>
+        <% } else { %><div><a href="./view_customer/customer-info/customer-info.jsp">마이페이지</a></div><% } %>
+
+       <div><a href="./view_customer/company-intro/company-intro.html">회사소개</a></div>
     </section>
     </div>
     <section class="gap"></section>
