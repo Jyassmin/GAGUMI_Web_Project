@@ -21,13 +21,13 @@
         <!-- top-menu -->
         <ul class="top-menu">
             <li><a href="#">게시판</a></li>
-            <li><a href="../login/login_customer.jsp">로그인</a></li>
+            <li><a href="./login_customer.jsp">로그인</a></li>
             <li><a href="../register/register_customer.jsp">회원가입</a></li>
         </ul>
 
         <!--  logo   -->
         <div class="logo">
-            <img src="../../images/logo.png">
+            <a href="../../index.jsp"><img src="../../images/logo.png"></a>
         </div>
         <!-- menu-name -->
         <div class="menu-name">
@@ -41,7 +41,7 @@
             <!--    고객, 판매자 선택    -->
             <div class="login-top">
                 <a id="select_customer_in_customer" href="./login_customer.jsp">고 객</a>
-                <a id="select_seller_in_customer" href="login_seller.jsp">판 매 자</a>
+                <a id="select_seller_in_customer" href="./login_seller.jsp">판 매 자</a>
             </div>
 
              <!--   정보입력 & 제출     -->

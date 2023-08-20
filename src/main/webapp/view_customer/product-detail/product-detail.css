@@ -55,8 +55,48 @@ header{
 
 .logo > a > img{
     width: 30%;
-
 }
+
+/*search*/
+.search{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.search input[type=text]{
+    border: 2px solid #A43E1D;
+    border-radius: 14px;
+    padding: 5px;
+    text-align: center;
+}
+.search input[type=text]:focus{
+    outline: none;
+    border-color: #A43E1D;
+}
+.bi-search::before {
+    margin-left: 5px;
+}
+/*navmenu*/
+.navmenu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #A43E1D;
+    margin-bottom: 5.3%;
+}
+.navmenu>li>a{
+    display: block;
+    padding: 10px 50px;
+    font-size: 14px;
+    width: 77px;
+    text-align: center;
+}
+.navmenu>li>a:hover{
+    background-color: #A43E1D;
+    color: white;
+}
+
 /*상단타이틀*/
 h1{
     margin-top: 20px;
