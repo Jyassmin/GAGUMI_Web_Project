@@ -976,5 +976,33 @@ public class db_dao {
         }
         return -1;
     }
-}
+    //uid기준으로 장바구니 데이터 출력해주는 함수 (이미지 / 제품명 / 주문 수량 / 총 금액)
+    public List<ShoppingCartDTO> getShoppingCart(String currentUser) {
+        List<ShoppingCartDTO> cartItems = new ArrayList<>();
 
+        try (Connection conn = db_util.getConnection()) {
+            int uid = getUidByEmail(currentUser);
+            String sql = "SELECT p.pimage, p.name, sc.quantity, p.cost FROM shoppingcart sc JOIN product p ON sc.pid = p.pid WHERE sc.uid = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, uid);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    // 데이터베이스 결과에서 필요한 정보 추출
+                    String pimage = rs.getString("pimage");
+                    String name = rs.getString("name");
+                    int cost = rs.getInt("cost");
+                    int quantity = rs.getInt("quantity");
+                    // ShoppingCartDTO 객체 생성 및 리스트에 추가
+                    ShoppingCartDTO shoppingCart = new ShoppingCartDTO(pimage, name, cost, quantity);
+                    cartItems.add(shoppingCart);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cartItems;
+    }
+}
