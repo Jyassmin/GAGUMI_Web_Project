@@ -119,7 +119,7 @@ header{
     width: 100%;
     display: flex;
     justify-content: space-around;
-    background-color: #F5EFE2;
+    background-color: white;
     margin-top: -4px;
 
 }
@@ -134,12 +134,25 @@ header{
     text-align: center;
     line-height: 126px;
     box-shadow: 1px 1px 1px 1px rgb(201, 200, 200);
+    transform: translateY(2px);
+
+}
+
+.main-banner>div>a:hover{
+    text-decoration: underline;
 }
 
 /*gap*/
 .gap{
-    width: 100%;
-    height: 500px;
+    display: flex;
+    justify-content: space-between; /* 이미지 간격 조절 */
+    align-items: stretch; /* 이미지들의 높이를 같게 설정 */
+}
+.gap img{
+    width: 600px;
+    display: block;
+    /*max-width: 100%; !* 이미지가 컨테이너를 넘지 않도록 함 *!*/
+    /*height: auto; !* 가로세로 비율 유지 *!*/
 }
 
 /*footer*/
