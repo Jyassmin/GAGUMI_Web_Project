@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String[] selectedItems = request.getParameterValues("selectedItems");
-    System.out.println(selectedItems[0]);
     db_dao userDao = new db_dao();
     int successfulDeletions = 0;
 
@@ -11,11 +10,8 @@
             int sid = 0;
 
             try {
-                System.out.println("123"); // 디버깅 출력
                 sid = Integer.parseInt(sidParam);
-                System.out.println("Deleted item with siddddddddddd " + sid); // 디버깅 출력
                 int result = userDao.deleteShoppingCart(sid);
-                System.out.println("Deleted item with sid: " + sid); // 디버깅 출력
 
                 if (result > 0) {
                     successfulDeletions++;
