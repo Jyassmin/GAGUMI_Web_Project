@@ -55,6 +55,7 @@ header{
 
 .logo > a> img{
     width: 30%;
+    margin-bottom: 30px;
 }
 
 /*search*/
