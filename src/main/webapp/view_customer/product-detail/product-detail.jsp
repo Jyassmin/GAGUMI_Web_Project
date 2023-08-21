@@ -30,7 +30,7 @@
         <% if (user_email != null) { %><li><p><%= user_name %>님 환영합니다</p></li><% } %>
         <li><a href="../board/board.html">게시판</a></li> <!--게시판은 항상 보이게-->
         <% if (user_email != null) { %>
-        <li class=my-page><a href="#">마이페이지</a>
+        <li class=my-page><a href="#">마이페이지▼</a>
             <ul class="submenu">
                 <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
                 <li><a href="../order-history/order-history.jsp">주문내역</a></li>
@@ -49,11 +49,6 @@
         <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
 
-    <!--  search      -->
-    <div class="search">
-        <input type="text" placeholder="검색">
-        <a href="#"><i class="bi bi-search"></i></a>
-    </div>
     <ul class="navmenu">
         <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
         <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
