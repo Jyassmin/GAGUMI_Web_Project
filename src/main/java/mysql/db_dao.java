@@ -273,6 +273,70 @@ public class db_dao {
         return -1;
     }
 
+    public int getPidBySid(String sid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT pid from shoppingcart where sid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, sid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int result_pid = rs.getInt(1);
+            rs.close();
+
+            return result_pid; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public int getQuanBySid(String sid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT quantity from shoppingcart where sid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, sid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int result_quan = rs.getInt(1);
+            rs.close();
+
+            return result_quan; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
     // 고객정보 수정 시 업데이트 하는 함수
     public int sellerUpdateInfo(String currentUser, String name, String pw, String phone, String company, String post_code, String full_address){
         Connection conn = db_util.getConnection();
@@ -458,6 +522,7 @@ public class db_dao {
 
         return null;
     }
+
     //판매자 기준으로 로그인 후 고객주문목록 조회하는 함수
     public ArrayList<HashMap<String, String>> print_orderList(String email) {
         Connection conn = db_util.getConnection();
@@ -1064,5 +1129,123 @@ public class db_dao {
             }
         }
         return 0; //삭제 실패한 경우
+    }
+
+
+    // sid 기준으로 상품 재고 감소 시키기 위한 정보 가져오기
+    public List<String[]> getInfoBySid(String[] sid){
+        Connection conn = db_util.getConnection();
+        String sql = "SELECT pid, quantity FROM shoppingcart WHERE sid =?;";
+        List<String[]> info = new ArrayList<>();
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            ResultSet rs = null;
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            for(int i=0; i<sid.length; i++){
+                String[] quanAndPid = new String[2];
+                ptsmt.setString(1, sid[i]);
+                rs = ptsmt.executeQuery();
+                rs.next();
+                quanAndPid[0] = rs.getString("pid");
+                quanAndPid[1] = rs.getString("quantity");
+                info.add(quanAndPid);
+                rs.close();
+            }
+
+            return info;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+    public int modifyQuantity(String[] sid){
+        Connection conn = db_util.getConnection();
+        List<String[]> info = new ArrayList<>();
+        info = getInfoBySid(sid);
+        int result = 0;
+        String sql = "UPDATE product SET stock = (stock - ?) WHERE pid = ?;";
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            for(int i=0; i<info.size(); i++){
+                ptsmt.setString(1, info.get(i)[1]);
+                ptsmt.setString(2, info.get(i)[0]);
+
+                result += ptsmt.executeUpdate();
+            }
+
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return -1;
+    }
+
+    public int deleteByBuy(String[] sid){
+        int result = 0;
+        for(int i=0; i<sid.length; i++){
+            int oneSid = Integer.parseInt(sid[i]);
+            result += deleteShoppingCart(oneSid);
+        }
+        return result;
+    }
+  
+    // 장바구니 담기 함수
+    public int insertHistory(int uid, String[] selectedItems, String strdate) {
+
+        for (String item_sid : selectedItems) {
+            int product_pid = getPidBySid(item_sid);
+            int product_quan = getQuanBySid(item_sid);
+            ProductDTO pdto = printProductDetail(product_pid); // 물품 정보 가져오기
+
+
+            Connection conn = db_util.getConnection();
+            String sql = "INSERT INTO history (uid, pid, oid, quantity, pname, cost, datetime) VALUES (?, 1, 1, 2, '우아한 식탁의자', 200000, '2023-08-01 10:15:00')";
+            try {
+                // 데이터베이스 연결 및 쿼리 실행
+                PreparedStatement ptsmt = conn.prepareStatement(sql);
+                ptsmt.setInt(1, uid);
+                ptsmt.setInt(2, product_pid);
+                ptsmt.setInt(3, 1);
+                ptsmt.setInt(4, product_quan);
+                ptsmt.setString(5, pdto.getProduct_name());
+                ptsmt.setInt(6, pdto.getCost());
+                ptsmt.setString(7, strdate);
+
+                return ptsmt.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (conn != null && !conn.isClosed())
+                        conn.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            return -1;
+        }
     }
 }
