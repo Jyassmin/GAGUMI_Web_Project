@@ -1,12 +1,6 @@
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.util.HashMap" %><%--
-  Created by IntelliJ IDEA.
-  User: elane
-  Date: 2023-08-16
-  Time: PM 8:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="mysql.db_dao" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +25,7 @@
             }
         %>
         <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
-        <% if (user_email != null) { %><li><p><%= user_name %>님 환영합니다</p></li><% } %>
+        <% if (user_email != null) { %><li><span id="welcome"><%= user_name %>님 환영합니다</span></li><% } %>
         <li><a href="../board/board.html">게시판</a></li> <!--게시판은 항상 보이게-->
         <% if (user_email != null) { %>
         <li class=my-page><a href="#">마이페이지</a>
