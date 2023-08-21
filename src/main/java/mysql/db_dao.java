@@ -982,7 +982,7 @@ public class db_dao {
 
         try (Connection conn = db_util.getConnection()) {
             int uid = getUidByEmail(currentUser);
-            String sql = "SELECT p.pimage, p.name, sc.quantity, p.cost FROM shoppingcart sc JOIN product p ON sc.pid = p.pid WHERE sc.uid = ?";
+            String sql = "SELECT sc.sid, p.pimage, p.name, sc.quantity, p.cost FROM shoppingcart sc JOIN product p ON sc.pid = p.pid WHERE sc.uid = ?";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setInt(1, uid);
@@ -990,12 +990,13 @@ public class db_dao {
 
                 while (rs.next()) {
                     // 데이터베이스 결과에서 필요한 정보 추출
+                    int sid = rs.getInt("sid");
                     String pimage = rs.getString("pimage");
                     String name = rs.getString("name");
                     int cost = rs.getInt("cost");
                     int quantity = rs.getInt("quantity");
                     // ShoppingCartDTO 객체 생성 및 리스트에 추가
-                    ShoppingCartDTO shoppingCart = new ShoppingCartDTO(pimage, name, cost, quantity);
+                    ShoppingCartDTO shoppingCart = new ShoppingCartDTO(sid, pimage, name, cost, quantity);
                     cartItems.add(shoppingCart);
                 }
             }
@@ -1004,5 +1005,32 @@ public class db_dao {
         }
 
         return cartItems;
+    }
+    //sid기준으로 상품 삭제해주는 함수
+    public int deleteShoppingCart(int sid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "DELETE FROM shoppingcart WHERE sid = ? ";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1, sid);
+
+            int result = pstmt.executeUpdate(); // 1은 삭제 성공, 0은 삭제 실패
+
+            pstmt.close(); // Statement 닫기
+
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0; //삭제 실패한 경우
     }
 }

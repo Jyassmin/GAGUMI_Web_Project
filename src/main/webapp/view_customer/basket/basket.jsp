@@ -69,12 +69,13 @@
         </ul>
         <h1>장바구니</h1>
     </header>
+
+
     <form action="basket-delete.jsp" method="post">
     <div class="delete">
-        <input type="submit" id="selectAll" value="전체삭제">
-        <input type="submit" id="selectDelete" value="선택삭제">
+        <input type="submit" id="selectDelete" value="삭제">
     </div>
-    </form>
+
     <div class="wrap">
         <!-- left-menu -->
         <ul class="left-menu">
@@ -98,7 +99,7 @@
                 <!-- 아래는 동적 으로 DB가 추가될 행들이 들어갈 자리 모양 예시-->
                 <% for (ShoppingCartDTO cartItem : cartItems) { %>
                 <tr>
-                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox" name="selectedItems" checked value="<%= cartItem.getSid() %>"></td>
                     <td><img src="<%= cartItem.getPimage() %>" alt="<%= cartItem.getProduct_name() %>" width="50"></td>
                     <td><%= cartItem.getProduct_name() %></td>
                     <td><%= cartItem.getQuantitiy() %></td>
@@ -110,6 +111,7 @@
             </table>
         </div>
     </div>
+    </form>
     <div class="total-price-wrap">
         <table class="total-price">
             <tr>
