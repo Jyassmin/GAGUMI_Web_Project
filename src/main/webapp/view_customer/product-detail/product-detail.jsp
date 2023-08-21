@@ -55,7 +55,7 @@
         <div class="product-detail">
             <!--상품 이미지-->
             <div class="product-detail-image" >
-                <img src="../<%=pdto.getPimage()%>" alt="product-image">
+                <img src="<%=pdto.getPimage()%>" alt="product-image">
             </div>
             <!--제픔정보-->
             <div class="product-detail-info" >
