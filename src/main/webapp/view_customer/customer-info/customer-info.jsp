@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../base-style.css">
     <!--product-create 스타일-->
     <link rel="stylesheet" href="customer-info.css?after">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
     <meta charset="UTF-8">
     <title>개인 정보 수정</title>
 </head>
