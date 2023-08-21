@@ -273,6 +273,70 @@ public class db_dao {
         return -1;
     }
 
+    public int getPidBySid(String sid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT pid from shoppingcart where sid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, sid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int result_pid = rs.getInt(1);
+            rs.close();
+
+            return result_pid; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public int getQuanBySid(String sid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT quantity from shoppingcart where sid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, sid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int result_quan = rs.getInt(1);
+            rs.close();
+
+            return result_quan; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
     // 고객정보 수정 시 업데이트 하는 함수
     public int sellerUpdateInfo(String currentUser, String name, String pw, String phone, String company, String post_code, String full_address){
         Connection conn = db_util.getConnection();
@@ -458,6 +522,7 @@ public class db_dao {
 
         return null;
     }
+
     //판매자 기준으로 로그인 후 고객주문목록 조회하는 함수
     public ArrayList<HashMap<String, String>> print_orderList(String email) {
         Connection conn = db_util.getConnection();

@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.ProductDTO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,38 +110,47 @@
 </section>
 
   <!--주문 상품 정보-->
-  <%
-    String[] selectedItems = request.getParameterValues("selectedItems");
-    for (String sidParam : selectedItems) {
-  %>
   <section>
+  <%
+      String[] selectedItems = request.getParameterValues("selectedItems");
+      int total_cost = 0;
+      ArrayList<Integer> quan_list = new ArrayList<>();
+      for (String sidParam : selectedItems) {
+  %>
+      <%
+          String seller_email = user_dao.getEmailBySid(sidParam);
+          HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
+      %>
+      <%
+          int product_pid = user_dao.getPidBySid(sidParam);
+          int product_quan = user_dao.getQuanBySid(sidParam);
+          ProductDTO pdto = user_dao.printProductDetail(product_pid); // 물품 정보 가져오기
+      %>
     <div class="order-products">
       <div class="order-product-info">
-        <span class="order-img"><img src="../../images/sofa/sofa1.jpg"></span>
+        <span class="order-img"><img src="<%= pdto.getPimage() %>"></span>
         <div>
           <br>
-          <%
-            String seller_email = user_dao.getEmailBySid(sidParam);
-            HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
-          %>
-          <h3>판매자 정보</h3>
+          <h3>판 매 자 정 보</h3>
           <p>판매자명 : <%= sellerInfo.get("name") %> </p>
           <p>회사 : <%= sellerInfo.get("company") %> </p>
           <br>
           <br>
-          <%
-            String seller_email = user_dao.getEmailBySid(sidParam);
-            HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
-          %>
           <h3>주 문 상 품</h3>
           <span class="order-info">
-              <p>댕편한 의자</p>
-              <p><span>30,000원</span> | <span>3개</span></p>
+              <p> <%= pdto.getProduct_name() %> </p>
+              <p><span> <%= pdto.getCost() %> </span> | <span> <%=product_quan%>개</span></p>
+              <%
+                  total_cost += pdto.getCost() * product_quan;
+                  quan_list.add(product_quan);
+              %>
           </span>
         </div>
       </div>
     </div>
-
+<%
+    }
+%>
   </section>
   <!--결제정보 전체 창-->
 
@@ -148,16 +161,27 @@
         <h3>결 제 금 액</h3>
       </div>
       <div>
-        <p>총 상품 금액 : </p>
+        <p>총 상품 금액 : <%= total_cost %></p>
         <p>배송비 : 3,000원</p>
       </div>
       <div>
-        <h3>최종 결제 금액 : </h3>
+        <h3>최종 결제 금액 : <%= total_cost + 3000 %> </h3>
       </div>
     </div>
+
+    <form id="hidden_info" action="order-payment-process.jsp">
+        <%
+            Date date = new Date();
+            SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String strdate = simpleDate.format(date);
+        %>
+        <input type="hidden" value="<%=selectedItems%>">
+        <input type="hidden" value="<%=quan_list%>">
+        <input type="hidden" value="<%=strdate%>">
+    </form>
     <!--결제 버튼-->
     <div class="pay-button">
-      <input id="payment-submit" type="button" value="결제하기">
+      <button form="hidden_info" id="payment-submit" type="submit" value="결제하기">
     </div>
 </section>
 <footer>
