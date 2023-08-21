@@ -40,7 +40,7 @@
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('상품 수정을 성공하였습니다.')");
-        script.println("location.href='../seller-home/seller-home.jsp';");
+        script.println("location.href='../product-read/product-read.jsp';");
         script.println("</script>");
         script.close();
     } else {
