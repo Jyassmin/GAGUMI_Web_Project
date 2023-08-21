@@ -71,7 +71,7 @@
     </header>
 
 
-    <form action="basket-delete.jsp" method="post">
+    <form action="basket-delete.jsp" method="post" id="basket_info">
     <div class="delete">
         <input type="submit" id="selectDelete" value="삭제">
     </div>
@@ -131,7 +131,7 @@
                 <td><%= NumberFormat.getInstance().format(totalCartCost(cartItems) + 3000) %>원</td>
             </tr>
         </table>
-        <a href="#" id="order">주문하기</a>
+        <button type="submit" form="basket_info" formaction="../order-payment/order-payment.jsp" id="order">주문하기</button>
     </div>
     <footer>
         <div class="footer1">

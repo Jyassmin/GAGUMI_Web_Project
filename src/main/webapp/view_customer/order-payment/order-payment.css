@@ -99,7 +99,7 @@ width:100%;
     margin-bottom: 40px;
 }
  section {
-    margin: 14%;
+    margin: 5% 20%;
     background-color: #F5EFE2;
     border: 1px solid #a43e1d;
  }
@@ -112,29 +112,41 @@ width:100%;
     border-color: rgb(164, 62, 29);
     border-width: 1px;
  }
+
+ .order-products  {
+     border-bottom: 1px solid #a43e1d;
+
+ }
+ .order-products:last-child{
+     border-bottom: none;
+ }
+
+
  /*주문한 제품 정보*/
- #order-product-info {
+ .order-product-info {
     display: flex;
  }
  /*제품 이미지*/
  img {
-    width: 60%;
+    width: 100%;
+    height: 100%;
  }
- #order-img {
+ .order-img {
     width: 30%;
+     margin-right: 5%;
  }
  /*주문정보*/
- #order-info {
+ .order-info {
     display: block;
- }
- /*제품명*/
- .product-name {
-    margin-bottom: 35%;
  }
  /*결제하기버튼*/
  .pay-button {
     text-align: center;
  }
+ #payment-submit {
+     width: 30%;
+ }
+
  /*배송메세지 옵션*/
  select {
     margin-left: 2%;
