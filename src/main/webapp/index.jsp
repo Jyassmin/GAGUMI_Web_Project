@@ -94,6 +94,7 @@
         <div><a href="./view_customer/company-intro/company-intro.html">회사소개</a></div>
     </section>
 </div>
+
 <section class="gap">
     <img src="./images/bed1.jpg">
     <img src="./images/sofa8.jpg">
@@ -108,7 +109,8 @@
         </div>
         <div class="product">
             <h4>PRODUCT</h4>
-            <ul>
+             <ul>
+
                 <li><a href="./view_customer/product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
                 <li><a href="./view_customer/product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
                 <li><a href="./view_customer/product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
