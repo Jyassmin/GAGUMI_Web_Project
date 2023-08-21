@@ -208,6 +208,38 @@ public class db_dao {
         return null;
     }
 
+    public String getEmailBySid(String sellerEmail) {
+        Connection conn = db_util.getConnection();
+        String SQL = "select u.email from product p join shoppingcart s on p.pid = s.sid join user u on p.uid = u.uid where s.sid = ?;";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setString(1, sellerEmail);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            String result_email = rs.getString(1);
+            rs.close();
+
+            return result_email; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     // 현재 로그인한 유저의 session Email을 활용하여 UID 가져오는 함수
     public int getUidByEmail(String userEmail) {
         Connection conn = db_util.getConnection();

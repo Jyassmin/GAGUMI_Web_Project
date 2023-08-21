@@ -106,24 +106,38 @@
   </section>
 
   <!--주문 상품 정보-->
+  <%
+    String[] selectedItems = request.getParameterValues("selectedItems");
+    for (String sidParam : selectedItems) {
+  %>
   <section>
     <div class="order-products">
-      <div>
-        <h3>주 문 상 품</h3>
-        <p>판매자 : </p>
+      <div class="order-product-info">
+        <span class="order-img"><img src="../../images/sofa/sofa1.jpg"></span>
+        <div>
+          <br>
+          <%
+            String seller_email = user_dao.getEmailBySid(sidParam);
+            HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
+          %>
+          <h3>판매자 정보</h3>
+          <p>판매자명 : <%= sellerInfo.get("name") %> </p>
+          <p>회사 : <%= sellerInfo.get("company") %> </p>
+          <br>
+          <br>
+          <%
+            String seller_email = user_dao.getEmailBySid(sidParam);
+            HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
+          %>
+          <h3>주 문 상 품</h3>
+          <span class="order-info">
+              <p>댕편한 의자</p>
+              <p><span>30,000원</span> | <span>3개</span></p>
+          </span>
+        </div>
       </div>
-      <div id="order-product-info">
-        <span id="order-img"><img src="../../images/sofa/sofa1.jpg"></span>
-        <h3>주 문 상 품</h3>
-
-        <span id="order-info">
-                  <br>
-                  <p class="product-name">댕편한 의자</p>
-                  <p><span>30,000원</span> | <span>3개</span></p>
-              </span>
-      </div>
-
     </div>
+
   </section>
   <!--결제정보 전체 창-->
 
@@ -131,19 +145,19 @@
   <section class="pay">
     <div class="pay-info">
       <div>
-        <h3>결제금액</h3>
+        <h3>결 제 금 액</h3>
       </div>
       <div>
-        <p>총 상품 금액</p>
-        <p>배송비</p>
+        <p>총 상품 금액 : </p>
+        <p>배송비 : 3,000원</p>
       </div>
       <div>
-        <h3>최종 결제 금액</h3>
+        <h3>최종 결제 금액 : </h3>
       </div>
     </div>
     <!--결제 버튼-->
     <div class="pay-button">
-      <input type="button" value="결제하기">
+      <input id="payment-submit" type="button" value="결제하기">
     </div>
   </section>
   <footer>
