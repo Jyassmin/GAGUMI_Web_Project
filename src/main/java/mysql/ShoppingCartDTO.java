@@ -17,7 +17,8 @@ public class ShoppingCartDTO {
     public ShoppingCartDTO() {
     }
     //고객 장바구니 출력을 위한 (이미지 / 제품명 / 주문 수량 / 금액)을 담은 생성자
-    public ShoppingCartDTO(String pimage, String product_name, int quantitiy, int cost) {
+    public ShoppingCartDTO(int sid, String pimage, String product_name, int quantitiy, int cost) {
+        this.sid = sid;
         this.pimage = pimage;
         this.product_name = product_name;
         this.quantitiy = quantitiy;

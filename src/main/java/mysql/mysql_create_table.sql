@@ -38,7 +38,7 @@ CREATE TABLE `shoppingcart` (
 CREATE TABLE `history` (
                            `hid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                            `uid` INT NOT NULL,
-                           `pid` INT NOT NULL,
+                           `pid` INT NULL,
                            `oid` INT NOT NULL,
                            `quantity` INT NOT NULL,
                            `pname` VARCHAR(40) NOT NULL,
@@ -80,10 +80,10 @@ ALTER TABLE product ADD CONSTRAINT K_user_TO_product_1 FOREIGN KEY (uid) REFEREN
 ALTER TABLE product ADD CONSTRAINT K_category2_TO_product_1 FOREIGN KEY (ca2id) REFERENCES category2 (ca2id);
 
 ALTER TABLE shoppingcart ADD CONSTRAINT K_user_TO_shoppingcart_1 FOREIGN KEY (uid) REFERENCES user (uid);
-ALTER TABLE shoppingcart ADD CONSTRAINT K_product_TO_shoppingcart_1 FOREIGN KEY (pid) REFERENCES product (pid);
+# ALTER TABLE shoppingcart ADD CONSTRAINT K_product_TO_shoppingcart_1 FOREIGN KEY (pid) REFERENCES product (pid);
 
 ALTER TABLE history ADD CONSTRAINT K_user_TO_history_1 FOREIGN KEY (uid) REFERENCES user (uid);
-ALTER TABLE history ADD CONSTRAINT K_product_TO_history_1 FOREIGN KEY (pid) REFERENCES product (pid);
+# ALTER TABLE history ADD CONSTRAINT K_product_TO_history_1 FOREIGN KEY (pid) REFERENCES product (pid);
 
 ALTER TABLE review ADD CONSTRAINT K_history_TO_review_1 FOREIGN KEY (hid) REFERENCES history (hid);
 
@@ -91,3 +91,6 @@ ALTER TABLE comment ADD CONSTRAINT K_user_TO_comment_1 FOREIGN KEY (uid) REFEREN
 ALTER TABLE comment ADD CONSTRAINT K_review_TO_comment_1 FOREIGN KEY (rid) REFERENCES review (rid);
 
 ALTER TABLE category2 ADD CONSTRAINT K_category1_TO_category2_1 FOREIGN KEY (ca1id) REFERENCES category1 (ca1id);
+
+ALTER TABLE history ADD CONSTRAINT K_product_TO_history_1 FOREIGN KEY (pid) REFERENCES product (pid) ON DELETE SET NULL;
+ALTER TABLE shoppingcart ADD CONSTRAINT K_product_TO_shoppingcart_1 FOREIGN KEY (pid) REFERENCES product (pid) ON DELETE CASCADE;

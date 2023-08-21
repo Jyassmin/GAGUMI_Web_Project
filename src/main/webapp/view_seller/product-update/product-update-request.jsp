@@ -39,7 +39,7 @@
         // 데이터 업데이트 성공
         PrintWriter script = response.getWriter();
         script.println("<script>");
-        script.println("alert('상품 수정 성공')");
+        script.println("alert('상품 수정을 성공하였습니다.')");
         script.println("location.href='../seller-home/seller-home.jsp';");
         script.println("</script>");
         script.close();
