@@ -241,6 +241,70 @@ public class db_dao {
         return -1;
     }
 
+    public String getAddressByUid(int userUid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT address from user where uid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setInt(1, userUid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            String result_address = rs.getString(1);
+            rs.close();
+
+            return result_address; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public String getPhoneByUid(int userUid) {
+        Connection conn = db_util.getConnection();
+        String SQL = "SELECT phone from user where uid=?";
+
+        try {
+            // 실행 가능 상태의 sql문으로 만듦.
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
+            pstmt.setInt(1, userUid);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            String result_phone = rs.getString(1);
+            rs.close();
+
+            return result_phone; // name 반환
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     // 고객정보 수정 시 업데이트 하는 함수
     public int sellerUpdateInfo(String currentUser, String name, String pw, String phone, String company, String post_code, String full_address){
         Connection conn = db_util.getConnection();
@@ -976,5 +1040,33 @@ public class db_dao {
         }
         return -1;
     }
-}
+    //uid기준으로 장바구니 데이터 출력해주는 함수 (이미지 / 제품명 / 주문 수량 / 총 금액)
+    public List<ShoppingCartDTO> getShoppingCart(String currentUser) {
+        List<ShoppingCartDTO> cartItems = new ArrayList<>();
 
+        try (Connection conn = db_util.getConnection()) {
+            int uid = getUidByEmail(currentUser);
+            String sql = "SELECT p.pimage, p.name, sc.quantity, p.cost FROM shoppingcart sc JOIN product p ON sc.pid = p.pid WHERE sc.uid = ?";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setInt(1, uid);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    // 데이터베이스 결과에서 필요한 정보 추출
+                    String pimage = rs.getString("pimage");
+                    String name = rs.getString("name");
+                    int cost = rs.getInt("cost");
+                    int quantity = rs.getInt("quantity");
+                    // ShoppingCartDTO 객체 생성 및 리스트에 추가
+                    ShoppingCartDTO shoppingCart = new ShoppingCartDTO(pimage, name, cost, quantity);
+                    cartItems.add(shoppingCart);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cartItems;
+    }
+}

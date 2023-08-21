@@ -16,8 +16,8 @@
     <!-- top-menu -->
     <ul class="top-menu">
         <li><a href="#">게시판</a></li>
-        <li><a href="../login/login_customer.jsp">로그인</a></li>
-        <li><a href="../register/register_customer.jsp">회원가입</a></li>
+        <li><a href="../login-logout/login_customer.jsp">로그인</a></li>
+        <li><a href="./register_customer.jsp">회원가입</a></li>
     </ul>
 
     <!--  logo   -->

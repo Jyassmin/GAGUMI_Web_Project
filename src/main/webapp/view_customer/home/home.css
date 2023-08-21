@@ -95,7 +95,6 @@ header{
     display: flex;
     justify-content: center;
     border-top: 1px solid #A43E1D;
-
 }
 .navmenu>li>a{
     display: block;
@@ -125,14 +124,14 @@ header{
 }
 .main-banner>div>a{
     display: block;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin: 30px;
     background-color: #A43E1D;
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    line-height: 100px;
+    line-height: 126px;
     box-shadow: 1px 1px 1px 1px rgb(201, 200, 200);
 }
 

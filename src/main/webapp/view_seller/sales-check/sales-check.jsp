@@ -22,7 +22,7 @@
     </ul>
     <!-- //top-menu -->
     <div class="logo">
-        <a href="../seller-home/seller-home.html"><img src="../../images/logo.png"></a>
+        <a href="../seller-home/seller-home.jsp"><img src="../../images/logo.png"></a>
     </div>
     <h1>매출조회</h1>
 </header>

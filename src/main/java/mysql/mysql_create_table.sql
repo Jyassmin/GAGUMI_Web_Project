@@ -8,7 +8,7 @@ CREATE TABLE `user` (
                         `name` VARCHAR(40) NOT NULL,
                         `email` VARCHAR(40) NOT NULL UNIQUE,
                         `pw` VARCHAR(40) NOT NULL,
-                        `phone` CHAR(13) NOT NULL UNIQUE,
+                        `phone` CHAR(13) NOT NULL,
                         `gender` INT NULL,
                         `birthday` CHAR(10) NULL,
                         `company` VARCHAR(40) NULL,

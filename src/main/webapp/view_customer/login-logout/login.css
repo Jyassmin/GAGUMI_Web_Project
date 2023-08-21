@@ -38,12 +38,12 @@ header{
 }
 
 /*logo*/
-.logo{
+.logo>a{
     display: flex;
     justify-content: center;
 }
 
-.logo > img{
+.logo > a> img{
     width: 30%;
     margin-bottom: 5.3%;
 }
