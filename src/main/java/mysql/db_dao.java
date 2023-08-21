@@ -1130,4 +1130,82 @@ public class db_dao {
         }
         return 0; //삭제 실패한 경우
     }
+
+    // sid 기준으로 상품 재고 감소 시키기 위한 정보 가져오기
+    public List<String[]> getInfoBySid(String[] sid){
+        Connection conn = db_util.getConnection();
+        String sql = "SELECT pid, quantity FROM shoppingcart WHERE sid =?;";
+        List<String[]> info = new ArrayList<>();
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            ResultSet rs = null;
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            for(int i=0; i<sid.length; i++){
+                String[] quanAndPid = new String[2];
+                ptsmt.setString(1, sid[i]);
+                rs = ptsmt.executeQuery();
+                rs.next();
+                quanAndPid[0] = rs.getString("pid");
+                quanAndPid[1] = rs.getString("quantity");
+                info.add(quanAndPid);
+                rs.close();
+            }
+
+            return info;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+    public int modifyQuantity(String[] sid){
+        Connection conn = db_util.getConnection();
+        List<String[]> info = new ArrayList<>();
+        info = getInfoBySid(sid);
+        int result = 0;
+        String sql = "UPDATE product SET stock = (stock - ?) WHERE pid = ?;";
+        try {
+            // 데이터베이스 연결 및 쿼리 실행
+            PreparedStatement ptsmt = conn.prepareStatement(sql);
+            for(int i=0; i<info.size(); i++){
+                ptsmt.setString(1, info.get(i)[1]);
+                ptsmt.setString(2, info.get(i)[0]);
+
+                result += ptsmt.executeUpdate();
+            }
+
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(conn != null&& !conn.isClosed())
+                    conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return -1;
+    }
+
+    public int deleteByBuy(String[] sid){
+        int result = 0;
+        for(int i=0; i<sid.length; i++){
+            int oneSid = Integer.parseInt(sid[i]);
+            result += deleteShoppingCart(oneSid);
+        }
+        return result;
+    }
 }
