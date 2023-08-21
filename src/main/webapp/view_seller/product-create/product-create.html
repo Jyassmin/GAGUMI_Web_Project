@@ -13,7 +13,7 @@
 
 </header>
 <main>
-    <form name="product-add" action="product-create-request.jsp" method="post" enctype="multipart/form-data">
+    <form id="product-add" name="product-add" action="product-create-request.jsp" method="post">
     <!--상품 등록 정보 입력 창-->
         <section class="product-add">
             <!--상품 등록 정보 입력하기-->
@@ -47,7 +47,7 @@
             </div>
             <!--상품등록하기 버튼-->
             <div class="add-button">
-                <input id="add-button" type="submit" value="상품등록">
+                <input id="add-button" form="product-add" type="submit" value="상품등록">
             </div>
         </section>
     </form>
