@@ -175,9 +175,9 @@
             SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String strdate = simpleDate.format(date);
         %>
-        <input type="hidden" value="<%=selectedItems%>">
-        <input type="hidden" value="<%=quan_list%>">
-        <input type="hidden" value="<%=strdate%>">
+        <input type="hidden" name="selectedItems" value="<%=selectedItems%>">
+        <input type="hidden" name="quan_list" value="<%=quan_list.toArray()%>">
+        <input type="hidden" name="strdate" value="<%=strdate%>">
     </form>
     <!--결제 버튼-->
     <div class="pay-button">
