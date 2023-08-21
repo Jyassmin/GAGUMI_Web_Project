@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="basket.css">
     <script src="basket.js"></script>
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
 </head>
 <body>
     <%

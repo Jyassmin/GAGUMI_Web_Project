@@ -114,14 +114,6 @@
                     <li><a href="#">장롱</a></li>
                 </ul>
             </div>
-            <div class="mypage">
-                <h4>MYPAGE</h4>
-                <ul>
-                    <li><a href="#">정보 수정</a></li>
-                    <li><a href="#">주문 내역</a></li>
-                    <li><a href="#">장바구니</a></li>
-                </ul>
-            </div>
         </div>
         <p class = "copyright">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
     </footer>
