@@ -64,6 +64,7 @@ h1{
 
 /*sales-total-list-table*/
 .sales-total-list-table{
+    margin-bottom: 0;
     width: 100%;
     border-collapse: collapse;
 }
@@ -82,6 +83,7 @@ h1{
 
 /*sales-product-list-table */
 .sales-product-list-table{
+    margin-top: -115px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -90,8 +92,8 @@ h1{
     padding: 8px;
     text-align: center;
     background-color: white;
-    width: 50%;
+    width: 30%;
 }
 .sales-product-list-table th{
-    background-color: #ddd;
+    background-color: #F5EFE2;
 }

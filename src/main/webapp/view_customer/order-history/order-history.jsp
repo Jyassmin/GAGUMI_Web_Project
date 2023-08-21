@@ -1,34 +1,26 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="mysql.db_dao" %>
-<%@ page import="java.util.List" %>
-<%@ page import="mysql.ProductDTO" %>
-<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>상품목록</title>
+    <title>주문내역</title>
+    <!--    공통 스타일-->
     <link rel="stylesheet" href="../../base-style.css">
-    <link rel="stylesheet" href="product-list.css?after">
+    <!--    order-payment 스타일-->
+    <link rel="stylesheet" href="orderhistory.css?after">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
 </head>
 <body>
-    <%--세션에서 UID를 가져와 name을 저장--%>
-    <%
-        // 쿼리 매개변수에서 값을 가져와서 표시
-        String productName = request.getParameter("productName"); // 카테고리 이름
-        int productID = Integer.parseInt(request.getParameter("productID")); // 대분류 ID
-        if (productName != null) {
-            // URL 디코딩
-            productName = java.net.URLDecoder.decode(productName, "UTF-8");
-        }
-        db_dao user_dao = new db_dao();
-        List<ProductDTO> productList = user_dao.getProductList(productID); // 대분류별 제품 목록 덩어리
-    %>
     <header>
         <!-- top-menu -->
         <ul class="top-menu">
             <%--세션에서 UID를 가져와 name을 저장--%>
             <%
+                db_dao user_dao = new db_dao();
                 String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
                 String user_name = "";
                 if (user_email != null) {
@@ -52,7 +44,6 @@
             <% if (user_email != null) { %><li><a href="../login-logout/logout_process.jsp">로그아웃</a></li><% } %>
             <% if (user_email == null) { %><li><a href="../register/register_customer.jsp">회원가입</a></li><% } %>
         </ul>
-
         <!--  logo   -->
         <div class="logo">
             <a href="../../index.jsp"><img src="../../images/logo.png"></a>
@@ -71,43 +62,73 @@
             <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
             <li><a href="../product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
         </ul>
-
-        <!-- menu-name -->
-        <div class="menu-name">
-            <p><%= productName %></p>
-        </div>
+        <h1>주문내역</h1>
     </header>
 
-    <!-- main -->
-    <main>
-        <!--대분류 별 각 상품 정보 출력하기-->
-        <div class="product_box">
-
+    <main class="wrap">
+        <!-- left-menu-->
+        <ul class="left-menu">
+            <li><a href="#">정보수정</a></li>
+            <li><a href="#" id="order-history">주문내역</a></li>
+            <li><a href="#">장바구니</a></li>
+        </ul>
+        <%
+            // DAO 인스턴스 생성
+            db_dao userDao = new db_dao();
+            String currentUser = (String)session.getAttribute("memberEmail");
+            // 고객 주문내역 가져오기.(주문번호별 주문내역 모음(Arraylist) > 주문번호가 같은 제품들 정보(Arraylist) > 제품 정보(Hasmap)
+            ArrayList<ArrayList<HashMap<String, String>>> order_history_dao = userDao.order_history_dao(currentUser);
+        %>
+        <!-- 주문 내역 테이블   -->
+        <section class="main-show">
+            <%-- 주분 번호 별 주문내역 목록을 순회하며 테이블 행을 생성 --%>
             <%
-                if(productList != null){
-                    //제품 리스트의 수량만큼 제품 정보 출력하기
-                    for(ProductDTO p : productList){
+                for (ArrayList<HashMap<String, String>> order_list_dummy : order_history_dao) {
             %>
-            <a href="../product-detail/product-detail.jsp?pid=<%=p.getPid()%>">
-                <img class="product_box_img" src="<%=p.getPimage()%>" alt="productImage">
-                <p class="product_box_name"><%=p.getProduct_name()%></p>
-                <p class="product_box_cost"><%=NumberFormat.getInstance().format(p.getCost())%>원</p>
-            </a>
+            <div class="table-container"> <!--주문블럭 반복-->
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th class="order-date"><p>주문일자 : <%= order_list_dummy.get(0).get("datetime")%><p></th>
+                            <th class="order-number"><p>주문번호 : <%= order_list_dummy.get(0).get("oid")%><p></th>
+                        </tr>
+                    </thead>
+
+                    <%
+                        for (HashMap<String, String> hashmap_dummy : order_list_dummy) {
+                    %>
+                    <!-- 아래는 동적 으로 DB가 추가될 행-->
+                    <tbody id="h_tbody"> <!--제품주문정보 반복-->
+                        <tr>
+                            <td id="h_image"><img src="../<%= hashmap_dummy.get("pimage")%>" alt="Product 1" width="100"></td>
+                            <td id="h_info" class="product-details">
+                                <p> • 제품명 : <%= hashmap_dummy.get("oid")%></p><br>
+                                <p class="price"> • 가격 : <%= Integer.parseInt(hashmap_dummy.get("cost")) * Integer.parseInt(hashmap_dummy.get("quantity")) %></p><br> <!--bold-->
+                                <p> • 수량 : <%= hashmap_dummy.get("quantity")%></p><br>
+                                <p> • 판매자 : <%= hashmap_dummy.get("name")%></p><br>
+                                <p> • 문의번호 : <%= hashmap_dummy.get("phone")%></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <%
+                        }
+                    %>
+                    <!-- 나머지 행들도 위와 같이 추가 -->
+                </table>
+            </div>
+            <div class="gap"></div>
             <%
-                    } // for문 닫는 괄호
                 }
             %>
-        </div>
+        </section>
     </main>
 
-    <div class="gap"></div>
-    <!-- footer -->
+    <!--footer-->
     <footer>
         <div class="footer1">
             <div class="project-intro">
                 <h4>PROJECT INTRO.</h4>
-                <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18,
-                    2023 and was developed using JSP, HTML, MYSQL, etc.</p>
+                <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
             </div>
             <div class="product">
                 <h4>PRODUCT</h4>

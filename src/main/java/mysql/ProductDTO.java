@@ -19,12 +19,28 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
+    // 판매자 조회시 고객이 주문한 주문목록 출력을 위한 (제품명, 제품가격)을 담은 생성자
+    public ProductDTO(String product_name, int cost) {
+        this.product_name = product_name;
+        this.cost = cost;
+    }
+
+    // 판매자 총매출 출력을 위한 (제품명, 가격, 수량)을 담은 생성자 - 약간 꼼수
+    public ProductDTO(String product_name, int stock, int cost) {
+        this.product_name = product_name;
+        this.stock = stock;
+        this.cost = cost;
+    }
+
     // 카테고리 별 상품 목록 출력을 위한 (이미지, 제품명, 제품 가격)을 담은 생성자
-    public ProductDTO(String product_name, int cost, String pimage) {
+
+    public ProductDTO(int pid, String product_name, int cost, String pimage) {
+        this.pid = pid;
         this.product_name = product_name;
         this.cost = cost;
         this.pimage = pimage;
     }
+
     //판매자의 등록 상품 조회를 위한 (제품 코드, 이미지, 제품명, 카테고리, 가격, 재고)을 담은 생성자
     public ProductDTO(int pid, int ca2id, String product_name, int stock, int cost, String pimage) {
         this.pid = pid;
@@ -33,6 +49,26 @@ public class ProductDTO {
         this.stock = stock;
         this.cost = cost;
         this.pimage = pimage;
+    }
+    //판매자의 등록된 상품 수정 시 기존에 등록된 제품의 정보를 조회하기 위한(제품코드, 상품이름, 상품가격, 상품수량, 상품설명, 상품이미지)을 담은 생성자
+    public ProductDTO(int pid, String product_name, int cost, int stock, String desc, String pimage) {
+        this.pid = pid;
+        this.product_name = product_name;
+        this.cost = cost;
+        this.stock = stock;
+        this.desc = desc;
+        this.pimage = pimage;
+    }
+
+    // 제품 디테일 출력하는 생성자(제품 코드, 제품명, 가격, 재고, 설명, 이미지, 사이즈)
+    public ProductDTO(int pid, String product_name, int cost, int stock, String desc, String pimage, String size) {
+        this.pid = pid;
+        this.product_name = product_name;
+        this.cost = cost;
+        this.stock = stock;
+        this.desc = desc;
+        this.pimage = pimage;
+        this.size = size;
     }
 
     /*getter---------------------------------------------------*/

@@ -14,18 +14,18 @@
     if (result > 0) {
         // 삭제 성공 시 메시지 출력
 %>
-<%--<script>--%>
-<%--    alert("상품이 삭제되었습니다.");--%>
-<%--    location.href = "product-read.jsp"; // 삭제 후 제품 목록 페이지로 이동--%>
-<%--</script>--%>
-<%--<%--%>
-<%--} else {--%>
-<%--    // 삭제 실패 시 메시지 출력--%>
-<%--%>--%>
-<%--<script>--%>
-<%--    alert("상품 삭제에 실패하였습니다.");--%>
-<%--    history.back(); // 이전 페이지로 돌아가기--%>
-<%--</script>--%>
+<script>
+    alert("상품이 삭제되었습니다.");
+    location.href = "product-read.jsp"; // 삭제 후 제품 목록 페이지로 이동
+</script>
+<%
+} else {
+    // 삭제 실패 시 메시지 출력
+%>
+<script>
+    alert("상품 삭제에 실패하였습니다.");
+    history.back(); // 이전 페이지로 돌아가기
+</script>
 <%
     }
 %>

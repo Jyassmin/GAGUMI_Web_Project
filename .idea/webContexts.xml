@@ -10,6 +10,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view_customer/login-register/register.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view_customer/login-register" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view_customer/order-history/orderhistory.html" value="file://$PROJECT_DIR$/src/main/webapp/view_customer/order-history" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view_seller/product-read/product-read.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view_seller/product-read" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view_seller/product-update/product-update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view_seller/product-update" />
       </map>
     </option>
   </component>

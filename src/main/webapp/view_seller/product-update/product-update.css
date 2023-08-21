@@ -77,19 +77,29 @@ p {
     display: block;
     margin: 20px;
 }
+
 /*제품 정보 수정 버튼*/
-.add-button {
+/*button submit type의 버튼 스타일*/
+#modify_button{
+    text-align: center;
+}
+button[type="submit"] {
     text-align: center;
     width: 100%;
-}
-#add-button {
-    background-color: #a43e1d;
-    width: 50%;
+    font-size: 16px;
+    border: none;
+    background-color: #A43E1D;
     color: white;
-    font-size: 18px;
-    padding: 10px 50px;
+    width: 10%;
     border-radius: 13px;
-    display: inline-block;
+    padding: 10px;
+    letter-spacing: 5px;
+}
+button[type="submit"]:hover{
+    cursor: pointer;
+}
+button[type="submit"]:active{
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
 }
 /*상품 설명*/
 #desc {
