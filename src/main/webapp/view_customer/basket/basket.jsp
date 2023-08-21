@@ -129,10 +129,6 @@
         <button type="submit" form="basket_info" formaction="../order-payment/order-payment.jsp" id="order">주문하기</button>
     </div>
     <footer>
-        <div class="footer1">
-            <!-- 프로젝트 소개, 제품, 마이페이지 등 메뉴 항목 -->
-        </div>
-        <p class="copyright">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
     </footer>
 </body>
 </html>
