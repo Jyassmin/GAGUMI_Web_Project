@@ -76,9 +76,9 @@
     <div class="wrap">
         <!-- left-menu -->
         <ul class="left-menu">
-            <li><a href="#">정보수정</a></li>
-            <li><a href="#">주문내역</a></li>
-            <li><a href="#" id="basket">장바구니</a></li>
+            <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
+            <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+            <li><a href="../basket/basket.jsp" id="basket">장바구니</a></li>
         </ul>
         <div class="table-container">
             <table class="product-table">

@@ -75,9 +75,9 @@
     <div class="wrap">
         <!-- left-menu-->
         <ul class="left-menu">
-            <li><a href="#" id="customer-info">정보수정</a></li>
-            <li><a href="#">주문내역</a></li>
-            <li><a href="#">장바구니</a></li>
+            <li><a href="../customer-info/customer-info.jsp" id="customer-info">정보수정</a></li>
+            <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+            <li><a href="../basket/basket.jsp">장바구니</a></li>
         </ul>
     <section id="updateInfo">
         <h4>정보 수정</h4>

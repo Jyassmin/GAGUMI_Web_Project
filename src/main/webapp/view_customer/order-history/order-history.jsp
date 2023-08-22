@@ -64,9 +64,9 @@
     <main class="wrap">
         <!-- left-menu-->
         <ul class="left-menu">
-            <li><a href="#">정보수정</a></li>
-            <li><a href="#" id="order-history">주문내역</a></li>
-            <li><a href="#">장바구니</a></li>
+            <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
+            <li><a href="../order-history/order-history.jsp" id="order-history">주문내역</a></li>
+            <li><a href="../basket/basket.jsp">장바구니</a></li>
         </ul>
         <%
             // DAO 인스턴스 생성
@@ -121,31 +121,7 @@
 
     <!--footer-->
     <footer>
-        <div class="footer1">
-            <div class="project-intro">
-                <h4>PROJECT INTRO.</h4>
-                <p>This project consists of 3 team members, and the subject is a shopping mall. The period is from August 9 to August 18, 2023 and was developed using JSP, HTML, MYSQL, etc.</p>
-            </div>
-            <div class="product">
-                <h4>PRODUCT</h4>
-                <ul>
-                    <li><a href="#">의자</a></li>
-                    <li><a href="#">서랍/수납장</a></li>
-                    <li><a href="#">책상</a></li>
-                    <li><a href="#">침대</a></li>
-                    <li><a href="#">장롱</a></li>
-                </ul>
-            </div>
-            <div class="mypage">
-                <h4>MYPAGE</h4>
-                <ul>
-                    <li><a href="#">정보 수정</a></li>
-                    <li><a href="#">주문 내역</a></li>
-                    <li><a href="#">장바구니</a></li>
-                </ul>
-            </div>
-        </div>
-        <p class = "copyright">@COPYRIGHT GAGUMI ALL RIGHTS RESERVED.</p>
+
     </footer>
 </body>
 </html>

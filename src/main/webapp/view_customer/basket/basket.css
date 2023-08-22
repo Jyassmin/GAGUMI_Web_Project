@@ -22,18 +22,28 @@ header{
     background-color: #F5EFE2;
     text-align: center;
     position: absolute;
-    top:17px;
-    right: 155px;
-    display: none;
+    top:28px;
+    right: 76px;
+    display: block;
+
+}
+.submenu>li{
+    width: 80px;
+    height: 20px;
+    padding: 3px;
+    background-color: antiquewhite;
+
 }
 
 .submenu>li >a {
-    display: block;
     padding: 8px;
 
 }
+.submenu>li >a:hover{
+    color: white;
+}
 .submenu>li:hover{
-    background-color: #f3ddad;
+    background-color: #a43e1d;
 
 }
 
