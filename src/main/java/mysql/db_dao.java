@@ -1151,7 +1151,7 @@ public class db_dao {
                 info.add(quanAndPid);
                 rs.close();
             }
-
+            System.out.println("getInfoBySid - info :" + info);
             return info;
 
         } catch (SQLException e) {
@@ -1211,43 +1211,6 @@ public class db_dao {
     }
   
     // 장바구니 담기 함수
-    public int insertHistory(int uid, String[] selectedItems, String strdate) {
-    
-       for (String item_sid : selectedItems) {
-           int product_pid = getPidBySid(item_sid);
-           int product_quan = getQuanBySid(item_sid);
-           ProductDTO pdto = printProductDetail(product_pid); // 물품 정보 가져오기
-    
-    
-           Connection conn = db_util.getConnection();
-           String sql = "INSERT INTO history (uid, pid, oid, quantity, pname, cost, datetime) VALUES (?, 1, 1, 2, '우아한 식탁의자', 200000, '2023-08-01 10:15:00')";
-           try {
-               // 데이터베이스 연결 및 쿼리 실행
-               PreparedStatement ptsmt = conn.prepareStatement(sql);
-               ptsmt.setInt(1, uid);
-               ptsmt.setInt(2, product_pid);
-               ptsmt.setInt(3, 1);
-               ptsmt.setInt(4, product_quan);
-               ptsmt.setString(5, pdto.getProduct_name());
-               ptsmt.setInt(6, pdto.getCost());
-               ptsmt.setString(7, strdate);
-    
-               return ptsmt.executeUpdate();
-    
-           } catch (SQLException e) {
-               e.printStackTrace();
-           } finally {
-               try {
-                   if (conn != null && !conn.isClosed())
-                       conn.close();
-               } catch (SQLException e) {
-                   // TODO Auto-generated catch block
-                   e.printStackTrace();
-               }
-           }
-           return -1;
-       }
-    }
     public int insertHistory(int uid, String[] selectedItems, String strdate) {
         Connection conn = db_util.getConnection();
         int cnt = 0;

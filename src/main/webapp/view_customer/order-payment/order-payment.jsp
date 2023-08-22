@@ -176,7 +176,7 @@
     </form>
     <!--결제 버튼-->
     <div class="pay-button">
-      <button form="hidden_info" id="payment-submit" type="submit" value="결제하기">
+      <button form="hidden_info" id="payment-submit" type="submit" value="결제하기"/>
     </div>
 </section>
 <footer>
