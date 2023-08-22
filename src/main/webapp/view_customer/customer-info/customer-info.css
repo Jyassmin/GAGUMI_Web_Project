@@ -127,8 +127,8 @@ h1{
     text-align: center;
     height: 100px;
     position: absolute;
-    left: 30px;
-    top: 214px; /* 원하는 위치에 맞게 조정 */
+    left: 0px;
+    top: 410px; /* 원하는 위치에 맞게 조정 */
 
 }
 .left-menu>li{
@@ -186,7 +186,7 @@ input[type=button] {
     font-size: 15px;
     padding: 2px 3px;
     letter-spacing: normal;
-    height: 20px;
+    height: 27px;
 }
 
 /*비밀번호 변경하기 버튼*/
