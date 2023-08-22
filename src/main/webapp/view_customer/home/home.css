@@ -117,33 +117,28 @@ header{
 /*main-banner*/
 .main-banner{
     width: 100%;
+    height: 250px;
     display: flex;
     justify-content: space-around;
     background-color: white;
     margin-top: -4px;
+    align-items: center;
 
 }
 .main-banner>div>a{
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 30px;
-    /*background-color: #A43E1D;*/
+    background-color: #A43E1D;
     border-radius: 50%;
     color: #fff;
     text-align: center;
-    line-height: 126px;
+    line-height: 146px;
     box-shadow: 1px 1px 1px 1px rgb(201, 200, 200);
     transform: translateY(2px);
+    font-size: 17px;
 }
-
-.background1 {
-    background-color: #B48D69;
-}
-.background2 {
-    background-color: #C2A285;
-}
-
 
 .main-banner>div>a:hover{
     text-decoration: underline;
