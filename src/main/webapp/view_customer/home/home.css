@@ -128,15 +128,22 @@ header{
     width: 120px;
     height: 120px;
     margin: 30px;
-    background-color: #A43E1D;
+    /*background-color: #A43E1D;*/
     border-radius: 50%;
     color: #fff;
     text-align: center;
     line-height: 126px;
     box-shadow: 1px 1px 1px 1px rgb(201, 200, 200);
     transform: translateY(2px);
-
 }
+
+.background1 {
+    background-color: #B48D69;
+}
+.background2 {
+    background-color: #C2A285;
+}
+
 
 .main-banner>div>a:hover{
     text-decoration: underline;
@@ -149,8 +156,9 @@ header{
     align-items: stretch; /* 이미지들의 높이를 같게 설정 */
 }
 .gap img{
-    width: 600px;
+    width: 34%;
     display: block;
+    overflow: hidden;
     /*max-width: 100%; !* 이미지가 컨테이너를 넘지 않도록 함 *!*/
     /*height: auto; !* 가로세로 비율 유지 *!*/
 }
