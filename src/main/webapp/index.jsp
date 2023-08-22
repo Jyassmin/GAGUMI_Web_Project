@@ -72,26 +72,26 @@
     </section>
     <section class="main-banner">
         <% if (user_email == null) { %>
-        <div><a class="background1" href="./view_customer/login-logout/login_customer.jsp">주문내역</a></div>
+        <div><a href="./view_customer/login-logout/login_customer.jsp">주문내역</a></div>
         <% } else { %>
-        <div><a class="background1" href="./view_customer/order-history/order-history.jsp">주문내역</a></div>
+        <div><a href="./view_customer/order-history/order-history.jsp">주문내역</a></div>
         <% } %>
 
-        <div><a class="background2" href="./view_customer/board/board.html">게시판</a></div>
+        <div><a href="./view_customer/board/board.html">게시판</a></div>
 
         <% if (user_email == null) { %>
-        <div><a class="background1" href="./view_customer/login-logout/login_customer.jsp">장바구니</a></div>
+        <div><a href="./view_customer/login-logout/login_customer.jsp">장바구니</a></div>
         <% } else { %>
-        <div><a class="background1" href="view_customer/basket/basket.jsp">장바구니</a></div>
+        <div><a href="view_customer/basket/basket.jsp">장바구니</a></div>
         <% } %>
 
         <% if (user_email == null) { %>
-        <div><a class="background2" href="./view_customer/login-logout/login_customer.jsp">마이페이지</a></div>
+        <div><a href="./view_customer/login-logout/login_customer.jsp">마이페이지</a></div>
         <% } else { %>
-        <div><a class="background2" href="./view_customer/customer-info/customer-info.jsp">마이페이지</a></div>
+        <div><a href="./view_customer/customer-info/customer-info.jsp">마이페이지</a></div>
         <% } %>
 
-        <div><a class="background1" href="./view_customer/company-intro/company-intro.html">회사소개</a></div>
+        <div><a href="./view_customer/company-intro/company-intro.html">회사소개</a></div>
     </section>
 </div>
 
