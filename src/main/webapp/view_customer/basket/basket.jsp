@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="basket.css">
     <script src="basket.js"></script>
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
 </head>
 <body>
     <%
@@ -74,9 +76,9 @@
     <div class="wrap">
         <!-- left-menu -->
         <ul class="left-menu">
-            <li><a href="#">정보수정</a></li>
-            <li><a href="#">주문내역</a></li>
-            <li><a href="#" id="basket">장바구니</a></li>
+            <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
+            <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+            <li><a href="../basket/basket.jsp" id="basket">장바구니</a></li>
         </ul>
         <div class="table-container">
             <table class="product-table">

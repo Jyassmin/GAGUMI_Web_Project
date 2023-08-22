@@ -1,0 +1,25 @@
+body {
+    background-color: #F5EFE2;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.ready-text {
+    background-color: rgba(230, 228, 228, 0.63);
+    width: 1000px;
+    max-width: 90%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 84px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
