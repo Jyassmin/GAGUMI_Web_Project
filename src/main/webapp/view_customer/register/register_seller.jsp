@@ -66,7 +66,7 @@
             <div class="input2">
                 <div class="info">
                     <p class="info-name">휴대폰번호</p>
-                    <input required class="info-value" type="text"  name="user_phone"  id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
+                    <input required class="info-value" type="text"  name="user_phone" maxlength="13" id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
                 </div>
                 <div class="info" id="company_name">
                     <p class="info-name">회사명</p>

@@ -76,11 +76,11 @@
             <div class="input2">
                 <div class="info">
                     <p class="info-name">휴대폰번호</p>
-                    <input required class="info-value" type="text"  name="user_phone" id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
+                    <input required class="info-value" type="text"  name="user_phone" maxlength="13" id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
                 </div>
                 <div class="info" id="birthday">
                     <p class="info-name">생년월일</p>
-                    <input required class="info-value" type="text"  name="user_birthday" id="user_birthday_input" placeholder="ex) 1998-05-20"><br>
+                    <input required class="info-value" type="text"  name="user_birthday" maxlength="10" id="user_birthday_input" placeholder="ex) 1998-05-20"><br>
                 </div>
                 <%--주소--%>
                 <div class="info">

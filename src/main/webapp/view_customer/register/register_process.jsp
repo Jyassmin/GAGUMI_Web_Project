@@ -47,8 +47,8 @@
             script.println("location.href='../login-logout/login_seller.jsp?user_email=" + user_email + "';");
         }
     } else {
-        script.println("alert('회원가입에 실패했습니다.')"); // 아이디 중복 체크 해야함
-        script.println("location.href='./register_customer.jsp';");
+        script.println("alert('이미 존재하는 아이디 입니다.')"); // 아이디 중복 체크 해야함
+        script.println("window.history.back();");
     }
     script.println("</script>");
     script.close();
