@@ -5,6 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,7 +135,7 @@
           <h3>주 문 상 품</h3>
           <span class="order-info">
               <p> <%= pdto.getProduct_name() %> </p>
-              <p><span> <%= pdto.getCost() %> </span> | <span> <%=product_quan%>개</span></p>
+              <p><span> <%= NumberFormat.getInstance().format(pdto.getCost()) %>원 </span> | <span> <%= NumberFormat.getInstance().format(product_quan) %>개</span></p>
               <%
                   total_cost += pdto.getCost() * product_quan;
                   quan_list.add(product_quan);
@@ -156,11 +157,11 @@
         <h3>결 제 금 액</h3>
       </div>
       <div>
-        <p>총 상품 금액 : <%= total_cost %></p>
+        <p>총 상품 금액 : <%= NumberFormat.getInstance().format(total_cost) %>원</p>
         <p>배송비 : 3,000원</p>
       </div>
       <div>
-        <h3>최종 결제 금액 : <%= total_cost + 3000 %> </h3>
+        <h3>최종 결제 금액 : <%= NumberFormat.getInstance().format(total_cost + 3000) %>원 </h3>
       </div>
     </div>
 
@@ -170,13 +171,17 @@
             SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String strdate = simpleDate.format(date);
         %>
-        <input type="hidden" name="selectedItems" value="<%=selectedItems%>">
-        <input type="hidden" name="quan_list" value="<%=quan_list.toArray()%>">
+            <div id="undisplay">
+        <% for (String item : selectedItems) { %>
+                <input  type="checkbox" name="orderItems" checked value="<%= item %>">
+        <% } %>
+            </div>
+
         <input type="hidden" name="strdate" value="<%=strdate%>">
     </form>
     <!--결제 버튼-->
     <div class="pay-button">
-      <button form="hidden_info" id="payment-submit" type="submit" value="결제하기"/>
+        <button form="hidden_info" id="payment-submit" type="submit">결 제 하 기</button>
     </div>
 </section>
 <footer>

@@ -760,7 +760,7 @@ public class db_dao {
         String SQL = "select h.oid, h.datetime, h.pname, h.cost, h.quantity, u.name, u.phone, p.pimage " +
                     "from product p join history h on p.pid = h.pid " +
                     "join user u on p.uid = u.uid " +
-                    "where h.uid = ? order by h.oid ASC, h.pname ASC;";
+                    "where h.uid = ? order by h.oid Desc , h.pname ASC;";
 
         try {
             ArrayList<ArrayList<HashMap<String, String>>> oder_list_all = new ArrayList<>(); // 아래 주문정보 리스트를 저장(oid별로)
@@ -787,10 +787,10 @@ public class db_dao {
                 hashmap_dummy = new HashMap<>(); // 초기화
                 hashmap_dummy.put("oid", rs.getString(1));
                 hashmap_dummy.put("datetime", rs.getString(2));
-                hashmap_dummy.put("pname", rs.getString(3));
+                hashmap_dummy.put("pname", rs.getString(3)); // 제품명
                 hashmap_dummy.put("cost", rs.getString(4));
                 hashmap_dummy.put("quantity", rs.getString(5));
-                hashmap_dummy.put("name", rs.getString(6));
+                hashmap_dummy.put("name", rs.getString(6)); // 판매자명
                 hashmap_dummy.put("phone", rs.getString(7));
                 hashmap_dummy.put("pimage", rs.getString(8));
                 order_list_dummy.add(hashmap_dummy);
@@ -1132,58 +1132,21 @@ public class db_dao {
     }
 
 
-    // sid 기준으로 상품 재고 감소 시키기 위한 정보 가져오기
-    public List<String[]> getInfoBySid(String[] sid){
+    public int modifyQuantity(String[] sid_array){
         Connection conn = db_util.getConnection();
-        String sql = "SELECT pid, quantity FROM shoppingcart WHERE sid =?;";
-        List<String[]> info = new ArrayList<>();
-        try {
-            // 데이터베이스 연결 및 쿼리 실행
-            ResultSet rs = null;
-            PreparedStatement ptsmt = conn.prepareStatement(sql);
-            for(int i=0; i<sid.length; i++){
-                String[] quanAndPid = new String[2];
-                ptsmt.setString(1, sid[i]);
-                rs = ptsmt.executeQuery();
-                rs.next();
-                quanAndPid[0] = rs.getString("pid");
-                quanAndPid[1] = rs.getString("quantity");
-                info.add(quanAndPid);
-                rs.close();
-            }
-            System.out.println("getInfoBySid - info :" + info);
-            return info;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if(conn != null&& !conn.isClosed())
-                    conn.close();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return null;
-
-    }
-    public int modifyQuantity(String[] sid){
-        Connection conn = db_util.getConnection();
-        List<String[]> info = new ArrayList<>();
-        info = getInfoBySid(sid);
         int result = 0;
         String sql = "UPDATE product SET stock = (stock - ?) WHERE pid = ?;";
         try {
-            // 데이터베이스 연결 및 쿼리 실행
-            PreparedStatement ptsmt = conn.prepareStatement(sql);
-            for(int i=0; i<info.size(); i++){
-                ptsmt.setString(1, info.get(i)[1]);
-                ptsmt.setString(2, info.get(i)[0]);
+            for (String sid : sid_array) {
+                int product_quan = getQuanBySid(sid);
+                int product_pid = getPidBySid(sid);
 
-                result += ptsmt.executeUpdate();
+                PreparedStatement ptsmt = conn.prepareStatement(sql);
+                    ptsmt.setInt(1, product_quan);
+                    ptsmt.setInt(2, product_pid);
+
+                    result += ptsmt.executeUpdate();
             }
-
             return result;
 
         } catch (SQLException e) {
@@ -1197,7 +1160,6 @@ public class db_dao {
                 e.printStackTrace();
             }
         }
-
         return -1;
     }
 
@@ -1218,6 +1180,7 @@ public class db_dao {
         try {
             for (String item_sid : selectedItems) {
                 int product_pid = getPidBySid(item_sid);
+                System.out.println(product_pid);
                 int product_quan = getQuanBySid(item_sid);
                 ProductDTO pdto = printProductDetail(product_pid); // 물품 정보 가져오기
 
@@ -1232,7 +1195,6 @@ public class db_dao {
                 ptsmt.setString(7, strdate);
                 cnt += ptsmt.executeUpdate();
             }
-
             return cnt;
 
         } catch (SQLException e) {

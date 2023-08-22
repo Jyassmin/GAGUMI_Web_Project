@@ -2,6 +2,7 @@
 <%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,11 +97,11 @@
                     <!-- 아래는 동적 으로 DB가 추가될 행-->
                     <tbody id="h_tbody"> <!--제품주문정보 반복-->
                         <tr>
-                            <td id="h_image"><img src="../<%= hashmap_dummy.get("pimage")%>" alt="Product 1" width="100"></td>
+                            <td id="h_image"><img id="h_img" src="<%= hashmap_dummy.get("pimage")%>" alt="Product Image"></td>
                             <td id="h_info" class="product-details">
-                                <p> • 제품명 : <%= hashmap_dummy.get("oid")%></p><br>
-                                <p class="price"> • 가격 : <%= Integer.parseInt(hashmap_dummy.get("cost")) * Integer.parseInt(hashmap_dummy.get("quantity")) %></p><br> <!--bold-->
-                                <p> • 수량 : <%= hashmap_dummy.get("quantity")%></p><br>
+                                <p> • 제품명 : <%= hashmap_dummy.get("pname")%></p><br>
+                                <p class="price"> • 가격 : <%= NumberFormat.getInstance().format((long) Integer.parseInt(hashmap_dummy.get("cost")) * Integer.parseInt(hashmap_dummy.get("quantity"))) %>원</p><br> <!--bold-->
+                                <p> • 수량 : <%= NumberFormat.getInstance().format(Integer.parseInt(hashmap_dummy.get("quantity")))%>개</p><br>
                                 <p> • 판매자 : <%= hashmap_dummy.get("name")%></p><br>
                                 <p> • 문의번호 : <%= hashmap_dummy.get("phone")%></p>
                             </td>

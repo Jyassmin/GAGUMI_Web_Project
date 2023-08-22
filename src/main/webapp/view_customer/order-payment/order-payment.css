@@ -140,18 +140,35 @@ width:100%;
  .order-info {
     display: block;
  }
+ #undisplay {
+     display: none;
+ }
+
  /*결제하기버튼*/
  .pay-button {
     text-align: center;
  }
+
  #payment-submit {
-     width: 30%;
- }
+    margin: 30px 5% 30px 5%;
+    width: 33%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    font-size: 24px;
+    font-weight: bolder;
+    background: #a43e1d;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
 
  /*배송메세지 옵션*/
  select {
     margin-left: 2%;
  }
+
  /*footer*/
  footer{
     font-size: 14px;
