@@ -20,7 +20,13 @@ public class UserDTO {
     // 기본 생성자
     public UserDTO() {
     }
-
+    // 판매자 조회시 고객이 주문한 주문목록 출력을 위한 (고객명, 고객이메일, 고객전화번호, 고객주소)을 담은 생성자
+    public UserDTO(String name, String email, String phone, String address) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
     /*getter---------------------------------------------------*/
 
     public int getUid() {

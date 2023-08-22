@@ -29,21 +29,22 @@
 
     db_dao userDao = new db_dao();
     int update_data = userDao.sellerUpdateInfo(currentUser, modify_name, modify_pw, modify_phone, modify_company, post_code, full_address);
-
+    PrintWriter script = response.getWriter();
     if(update_data > 0){
         // 데이터 삽입 성공
-        PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('정보 수정 성공')");
-        script.println("location.href='../seller-home/seller-home.html';");
+        script.println("location.href='../seller-home/seller-home.jsp';");
         script.println("</script>");
-        script.close();
         return;
     }else {
         // 데이터 삽입 실패
-        out.println("데이터 삽입 실패");
-        out.println(update_data);
+        script.println("<script>");
+        script.println("alert('정보 수정 실패')");
+        script.println("window.history.back();");
+        script.println("</script>");
     }
+    script.close();
 %>
 </body>
 </html>

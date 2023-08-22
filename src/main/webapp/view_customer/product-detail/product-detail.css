@@ -55,10 +55,51 @@ header{
 
 .logo > a > img{
     width: 30%;
-
+    margin-bottom: 30px;
 }
+
+/*search*/
+.search{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.search input[type=text]{
+    border: 2px solid #A43E1D;
+    border-radius: 14px;
+    padding: 5px;
+    text-align: center;
+}
+.search input[type=text]:focus{
+    outline: none;
+    border-color: #A43E1D;
+}
+.bi-search::before {
+    margin-left: 5px;
+}
+/*navmenu*/
+.navmenu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #A43E1D;
+    margin-bottom: 5.3%;
+}
+.navmenu>li>a{
+    display: block;
+    padding: 10px 50px;
+    font-size: 14px;
+    width: 77px;
+    text-align: center;
+}
+.navmenu>li>a:hover{
+    background-color: #A43E1D;
+    color: white;
+}
+
 /*상단타이틀*/
-h1{
+#title{
     margin-top: 20px;
     text-align: center;
     letter-spacing: 8px;
@@ -110,12 +151,28 @@ h1{
     color: #A43E1D;
     text-align: center;
 }
+
 /*장바구니 버튼*/
 .product-basket-button{
     text-align: center;
     width: 100%;
     position: absolute;
     bottom: 0;
+}
+button {
+    font-size: 18px;
+    background-color: #a43e1d;
+    border-radius: 15px;
+    color: white;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(2px); /* 아래로 조금 이동하는 효과 */
 }
 
 /*제품 정보 구분선*/

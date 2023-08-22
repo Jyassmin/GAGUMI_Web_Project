@@ -1,12 +1,6 @@
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.util.HashMap" %><%--
-  Created by IntelliJ IDEA.
-  User: elane
-  Date: 2023-08-16
-  Time: PM 8:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="mysql.db_dao" %>
+<%@ page import="java.util.HashMap" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +8,8 @@
     <link rel="stylesheet" href="../../base-style.css">
     <!--product-create 스타일-->
     <link rel="stylesheet" href="customer-info.css?after">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
     <meta charset="UTF-8">
     <title>개인 정보 수정</title>
 </head>
@@ -21,28 +17,52 @@
 <header>
     <!-- top-menu -->
     <ul class="top-menu">
-        <li><a href="#">OOO님 환영합니다.</a></li>
-        <li><a href="#">게시판</a></li>
-        <li class=my-page><a href="#">마이페이지</a>
+        <%--세션에서 UID를 가져와 name을 저장--%>
+        <%
+            db_dao userDao = new db_dao();
+            String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
+            String user_name = "";
+            if (user_email != null) {
+                user_name = userDao.getNameByEmail(user_email);
+            }
+        %>
+        <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
+        <% if (user_email != null) { %><li><span id="welcome"><%= user_name %>님 환영합니다</span></li><% } %>
+        <li><a href="../board/board.html">게시판</a></li> <!--게시판은 항상 보이게-->
+        <% if (user_email != null) { %>
+        <li class=my-page><a href="#">마이페이지▼</a>
             <ul class="submenu">
-                <li><a href="#">정보수정</a></li>
-                <li><a href="#">주문내역</a></li>
-                <li><a href="#">장바구니</a></li>
+                <li><a href="../customer-info/customer-info.jsp">정보수정</a></li>
+                <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+                <li><a href="../basket/basket.jsp">장바구니</a></li>
             </ul>
         </li>
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">회원가입</a></li>
+        <% } %>
+        <%--<li><a href="#" class="move_login_customer">로그인 테스트</a></li>--%> <!--class & js로 페이지 이동하는 예시-->
+        <% if (user_email == null) { %><li><a href="../login-logout/login_customer.jsp">로그인</a></li><% } %>
+        <% if (user_email != null) { %><li><a href="../login-logout/logout_process.jsp">로그아웃</a></li><% } %>
+        <% if (user_email == null) { %><li><a href="../register/register_customer.jsp">회원가입</a></li><% } %>
     </ul>
-    <!-- //top-menu -->
+
+    <!--  logo   -->
     <div class="logo">
         <a href="../../index.jsp"><img src="../../images/logo.png"></a>
     </div>
+
+    <ul class="navmenu">
+        <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
+        <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
+    </ul>
     <h1>개인 정보 수정</h1>
 </header>
 <main>
+    <%--개인정보 수정--%>
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
-        db_dao userDao = new db_dao();
         //System.out.println("Email = " + currentUser);
         HashMap<String, String> customerInfo = userDao.getCustomerInfo(currentUser); // 판매자 정보 가져오기
     %>
@@ -55,9 +75,9 @@
     <div class="wrap">
         <!-- left-menu-->
         <ul class="left-menu">
-            <li><a href="#" id="customer-info">정보수정</a></li>
-            <li><a href="#">주문내역</a></li>
-            <li><a href="#">장바구니</a></li>
+            <li><a href="../customer-info/customer-info.jsp" id="customer-info">정보수정</a></li>
+            <li><a href="../order-history/order-history.jsp">주문내역</a></li>
+            <li><a href="../basket/basket.jsp">장바구니</a></li>
         </ul>
     <section id="updateInfo">
         <h4>정보 수정</h4>

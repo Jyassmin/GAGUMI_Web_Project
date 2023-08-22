@@ -14,6 +14,16 @@ header{
     margin: 0 12px;
 }
 
+#welcome {
+    font-family: dream-light, sans-serif;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 0px;
+}
+
 .my-page{
     position: relative;
 
@@ -54,8 +64,49 @@ header{
 
 .logo >a> img{
     width: 30%;
-
+    margin-bottom: 30px;
 }
+
+/*search*/
+.search{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.search input[type=text]{
+    border: 2px solid #A43E1D;
+    border-radius: 14px;
+    padding: 5px;
+    text-align: center;
+}
+.search input[type=text]:focus{
+    outline: none;
+    border-color: #A43E1D;
+}
+.bi-search::before {
+    margin-left: 5px;
+}
+/*navmenu*/
+.navmenu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #A43E1D;
+    margin-bottom: 5.3%;
+}
+.navmenu>li>a{
+    display: block;
+    padding: 10px 50px;
+    font-size: 14px;
+    width: 77px;
+    text-align: center;
+}
+.navmenu>li>a:hover{
+    background-color: #A43E1D;
+    color: white;
+}
+
 /*상단타이틀*/
 h1{
     margin-top: 20px;
@@ -76,8 +127,8 @@ h1{
     text-align: center;
     height: 100px;
     position: absolute;
-    left: 30px;
-    top: 214px; /* 원하는 위치에 맞게 조정 */
+    left: 0px;
+    top: 410px; /* 원하는 위치에 맞게 조정 */
 
 }
 .left-menu>li{
@@ -135,7 +186,7 @@ input[type=button] {
     font-size: 15px;
     padding: 2px 3px;
     letter-spacing: normal;
-    height: 20px;
+    height: 27px;
 }
 
 /*비밀번호 변경하기 버튼*/

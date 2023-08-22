@@ -1,6 +1,6 @@
 /*header*/
 header{
-    width:100%;
+width:100%;
 }
 /*top-menu*/
 .top-menu{
@@ -14,7 +14,7 @@ header{
     margin: 0 12px;
 }
 
-.my-page{
+#mypage{
     position: relative;
 
 }
@@ -22,28 +22,18 @@ header{
     background-color: #F5EFE2;
     text-align: center;
     position: absolute;
-    top:21px;
-    left: -14px;
+    top:17px;
+    right: 155px;
     display: none;
-
-}
-.submenu>li{
-    width: 80px;
-    height: 20px;
-    padding: 3px;
-    background-color: antiquewhite;
-
 }
 
 .submenu>li >a {
+    display: block;
     padding: 8px;
 
 }
-.submenu>li >a:hover{
-    color: white;
-}
 .submenu>li:hover{
-    background-color: #a43e1d;
+    background-color: #f3ddad;
 
 }
 
@@ -53,110 +43,182 @@ header{
     justify-content: center;
 }
 
-.logo >a> img{
+.logo > a> img{
     width: 30%;
+    margin-bottom: 30px;
+}
 
+/*search*/
+.search{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
-/*상단타이틀*/
-h1{
-    margin-top: 20px;
+.search input[type=text]{
+    border: 2px solid #A43E1D;
+    border-radius: 14px;
+    padding: 5px;
     text-align: center;
-    letter-spacing: 8px;
 }
-section {
-    margin: 5%;
+.search input[type=text]:focus{
+    outline: none;
+    border-color: #A43E1D;
+}
+.bi-search::before {
+    margin-left: 5px;
+}
+/*navmenu*/
+.navmenu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #A43E1D;
+    margin-bottom: 5.3%;
+}
+.navmenu>li>a{
+    display: block;
+    padding: 10px 50px;
+    font-size: 14px;
+    width: 77px;
+    text-align: center;
+}
+.navmenu>li>a:hover{
+    background-color: #A43E1D;
+    color: white;
+}
+
+
+
+ /*상단타이틀*/
+/*menu-name*/
+.menu-name {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #a43e1d;
+    margin-bottom: 40px;
+}
+ section {
+    margin: 5% 20%;
     background-color: #F5EFE2;
     border: 1px solid #a43e1d;
-}
-div {
+ }
+ div {
     margin: 2%;
-}
-hr {
+ }
+ hr {
     margin-bottom: 5px;
     outline: none;
     border-color: rgb(164, 62, 29);
     border-width: 1px;
-}
-/*주문한 제품 정보*/
-#order-product-info {
+ }
+
+ .order-products  {
+     border-bottom: 1px solid #a43e1d;
+
+ }
+ .order-products:last-child{
+     border-bottom: none;
+ }
+
+
+ /*주문한 제품 정보*/
+ .order-product-info {
     display: flex;
-}
-/*제품 이미지*/
-img {
-    width: 60%;
-}
-#order-img {
+ }
+ /*제품 이미지*/
+ img {
+    width: 100%;
+    height: 100%;
+ }
+ .order-img {
     width: 30%;
-}
-/*주문정보*/
-#order-info {
+     margin-right: 5%;
+ }
+ /*주문정보*/
+ .order-info {
     display: block;
-}
-/*제품명*/
-.product-name {
-    margin-bottom: 35%;
-}
-/*결제하기버튼*/
-.pay-button {
+ }
+ #undisplay {
+     display: none;
+ }
+
+ /*결제하기버튼*/
+ .pay-button {
     text-align: center;
+ }
+
+ #payment-submit {
+    margin: 30px 5% 30px 5%;
+    width: 33%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    font-size: 24px;
+    font-weight: bolder;
+    background: #a43e1d;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
 }
-/*배송메세지 옵션*/
-select {
+
+ /*배송메세지 옵션*/
+ select {
     margin-left: 2%;
-}
-/*footer*/
-footer{
+ }
+
+ /*footer*/
+ footer{
     font-size: 14px;
-}
-.footer1{
+ }
+ .footer1{
     padding: 30px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
-}
-.project-intro,
-.product,
-.mypage{
+ }
+ .project-intro,
+ .product,
+ .mypage{
     flex: 1;
     margin: 0 40px;
     max-width: 300px;
-}
-.product{
+ }
+ .product{
     margin-left: 180px;
-}
-.product a{
+ }
+ .product a{
     display: block;
     color: white;
     margin: 30px 0;
-
-}
-.product a:hover{
+ }
+ .product a:hover{
     text-decoration: underline;
-}
-.mypage{
+ }
+ .mypage{
     margin-right: -170px;
-}
-.mypage a:hover{
+ }
+ .mypage a:hover{
     text-decoration: underline;
-}
-.mypage a{
+ }
+ .mypage a{
     color: white;
     display: block;
     color: white;
     margin: 30px 0;
-}
-.project-intro h4,
-.product h4,
-.mypage h4{
+ }
+ .project-intro h4,
+ .product h4,
+ .mypage h4{
     margin-bottom: 10px;
-}
-
-.project-intro p,
-.product ul,
-.mypage ul{
+ }
+ .project-intro p,
+ .product ul,
+ .mypage ul{
     margin: 0;
-}
-.copyright{
+ }
+ .copyright{
     text-align: center;
-}
+ }

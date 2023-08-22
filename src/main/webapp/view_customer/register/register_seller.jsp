@@ -16,8 +16,8 @@
     <!-- top-menu -->
     <ul class="top-menu">
         <li><a href="#">게시판</a></li>
-        <li><a href="../login/login_customer.jsp">로그인</a></li>
-        <li><a href="../register/register_customer.jsp">회원가입</a></li>
+        <li><a href="../login-logout/login_customer.jsp">로그인</a></li>
+        <li><a href="./register_customer.jsp">회원가입</a></li>
     </ul>
 
     <!--  logo   -->
@@ -36,7 +36,7 @@
         <!--    고객, 판매자 선택    -->
         <div class="register-top">
             <a id="select_customer_in_seller" href="./register_customer.jsp">고 객</a>
-            <a id="select_seller_in_seller" href="register_seller.jsp">판 매 자</a>
+            <a id="select_seller_in_seller" href="./register_seller.jsp">판 매 자</a>
         </div>
         <!--   정보입력 & 제출     -->
         <form class="register-box-input" id="register_form" action="register_process.jsp" method="get" onsubmit=" return checkPassword();">
@@ -66,7 +66,7 @@
             <div class="input2">
                 <div class="info">
                     <p class="info-name">휴대폰번호</p>
-                    <input required class="info-value" type="text"  name="user_phone"  id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
+                    <input required class="info-value" type="text"  name="user_phone" maxlength="13" id="user_phone_input" placeholder="ex) 010-1234-5678"><br>
                 </div>
                 <div class="info" id="company_name">
                     <p class="info-name">회사명</p>
