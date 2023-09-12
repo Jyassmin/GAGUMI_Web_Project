@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
+<%@ page import="mysql.db_DAO.CustomerDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +20,12 @@
     <ul class="top-menu">
         <%--세션에서 UID를 가져와 name을 저장--%>
         <%
-            db_dao userDao = new db_dao();
+            LoginDAO loginDAO = new LoginDAO();
+            CustomerDAO customerDAO = new CustomerDAO();
             String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
             String user_name = "";
             if (user_email != null) {
-                user_name = userDao.getNameByEmail(user_email);
+                user_name = loginDAO.getNameByEmail(user_email);
             }
         %>
         <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -64,7 +66,7 @@
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
         //System.out.println("Email = " + currentUser);
-        HashMap<String, String> customerInfo = userDao.getCustomerInfo(currentUser); // 판매자 정보 가져오기
+        HashMap<String, String> customerInfo = customerDAO.getCustomerInfo(currentUser); // 고객 정보 가져오기
     %>
     <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= customerInfo.get("pw")%>"></p>
     <section id="passwordCheck">

@@ -1,4 +1,4 @@
-<%@ page import="mysql.db_dao" %>
+<%@ page import="mysql.db_DAO.ProductDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     // 삭제할 상품의 pid를 파라미터에서 가져옴
@@ -6,10 +6,10 @@
     int pid = Integer.parseInt(pidParam);
 
     // DAO 인스턴스 생성
-    db_dao userDao = new db_dao();
+    ProductDAO productDAO = new ProductDAO();
 
     // 상품 삭제 처리
-    int result = userDao.deleteProduct(pid);
+    int result = productDAO.deleteProduct(pid);
 
     if (result > 0) {
         // 삭제 성공 시 메시지 출력

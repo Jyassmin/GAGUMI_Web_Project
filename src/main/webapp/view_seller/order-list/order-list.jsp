@@ -1,10 +1,7 @@
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="mysql.db_util" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,10 +16,10 @@
 <body>
 <%
     // DAO 인스턴스 생성
-    db_dao userDao = new db_dao();
+    SellerDAO sellerDAO = new SellerDAO();
     String currentUser = (String) session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
-    ArrayList<HashMap<String, String>> history_list = userDao.print_orderList(currentUser);
+    ArrayList<HashMap<String, String>> history_list = sellerDAO.print_orderList(currentUser);
 %>
 <header>
     <!-- top-menu -->

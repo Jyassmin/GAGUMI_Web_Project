@@ -1,7 +1,7 @@
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.ProductDTO" %>
+<%@ page import="mysql.db_DTO.ProductDTO" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +29,9 @@
 <main>
     <%
         String currentEmail = (String) session.getAttribute("memberEmail");
-        db_dao dbDao = new db_dao();
-        int[] totalList = dbDao.printTotalCost(currentEmail);
-        List<ProductDTO> revenue = dbDao.printOneProductTotalCost(currentEmail);
+        SellerDAO sellerDAO = new SellerDAO();
+        int[] totalList = sellerDAO.printTotalCost(currentEmail);
+        List<ProductDTO> revenue = sellerDAO.printOneProductTotalCost(currentEmail);
     %>
     <!--   sales-total-list-table     -->
     <table class="sales-total-list-table">

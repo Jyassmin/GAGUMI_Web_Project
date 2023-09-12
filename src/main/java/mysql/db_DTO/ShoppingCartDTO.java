@@ -1,4 +1,4 @@
-package mysql;
+package mysql.db_DTO;
 
 // 장바구니 테이블 속성
 public class ShoppingCartDTO {

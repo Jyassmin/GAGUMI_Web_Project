@@ -1,5 +1,5 @@
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +28,8 @@
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
         System.out.println(currentUser);
-        db_dao userDao = new db_dao();
-        HashMap<String, String> sellerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
+        SellerDAO sellerDAO = new SellerDAO();
+        HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(currentUser); // 판매자 정보 가져오기
     %>
     <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= sellerInfo.get("pw")%>"></p>
     <section id="passwordCheck">

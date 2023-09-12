@@ -1,5 +1,5 @@
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="mysql.db_DAO.ProductDAO" %>
 <%--
   Created by IntelliJ IDEA.
   User: a0109
@@ -23,7 +23,7 @@
     String modify_desc = request.getParameter("modify_desc"); // 상품설명
     String modify_pimage = request.getParameter("modify_pimage"); // 상품이미지
 
-    db_dao userDao = new db_dao();
+    ProductDAO productDAO = new ProductDAO();
 
     // <product-update.jsp>에서 가져온 상품 코드(pid)를 사용하여 상품 정보를 업데이트합니다.
     String pidParam = request.getParameter("pid");
@@ -33,7 +33,7 @@
     }
 
     // 상품 정보 업데이트 시도
-    int update_data = userDao.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, modify_pimage, targetPid);
+    int update_data = productDAO.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, modify_pimage, targetPid);
 
     if(update_data > 0){
         // 데이터 업데이트 성공

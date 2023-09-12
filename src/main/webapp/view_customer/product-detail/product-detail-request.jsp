@@ -1,5 +1,5 @@
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="mysql.db_DAO.BasketDAO" %><%--
   Created by IntelliJ IDEA.
   User: elane
   Date: 2023-08-20
@@ -16,14 +16,14 @@
     String currentUser = (String) session.getAttribute("memberEmail");
     int pid = Integer.parseInt(request.getParameter("pid"));
     int quantity = Integer.parseInt(request.getParameter("quantity"));
-
-    db_dao shop_dao = new db_dao();
-    int success = shop_dao.insertShoppingCart(currentUser, pid, quantity);
+    
+    BasketDAO basketDAO = new BasketDAO();
+    int success = basketDAO.insertShoppingCart(currentUser, pid, quantity);
     PrintWriter script = response.getWriter();
     if(success > 0){
         script.println("<script>");
         script.println("alert('장바구니 담기 성공')");
-        script.println("location.href='../../index.jsp';");
+        script.println("location.href='../basket/basket.jsp';");
         script.println("</script>");
 
     }else {

@@ -1,4 +1,4 @@
-package mysql;
+package mysql.db_DTO;
 
 // 제품 정보 테이블 columns
 public class ProductDTO {

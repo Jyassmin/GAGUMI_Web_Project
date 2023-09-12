@@ -1,6 +1,7 @@
-<%@ page import="mysql.db_dao" %>
-<%@ page import="mysql.ProductDTO" %>
+<%@ page import="mysql.db_DTO.ProductDTO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="mysql.db_DAO.ProductDAO" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@
 
 <%
     // DAO 인스턴스 생성
-    db_dao userDao = new db_dao();
+    SellerDAO sellerDAO = new SellerDAO();
     String currentUser = (String) session.getAttribute("memberEmail");
     // 상품 코드(pid) 가져오기
     String pidParam = request.getParameter("pid");
@@ -40,7 +41,7 @@
     }
 
     // 상품 정보 조회
-    List<ProductDTO> productList = userDao.ProductByPid(currentUser, targetPid);
+    List<ProductDTO> productList = sellerDAO.ProductByPid(currentUser, targetPid);
 
     ProductDTO product = null;
     // productList가 비어있지 않으면 첫 번째 상품 정보 가져오기
