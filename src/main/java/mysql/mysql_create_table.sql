@@ -43,7 +43,9 @@ CREATE TABLE `history` (
                            `quantity` INT NOT NULL,
                            `pname` VARCHAR(40) NOT NULL,
                            `cost` INT NOT NULL,
-                           `datetime` DATETIME NOT NULL
+                           `datetime` DATETIME NOT NULL,
+                           `pimage` VARCHAR(100) NULL DEFAULT '../images/empty-image.png',
+                           `uid_seller` INT NOT NULL
 );
 
 CREATE TABLE `review` (

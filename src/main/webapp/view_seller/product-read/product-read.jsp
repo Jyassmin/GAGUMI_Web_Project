@@ -24,8 +24,8 @@
 <header>
     <!-- 상단 메뉴 -->
     <ul class="top-menu">
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">정보수정</a></li>
+        <li><a href="../../view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
+        <li><a href="../info-update/info-update.jsp">정보수정</a></li>
     </ul>
     <!-- 상단 메뉴 끝 -->
     <div class="logo">
@@ -42,7 +42,7 @@
         <th>상품명</th>
         <th>상품카테고리</th>
         <th>상품가격</th>
-        <th>상품수량</th>
+        <th>상품재고</th>
         <th>수정/삭제</th>
     </tr>
 

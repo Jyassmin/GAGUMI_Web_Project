@@ -17,8 +17,8 @@
 <header>
     <!-- 로그인 정보 메뉴 -->
     <ul class="top-menu">
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">정보수정</a></li>
+        <li><a href="../../view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
+        <li><a href="../info-update/info-update.jsp">정보수정</a></li>
     </ul>
     <!-- 로고 -->
     <div class="logo">
