@@ -37,7 +37,10 @@
 
     ProductDAO productDAO = new ProductDAO();
     String currentUser = (String) session.getAttribute("memberEmail");
-    String imgPath = "../../images/" + p_img;
+    String imgPath =  "../../images/empty-image.png";
+    if(p_img != ""){
+        imgPath = "../../images/" + p_img;
+    }
     // 1에 현재 로그인한 사용자 id가 들어가야함
     // 이미지 넣고 가져오는 법도 생각해야됨
 

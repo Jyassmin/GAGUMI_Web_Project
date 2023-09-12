@@ -22,6 +22,11 @@
     int modify_stock = Integer.parseInt(request.getParameter("modify_stock")); // 상품수량
     String modify_desc = request.getParameter("modify_desc"); // 상품설명
     String modify_pimage = request.getParameter("modify_pimage"); // 상품이미지
+    String oldImg = request.getParameter("old_img"); // 상품 변경 전 이미지
+    String imgPath = oldImg;
+    if(modify_pimage != ""){
+        imgPath = "../../images/" + modify_pimage;
+    }
 
     ProductDAO productDAO = new ProductDAO();
 
@@ -33,7 +38,7 @@
     }
 
     // 상품 정보 업데이트 시도
-    int update_data = productDAO.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, modify_pimage, targetPid);
+    int update_data = productDAO.productUpdateInfo(currentUser, modify_name, modify_cost, modify_stock, modify_desc, imgPath, targetPid);
 
     if(update_data > 0){
         // 데이터 업데이트 성공

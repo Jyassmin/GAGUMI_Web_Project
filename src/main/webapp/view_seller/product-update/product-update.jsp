@@ -1,6 +1,5 @@
 <%@ page import="mysql.db_DTO.ProductDTO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.db_DAO.ProductDAO" %>
 <%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -11,6 +10,7 @@
     <title>제품 수정</title>
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="product-update.css?after">
+    <%--<script src="product-update.js"></script>--%>
 </head>
 <body>
 <!-- 헤더 영역 -->
@@ -58,7 +58,10 @@
         <p>상품가격 : <input class="product-element" type="text" name="modify_cost" value="<%= product.getCost() %>"></p>
         <p>상품수량 : <input class="product-element" type="number" name="modify_stock" value="<%= product.getStock() %>"></p>
         <p>상품설명 : <textarea class="product-element" name="modify_desc" minlength="10" placeholder="최소 10글자 이상 작성해주세요."><%= product.getDesc() %></textarea></p>
-        <p>상품이미지 : <input class="product-element" type="file" name="modify_pimage" accept="image/*"></p>
+        <p>상품이미지<br><img id="productImg" src="<%=product.getPimage()%>"></p>
+        <p>이미지 변경을 원하는 경우 사진을 클릭해 주세요.</p>
+        <input type="hidden" name="old_img" value="<%=product.getPimage()%>">
+        <p>상품이미지 변경: <input id="modify_img" class="product-element" type="file" name="modify_pimage" accept="image/*"></p>
     </div>
     <!-- 상품 수정 버튼 -->
         <div id="modify_button">
@@ -66,5 +69,21 @@
         </div>
 </form>
 </section>
+<script>
+    // 상품 이미지 변경을 위한 토글 기능
+    const productImg = document.getElementById('productImg');
+    const modifyImgInput = document.getElementById('modify_img');
+
+
+    productImg.addEventListener('click', function () {
+        // 파일 업로드(input) 태그의 가시성을 토글
+        if (modifyImgInput.style.display === 'none' || modifyImgInput.style.display === '') {
+            modifyImgInput.style.display = 'block';
+        } else {
+            modifyImgInput.style.display = 'none';
+        }
+    });
+</script>
+</script>
 </body>
 </html>
