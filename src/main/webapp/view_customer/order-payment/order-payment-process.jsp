@@ -1,10 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="mysql.db_DAO.*" %>
 <%
-    db_dao order_dao = new db_dao();
+    LoginDAO loginDAO = new LoginDAO();
+    HistoryDAO historyDAO = new HistoryDAO();
+    PayDAO payDAO = new PayDAO();
+    BasketDAO basketDAO = new BasketDAO();
+
     String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
-    int user_uid = order_dao.getUidByEmail(user_email);
+    int user_uid = loginDAO.getUidByEmail(user_email);
 
     String[] selectedItems = request.getParameterValues("orderItems");
     //if (selectedItems != null) {
@@ -21,13 +25,13 @@
 
 
     //1. 결제한 수량만큼 물품 재고 감소
-    int modifyQuantitiy = order_dao.modifyQuantity(selectedItems); // 0이면 실패 0 이상이면 성공
+    int modifyQuantitiy = payDAO.modifyQuantity(selectedItems); // 0이면 실패 0 이상이면 성공
     System.out.println("수량 : " + modifyQuantitiy); // 0임.
     //2. history 테이블에 결제 물건 삽입
-    int insertHistory = order_dao.insertHistory(user_uid, selectedItems, strdate);
+    int insertHistory = historyDAO.insertHistory(user_uid, selectedItems, strdate);
 
     //3. 장바구니에서 결제한 제품 삭제
-    int deleteBasket = order_dao.deleteByBuy(selectedItems);
+    int deleteBasket = basketDAO.deleteByBuy(selectedItems);
 
 
     PrintWriter script = response.getWriter();

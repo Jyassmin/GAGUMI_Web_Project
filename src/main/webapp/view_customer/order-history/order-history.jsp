@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
+<%@ page import="mysql.db_DAO.HistoryDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +22,11 @@
         <ul class="top-menu">
             <%--세션에서 UID를 가져와 name을 저장--%>
             <%
-                db_dao user_dao = new db_dao();
+                LoginDAO loginDAO = new LoginDAO();
                 String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
                 String user_name = "";
                 if (user_email != null) {
-                    user_name = user_dao.getNameByEmail(user_email);
+                    user_name = loginDAO.getNameByEmail(user_email);
                 }
             %>
             <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -71,10 +72,10 @@
         </ul>
         <%
             // DAO 인스턴스 생성
-            db_dao userDao = new db_dao();
+            HistoryDAO historyDAO = new HistoryDAO();
             String currentUser = (String)session.getAttribute("memberEmail");
             // 고객 주문내역 가져오기.(주문번호별 주문내역 모음(Arraylist) > 주문번호가 같은 제품들 정보(Arraylist) > 제품 정보(Hasmap)
-            ArrayList<ArrayList<HashMap<String, String>>> order_history_dao = userDao.order_history_dao(currentUser);
+            ArrayList<ArrayList<HashMap<String, String>>> order_history_dao = historyDAO.order_history_dao(currentUser);
         %>
         <!-- 주문 내역 테이블   -->
         <section class="main-show">

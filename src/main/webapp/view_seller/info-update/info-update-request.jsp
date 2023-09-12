@@ -1,5 +1,5 @@
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.io.PrintWriter" %><%--
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %><%--
   Created by IntelliJ IDEA.
   User: elane
   Date: 2023-08-15
@@ -27,8 +27,8 @@
     String extra_address = request.getParameter("user_extraAddress"); // 참고항목
     String full_address = road_address + "," + jibun_address + "," + detail_address + "," + extra_address;
 
-    db_dao userDao = new db_dao();
-    int update_data = userDao.sellerUpdateInfo(currentUser, modify_name, modify_pw, modify_phone, modify_company, post_code, full_address);
+    SellerDAO sellerDAO = new SellerDAO();
+    int update_data = sellerDAO.sellerUpdateInfo(currentUser, modify_name, modify_pw, modify_phone, modify_company, post_code, full_address);
     PrintWriter script = response.getWriter();
     if(update_data > 0){
         // 데이터 삽입 성공

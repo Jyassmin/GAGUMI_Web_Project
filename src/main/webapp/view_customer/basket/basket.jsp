@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.ShoppingCartDTO" %>
+<%@ page import="mysql.db_DTO.ShoppingCartDTO" %>
+<%@ page import="mysql.db_DAO.BasketDAO" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,10 +18,11 @@
 <body>
     <%
         // DAO 인스턴스 생성
-        db_dao userDao = new db_dao();
+        BasketDAO basketDAO = new BasketDAO();
+        LoginDAO loginDAO = new LoginDAO();
         String currentUser = (String) session.getAttribute("memberEmail");
         // uid 기준으로 장바구니 데이터 출력해주는 함수 (이미지 / 제품명 / 주문 수량 / 총 금액)
-        List<ShoppingCartDTO> cartItems = userDao.getShoppingCart(currentUser);
+        List<ShoppingCartDTO> cartItems = basketDAO.getShoppingCart(currentUser);
     %>
     <header>
         <!-- top-menu -->
@@ -30,7 +32,7 @@
                 String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
                 String user_name = "";
                 if (user_email != null) {
-                    user_name = userDao.getNameByEmail(user_email);
+                    user_name = loginDAO.getNameByEmail(user_email);
                 }
             %>
             <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
