@@ -11,6 +11,8 @@
     <title>상품목록</title>
     <link rel="stylesheet" href="../../base-style.css">
     <link rel="stylesheet" href="product-list.css?after">
+    <!-- top-menu 상단 공통 자바스크립트 경로   -->
+    <script src="../home/script/home.js"></script>
 </head>
 <body>
     <%--세션에서 UID를 가져와 name을 저장--%>

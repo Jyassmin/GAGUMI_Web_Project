@@ -24,7 +24,7 @@ header{
     position: absolute;
     top:28px;
     right: 76px;
-    display: block;
+    display: none;
 
 }
 .submenu>li{
