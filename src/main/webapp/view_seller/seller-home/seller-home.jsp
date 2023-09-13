@@ -39,13 +39,13 @@
     <section class="seller-menu">
         <div class="menu-item">
             <a href="../product-create/product-create.html">상품등록</a>
-            <a href="../product-read/product-read.jsp">상품수정</a>
-            <a href="../product-read/product-read.jsp">상품삭제</a>
+            <a href="../order-list/order-list.jsp">주문목록</a>
+            <a href="../sales-check/sales-check.jsp">매출조회</a>
         </div>
         <div class="menu-item">
-            <a href="../order-list/order-list.jsp">주문목록</a>
             <a href="../product-read/product-read.jsp">상품조회</a>
-            <a href="../sales-check/sales-check.jsp">매출조회</a>
+            <a href="../product-read/product-read.jsp">상품수정</a>
+            <a href="../product-read/product-read.jsp">상품삭제</a>
         </div>
     </section>
 </main>

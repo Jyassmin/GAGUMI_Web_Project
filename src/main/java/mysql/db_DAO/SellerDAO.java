@@ -18,10 +18,10 @@ public class SellerDAO {
         Connection conn = db_util.getConnection();
         int uid = loginDAO.getUidByEmail(email);
         String c_list = getHistoryUid(uid); // 해당 판매자의 물품을 구매한 고객의 리스트
-        String SQL = "select h.hid, u.email, h.pname, h.cost, h.quantity, h.cost*h.quantity, u.name, u.phone, u.address, h.datetime " +
+        String SQL = "select h.oid, u.email, h.pname, h.cost, h.quantity, h.cost*h.quantity, u.name, u.phone, u.address, h.datetime " +
                 "from history h join user u on h.uid = u.uid" +
                 "    join product p on h.pid = p.pid " +
-                "where u.uid in (" + c_list + ") and p.uid = ? ORDER BY h.datetime DESC;";
+                "where h.uid in (" + c_list + ") and p.uid = ? ORDER BY h.datetime DESC;";
         try {
             ArrayList<HashMap<String, String>> history_list = new ArrayList<>();
 
@@ -144,7 +144,7 @@ public class SellerDAO {
 
         String sql = "SELECT p.name, SUM(h.quantity*h.cost) AS 'TOTAL', SUM(h.quantity) " +
                 "FROM product p LEFT JOIN history h ON p.pid = h.pid " +
-                "WHERE p.uid = ? GROUP BY p.name ORDER BY TOTAL;";
+                "WHERE p.uid = ? GROUP BY p.name ORDER BY TOTAL DESC;";
         try {
             // 데이터베이스 연결 및 쿼리 실행
             ResultSet rs = null;
