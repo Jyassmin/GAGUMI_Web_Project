@@ -6,7 +6,7 @@ public class ShoppingCartDTO {
     private int sid; // 장바구니 코드 (PK)
     private int uid; // 고객 코드 (FK)
     private int pid; // 제품 코드 (FK)
-    private int quantitiy; // 고객이 담은 제품 수량
+    private int quantity; // 고객이 담은 제품 수량
     private String product_name; // 제품이름
     private int cost; // 가격
     private String pimage; // 제품 이미지
@@ -17,11 +17,11 @@ public class ShoppingCartDTO {
     public ShoppingCartDTO() {
     }
     //고객 장바구니 출력을 위한 (이미지 / 제품명 / 주문 수량 / 금액)을 담은 생성자
-    public ShoppingCartDTO(int sid, String pimage, String product_name, int quantitiy, int cost) {
+    public ShoppingCartDTO(int sid, String pimage, String product_name, int quantity, int cost) {
         this.sid = sid;
         this.pimage = pimage;
         this.product_name = product_name;
-        this.quantitiy = quantitiy;
+        this.quantity = quantity;
         this.cost = cost;
     }
 
@@ -38,8 +38,8 @@ public class ShoppingCartDTO {
         return pid;
     }
 
-    public int getQuantitiy() {
-        return quantitiy;
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getProduct_name() {return product_name;}
@@ -48,5 +48,5 @@ public class ShoppingCartDTO {
 
     public String getPimage() {return pimage;}
 
-    public int getTotalCost() {return quantitiy * cost;}
+    public int getTotalCost() {return quantity * cost;}
 }
