@@ -84,17 +84,19 @@ public class HistoryDAO {
         int cnt = 0;
         String sql = "INSERT INTO history (uid, pid, oid, quantity, pname, cost, datetime, pimage, uid_seller) VALUES (?,?,?,?,?,?,?,?,?)";
         try {
+            int new_oid = getLastOid() + 1;
             for (String item_sid : selectedItems) {
                 int product_pid = getPidBySid(item_sid);
                 int uid_seller = getUidByPid(product_pid);
                 int product_quan = getQuanBySid(item_sid);
                 ProductDTO pdto = productDAO.printProductDetail(product_pid); // 물품 정보 가져오기
 
+
                 // 데이터베이스 연결 및 쿼리 실행
                 PreparedStatement ptsmt = conn.prepareStatement(sql);
                 ptsmt.setInt(1, uid);
                 ptsmt.setInt(2, product_pid);
-                ptsmt.setInt(3, getLastOid() + 1);
+                ptsmt.setInt(3, new_oid);
                 ptsmt.setInt(4, product_quan);
                 ptsmt.setString(5, pdto.getProduct_name());
                 ptsmt.setInt(6, pdto.getCost());
