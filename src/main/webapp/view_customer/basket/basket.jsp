@@ -101,7 +101,7 @@
                     <td><input type="checkbox" name="selectedItems" checked value="<%= cartItem.getSid() %>"></td>
                     <td><img src="<%= cartItem.getPimage() %>" alt="<%= cartItem.getProduct_name() %>" width="50"></td>
                     <td><%= cartItem.getProduct_name() %></td>
-                    <td><%= NumberFormat.getInstance().format(cartItem.getQuantitiy()) %>원</td>
+                    <td><%= NumberFormat.getInstance().format(cartItem.getQuantity()) %>원</td>
                     <td><%= NumberFormat.getInstance().format(cartItem.getCost()) %>개</td>
                     <td><%= NumberFormat.getInstance().format(cartItem.getTotalCost()) %>원</td>
                 </tr>
