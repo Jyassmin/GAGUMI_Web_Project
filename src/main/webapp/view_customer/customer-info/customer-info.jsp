@@ -53,7 +53,7 @@
 
     <ul class="navmenu">
         <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
         <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
         <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
         <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
