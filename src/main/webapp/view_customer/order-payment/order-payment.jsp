@@ -120,8 +120,8 @@
       for (String sidParam : selectedItems) {
   %>
       <%
-          String seller_email = basketDAO.getEmailBySid(sidParam);
-          HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(seller_email); // 판매자 정보 가져오기
+          String seller_uid = basketDAO.getUidBySid(sidParam);
+          HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(seller_uid); // 판매자 정보 가져오기
       %>
       <%
           int product_pid = historyDAO.getPidBySid(sidParam);
