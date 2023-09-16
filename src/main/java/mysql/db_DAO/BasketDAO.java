@@ -111,16 +111,16 @@ public class BasketDAO {
     }
 
     //
-    public String getEmailBySid(String sellerEmail) {
+    public String getUidBySid(String shoppingcartId) {
         Connection conn = db_util.getConnection();
-        String SQL = "select u.email from product p join shoppingcart s on p.pid = s.sid join user u on p.uid = u.uid where s.sid = ?;";
+        String SQL = "select p.uid from product p join shoppingcart s on p.pid = s.pid where s.sid = ?;";
 
         try {
             // 실행 가능 상태의 sql문으로 만듦.
             PreparedStatement pstmt = conn.prepareStatement(SQL);
 
             // 쿼리문의 ?안에 각각의 데이터를 넣어준다.
-            pstmt.setString(1, sellerEmail);
+            pstmt.setString(1, shoppingcartId);
             ResultSet rs = pstmt.executeQuery();
             rs.next();
             String result_email = rs.getString(1);
