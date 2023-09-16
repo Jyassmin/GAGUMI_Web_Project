@@ -36,7 +36,7 @@
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('정보 수정 성공')");
-        script.println("location.href='../seller-home/seller-home.html';");
+        script.println("location.href='./customer-info.jsp';");
         script.println("</script>");
         script.close();
         return;
