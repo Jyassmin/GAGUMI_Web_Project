@@ -102,6 +102,9 @@ select {
     outline: none;
     border: none;
 }
+#add-button:hover{
+    cursor: pointer;
+}
 /*제품 크기 조건에 맞지 않았을 때*/
 #alertMessage {
     margin-left: 20%;
