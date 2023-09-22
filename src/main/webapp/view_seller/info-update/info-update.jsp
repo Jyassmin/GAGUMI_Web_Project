@@ -1,5 +1,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="mysql.db_DAO.SellerDAO" %>
+<%@ page import="mysql.db_DTO.UserDTO" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +28,11 @@
 </header>
 <main>
     <%
-        String currentUser = (String) session.getAttribute("memberEmail");
-        System.out.println(currentUser);
+        LoginDAO loginDAO = new LoginDAO();
         SellerDAO sellerDAO = new SellerDAO();
-        HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(currentUser); // 판매자 정보 가져오기
+        String currentUser = (String) session.getAttribute("memberEmail");
+        String currentUID = String.valueOf(loginDAO.getUidByEmail(currentUser));
+        HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(currentUID); // 판매자 정보 가져오기
     %>
     <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= sellerInfo.get("pw")%>"></p>
     <section id="passwordCheck">
