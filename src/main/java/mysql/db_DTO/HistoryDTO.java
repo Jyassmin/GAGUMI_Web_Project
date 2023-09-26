@@ -1,4 +1,4 @@
-package mysql;
+package mysql.db_DTO;
 
 // 결제 정보 테이블 속성
 public class HistoryDTO {

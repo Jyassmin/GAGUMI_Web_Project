@@ -1,5 +1,7 @@
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
+<%@ page import="mysql.db_DTO.UserDTO" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +17,8 @@
 <header>
     <!-- top-menu -->
     <ul class="top-menu">
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">정보수정</a></li>
+        <li><a href="../../view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
+        <li><a href="../info-update/info-update.jsp">정보수정</a></li>
     </ul>
     <!-- //top-menu -->
     <div class="logo">
@@ -26,10 +28,11 @@
 </header>
 <main>
     <%
+        LoginDAO loginDAO = new LoginDAO();
+        SellerDAO sellerDAO = new SellerDAO();
         String currentUser = (String) session.getAttribute("memberEmail");
-        System.out.println(currentUser);
-        db_dao userDao = new db_dao();
-        HashMap<String, String> sellerInfo = userDao.getSellerInfo(currentUser); // 판매자 정보 가져오기
+        String currentUID = String.valueOf(loginDAO.getUidByEmail(currentUser));
+        HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(currentUID); // 판매자 정보 가져오기
     %>
     <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= sellerInfo.get("pw")%>"></p>
     <section id="passwordCheck">

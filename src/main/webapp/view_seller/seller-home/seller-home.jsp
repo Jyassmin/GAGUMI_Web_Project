@@ -16,12 +16,23 @@
 
     <meta charset="UTF-8">
     <title>판매자 Home</title>
+    <script type="text/javascript">
+        function changeBackgroundColor(element) {
+            element.style.backgroundColor = "#A43E1D";
+            element.style.color = "#F5EFE2";
+        }
+
+        function restoreBackgroundColor(element) {
+            element.style.backgroundColor = ""; // 기본 배경색으로 돌아가도록 설정
+            element.style.color = ""; // 기본 색으로 돌아가도록 설정
+        }
+    </script>
 </head>
 <body>
 <header>
     <!-- top-menu -->
     <ul class="top-menu">
-        <li><a href="#">로그아웃</a></li>
+        <li><a href="../../view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
         <li><a href="../info-update/info-update.jsp">정보수정</a></li>
     </ul>
     <!-- //top-menu -->
@@ -38,14 +49,12 @@
     <!--판매자 메뉴-->
     <section class="seller-menu">
         <div class="menu-item">
-            <a href="../product-create/product-create.html">상품등록</a>
-            <a href="../product-read/product-read.jsp">상품수정</a>
-            <a href="../product-read/product-read.jsp">상품삭제</a>
+            <a href="../product-create/product-create.html" onmouseover="changeBackgroundColor(this);" onmouseout="restoreBackgroundColor(this);">상 품 등 록</a>
+            <a href="../product-read/product-read.jsp" onmouseover="changeBackgroundColor(this);" onmouseout="restoreBackgroundColor(this);">상 품 관 리</a>
         </div>
         <div class="menu-item">
-            <a href="../order-list/order-list.jsp">주문목록</a>
-            <a href="../product-read/product-read.jsp">상품조회</a>
-            <a href="../sales-check/sales-check.jsp">매출조회</a>
+            <a href="../order-list/order-list.jsp" onmouseover="changeBackgroundColor(this);" onmouseout="restoreBackgroundColor(this);">주 문 목 록</a>
+            <a href="../sales-check/sales-check.jsp" onmouseover="changeBackgroundColor(this);" onmouseout="restoreBackgroundColor(this);">매 출 조 회</a>
         </div>
     </section>
 </main>

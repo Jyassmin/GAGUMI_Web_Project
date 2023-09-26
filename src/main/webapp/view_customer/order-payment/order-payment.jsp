@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="mysql.ProductDTO" %>
+<%@ page import="mysql.db_DTO.ProductDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="mysql.db_DAO.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +24,17 @@
     <ul class="top-menu">
         <%--세션에서 UID를 가져와 name을 저장--%>
         <%
-            db_dao user_dao = new db_dao();
+            LoginDAO loginDAO = new LoginDAO();
+            CustomerDAO customerDAO = new CustomerDAO();
+            SellerDAO sellerDAO = new SellerDAO();
+            BasketDAO basketDAO = new BasketDAO();
+            HistoryDAO historyDAO = new HistoryDAO();
+            ProductDAO productDAO = new ProductDAO();
+
             String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
             String user_name = "";
             if (user_email != null) {
-                user_name = user_dao.getNameByEmail(user_email);
+                user_name = loginDAO.getNameByEmail(user_email);
             }
         %>
         <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -56,7 +62,7 @@
 
     <ul class="navmenu">
         <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
         <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
         <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
         <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
@@ -71,7 +77,7 @@
 <!-- 배송/주문자 정보 창-->
 <section class="order">
     <%
-        HashMap<String, String> customerInfo = user_dao.getCustomerInfo(user_email); // 판매자 정보 가져오기
+        HashMap<String, String> customerInfo = customerDAO.getCustomerInfo(user_email); // 판매자 정보 가져오기
     %>
     <!--배송정보-->
     <div class="address">
@@ -114,13 +120,13 @@
       for (String sidParam : selectedItems) {
   %>
       <%
-          String seller_email = user_dao.getEmailBySid(sidParam);
-          HashMap<String, String> sellerInfo = user_dao.getSellerInfo(seller_email); // 판매자 정보 가져오기
+          String seller_uid = basketDAO.getUidBySid(sidParam);
+          HashMap<String, String> sellerInfo = sellerDAO.getSellerInfo(seller_uid); // 판매자 정보 가져오기
       %>
       <%
-          int product_pid = user_dao.getPidBySid(sidParam);
-          int product_quan = user_dao.getQuanBySid(sidParam);
-          ProductDTO pdto = user_dao.printProductDetail(product_pid); // 물품 정보 가져오기
+          int product_pid = historyDAO.getPidBySid(sidParam);
+          int product_quan = historyDAO.getQuanBySid(sidParam);
+          ProductDTO pdto = productDAO.printProductDetail(product_pid); // 물품 정보 가져오기
       %>
     <div class="order-products">
       <div class="order-product-info">

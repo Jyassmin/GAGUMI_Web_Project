@@ -1,10 +1,7 @@
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="mysql.db_dao" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="mysql.db_util" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.SellerDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,16 +16,16 @@
 <body>
 <%
     // DAO 인스턴스 생성
-    db_dao userDao = new db_dao();
+    SellerDAO sellerDAO = new SellerDAO();
     String currentUser = (String) session.getAttribute("memberEmail");
     // 상품 조회 메서드 호출
-    ArrayList<HashMap<String, String>> history_list = userDao.print_orderList(currentUser);
+    ArrayList<HashMap<String, String>> history_list = sellerDAO.print_orderList(currentUser);
 %>
 <header>
     <!-- top-menu -->
     <ul class="top-menu">
-        <li><a href="#">로그아웃</a></li>
-        <li><a href="#">정보수정</a></li>
+        <li><a href="../../view_customer/login-logout/logout_process.jsp">로그아웃</a></li>
+        <li><a href="../info-update/info-update.jsp">정보수정</a></li>
     </ul>
     <!-- //top-menu -->
     <div class="logo">
@@ -40,11 +37,11 @@
 <table class="order-list-table">
     <tr>
         <th></th>
-        <th>주문코드</th>
+        <th>주문번호</th>
         <th>고객아이디</th>
         <th>주문상품</th>
         <th>상품가격</th>
-        <th>상품수량</th>
+        <th>수량</th>
         <th>총금액</th>
         <th>이름</th>
         <th>전화번호</th>

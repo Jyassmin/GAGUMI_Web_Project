@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <%
     // 사용자가 보낸 데이터를 한글을 사용할 수 있는 형식으로 변환
     request.setCharacterEncoding("UTF-8");
@@ -25,8 +25,8 @@
     }
 
     // 쿼리 실행
-    db_dao userDao = new db_dao();
-    int check_account = userDao.login(page_role, user_email, user_pw); // 로그인 실패 0, 성공 1
+    LoginDAO loginDAO = new LoginDAO();
+    int check_account = loginDAO.login(page_role, user_email, user_pw); // 로그인 실패 0, 성공 1
 
     // 결과 처리
     PrintWriter script;

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mysql.ShoppingCartDTO" %>
+<%@ page import="mysql.db_DTO.ShoppingCartDTO" %>
+<%@ page import="mysql.db_DAO.BasketDAO" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,10 +18,11 @@
 <body>
     <%
         // DAO 인스턴스 생성
-        db_dao userDao = new db_dao();
+        BasketDAO basketDAO = new BasketDAO();
+        LoginDAO loginDAO = new LoginDAO();
         String currentUser = (String) session.getAttribute("memberEmail");
         // uid 기준으로 장바구니 데이터 출력해주는 함수 (이미지 / 제품명 / 주문 수량 / 총 금액)
-        List<ShoppingCartDTO> cartItems = userDao.getShoppingCart(currentUser);
+        List<ShoppingCartDTO> cartItems = basketDAO.getShoppingCart(currentUser);
     %>
     <header>
         <!-- top-menu -->
@@ -30,7 +32,7 @@
                 String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
                 String user_name = "";
                 if (user_email != null) {
-                    user_name = userDao.getNameByEmail(user_email);
+                    user_name = loginDAO.getNameByEmail(user_email);
                 }
             %>
             <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -58,7 +60,7 @@
 
         <ul class="navmenu">
             <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-            <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+            <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
             <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
             <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
             <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
@@ -99,7 +101,7 @@
                     <td><input type="checkbox" name="selectedItems" checked value="<%= cartItem.getSid() %>"></td>
                     <td><img src="<%= cartItem.getPimage() %>" alt="<%= cartItem.getProduct_name() %>" width="50"></td>
                     <td><%= cartItem.getProduct_name() %></td>
-                    <td><%= NumberFormat.getInstance().format(cartItem.getQuantitiy()) %>원</td>
+                    <td><%= NumberFormat.getInstance().format(cartItem.getQuantity()) %>원</td>
                     <td><%= NumberFormat.getInstance().format(cartItem.getCost()) %>개</td>
                     <td><%= NumberFormat.getInstance().format(cartItem.getTotalCost()) %>원</td>
                 </tr>

@@ -1,6 +1,7 @@
-<%@ page import="mysql.ProductDTO" %>
-<%@ page import="mysql.db_dao" %>
+<%@ page import="mysql.db_DTO.ProductDTO" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="mysql.db_DAO.ProductDAO" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +20,12 @@
     <ul class="top-menu">
         <%--세션에서 UID를 가져와 name을 저장--%>
         <%
-            db_dao user_dao = new db_dao();
+            LoginDAO loginDAO = new LoginDAO();
+            ProductDAO productDAO = new ProductDAO();
             String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
             String user_name = "";
             if (user_email != null) {
-                user_name = user_dao.getNameByEmail(user_email);
+                user_name = loginDAO.getNameByEmail(user_email);
             }
         %>
         <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -51,7 +53,7 @@
 
     <ul class="navmenu">
         <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
         <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
         <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
         <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
@@ -64,8 +66,8 @@
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
         int pid = Integer.parseInt(request.getParameter("pid"));
-        db_dao detail_dao = new db_dao();
-        ProductDTO pdto = detail_dao.printProductDetail(pid);
+
+        ProductDTO pdto = productDAO.printProductDetail(pid);
     %>
 
 
@@ -140,20 +142,12 @@
         <div class="product">
             <h4>PRODUCT</h4>
             <ul>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
-                <li><a href="./view_customer/product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
-            </ul>
-        </div>
-        <div class="mypage">
-            <h4>MYPAGE</h4>
-            <ul>
-                <li><a href="#">정보 수정</a></li>
-                <li><a href="#">주문 내역</a></li>
-                <li><a href="#">장바구니</a></li>
+                <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
+                <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
+                <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
+                <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
+                <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
+                <li><a href="../product-list/product-list.jsp?productName=장롱&productID=6">장롱</a></li>
             </ul>
         </div>
     </div>

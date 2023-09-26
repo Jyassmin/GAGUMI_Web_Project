@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="mysql.db_DAO.LoginDAO" %>
+<%@ page import="mysql.db_DAO.CustomerDAO" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +20,12 @@
     <ul class="top-menu">
         <%--세션에서 UID를 가져와 name을 저장--%>
         <%
-            db_dao userDao = new db_dao();
+            LoginDAO loginDAO = new LoginDAO();
+            CustomerDAO customerDAO = new CustomerDAO();
             String user_email = (String) session.getAttribute("memberEmail"); // 로그인 되어 있으면 email 가져옴
             String user_name = "";
             if (user_email != null) {
-                user_name = userDao.getNameByEmail(user_email);
+                user_name = loginDAO.getNameByEmail(user_email);
             }
         %>
         <%--오른쪽 상단의 메뉴들. 세션(로그인)이 있을 때에 따라 보이는게 다르도록 함.--%>
@@ -51,7 +53,7 @@
 
     <ul class="navmenu">
         <li><a href="../product-list/product-list.jsp?productName=의자&productID=1">의자</a></li>
-        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">쇼파</a></li>
+        <li><a href="../product-list/product-list.jsp?productName=소파&productID=2">소파</a></li>
         <li><a href="../product-list/product-list.jsp?productName=서랍%2F수납장&productID=3">서랍/수납장</a></li> <%--%2F = /--%>
         <li><a href="../product-list/product-list.jsp?productName=책상&productID=4">책상</a></li>
         <li><a href="../product-list/product-list.jsp?productName=침대&productID=5">침대</a></li>
@@ -64,7 +66,7 @@
     <%
         String currentUser = (String) session.getAttribute("memberEmail");
         //System.out.println("Email = " + currentUser);
-        HashMap<String, String> customerInfo = userDao.getCustomerInfo(currentUser); // 판매자 정보 가져오기
+        HashMap<String, String> customerInfo = customerDAO.getCustomerInfo(currentUser); // 고객 정보 가져오기
     %>
     <p><input disabled id="current_pw" name="current_pw" type="text"  value="<%= customerInfo.get("pw")%>"></p>
     <section id="passwordCheck">

@@ -24,7 +24,7 @@ header{
     position: absolute;
     top:28px;
     right: 76px;
-    display: block;
+    display: none;
 
 }
 .submenu>li{
@@ -229,6 +229,10 @@ hr {
     padding: 10px;
     letter-spacing: 3px;
     text-align: center;
+
+}
+#order:hover{
+    cursor: pointer;
 }
 
 

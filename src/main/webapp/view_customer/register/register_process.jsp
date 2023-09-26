@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mysql.db_dao"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="mysql.db_DAO.RegisterDAO" %>
 <%
     // 사용자가 보낸 데이터를 한글을 사용할 수 있는 형식으로 변환
     request.setCharacterEncoding("UTF-8");
@@ -31,8 +31,8 @@
 
     // 쿼리 실행
     // userDao.regiser에 계정 삽입 성공 시 1 리턴 받음.
-    db_dao userDao = new db_dao();
-    int check_insert = userDao.regiser(page_role, user_name, user_email, user_pw, user_phone
+    RegisterDAO registerDAO = new RegisterDAO();
+    int check_insert = registerDAO.regiser(page_role, user_name, user_email, user_pw, user_phone
             , user_birthday, user_gender, user_company, full_address, user_postcode);
 
     // 결과 처리

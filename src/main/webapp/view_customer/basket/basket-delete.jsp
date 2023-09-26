@@ -1,8 +1,8 @@
-<%@ page import="mysql.db_dao" %>
+<%@ page import="mysql.db_DAO.BasketDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String[] selectedItems = request.getParameterValues("selectedItems");
-    db_dao userDao = new db_dao();
+    BasketDAO basketDAO = new BasketDAO();
     int successfulDeletions = 0;
 
     if (selectedItems != null) {
@@ -11,7 +11,7 @@
 
             try {
                 sid = Integer.parseInt(sidParam);
-                int result = userDao.deleteShoppingCart(sid);
+                int result = basketDAO.deleteShoppingCart(sid);
 
                 if (result > 0) {
                     successfulDeletions++;

@@ -1,4 +1,4 @@
-package mysql;
+package mysql.db_DTO;
 
 // 고객, 판매자 정보를 가지고 있는 테이블 속성
 public class UserDTO {
